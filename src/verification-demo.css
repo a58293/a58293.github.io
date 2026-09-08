@@ -1,0 +1,14 @@
+.verify-demo-notice { margin: 0 0 24px; padding: 16px 18px; border-left: 3px solid #8e743f; background: #eee9da; color: #4c4938; font-size: 13px; line-height: 1.8; }
+.verify-demo-notice b, .verify-demo-notice span { display: block; }
+.verify-demo-notice b { font-weight: 600; }
+.verify-demo-options { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0 0 28px; }
+.verify-demo-options legend { margin-bottom: 12px; color: #3c6158; font-size: 12px; }
+.verify-world .verify-demo-options label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 10px; border: 1px solid #b7c9c0; cursor: pointer; }
+.verify-world .verify-demo-options input { width: 16px; height: 16px; margin: 0; padding: 0; accent-color: #214f4b; }
+.verify-world .verify-demo-options label > span { display: inline; font-size: 12px; }
+.verify-world .verify-demo-options label:has(:checked) { background: #e0eae4; border-color: #214f4b; }
+.verify-world .verify-demo-options label:focus-within { outline: 2px solid #8e743f; outline-offset: 3px; }
+.verify-world input[readonly] { color: #526d65; cursor: default; }
+.verify-world .verify-success > button, .verify-world .verify-failure > button { min-height: 44px; }
+.verify-world button:focus-visible { outline: 2px solid #8e743f; outline-offset: 4px; }
+.verify-world .verify-console-head { margin-bottom: 26px; }

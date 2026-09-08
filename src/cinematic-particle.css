@@ -1,0 +1,316 @@
+.chapter-prologue {
+  isolation: isolate;
+}
+.chapter-prologue .prologue-title-backdrop {
+  position: absolute;
+  z-index: 1;
+  left: clamp(38px, 4.5vw, 78px);
+  top: 45%;
+  width: min(76vw, 1120px);
+  color: rgba(23, 59, 57, .58);
+  opacity: 0;
+  transform: translateY(-46%);
+  transition:
+    opacity 1.7s cubic-bezier(.16, .82, .22, 1),
+    transform 2s cubic-bezier(.16, .82, .22, 1);
+}
+
+.chapter-prologue[data-state="active"] .prologue-title-backdrop {
+  opacity: .72;
+  transform: translateY(-50%);
+}
+
+.chapter-prologue .prologue-title-index {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+  font: 8px/1 Georgia, serif;
+  letter-spacing: .28em;
+  opacity: .68;
+}
+
+.chapter-prologue .prologue-title-index span:first-child {
+  font-size: 10px;
+  letter-spacing: .16em;
+}
+
+.chapter-prologue .prologue-title-index i {
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.chapter-prologue .prologue-title-kicker {
+  margin: 0 0 11px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .44em;
+  white-space: nowrap;
+}
+
+.chapter-prologue .prologue-title-backdrop h1 {
+  margin: 0;
+  font-size: clamp(64px, 7.2vw, 116px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .055em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .35);
+  white-space: nowrap;
+}
+
+.chapter-prologue .prologue-title-backdrop h1 > span {
+  display: block;
+  width: max-content;
+}
+
+
+.chapter-prologue .prologue-copy,
+.chapter-prologue .prologue-side-note {
+  z-index: 6;
+}
+.chapter-prologue .prologue-copy {
+  position: absolute;
+  left: clamp(38px, 4.5vw, 78px);
+  top: clamp(108px, 14vh, 152px);
+  width: min(276px, 27vw);
+  max-width: 276px;
+  margin: 0;
+  text-align: left;
+}
+
+.chapter-prologue .prologue-copy::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin-bottom: 17px;
+  background: currentColor;
+  opacity: .42;
+}
+
+.chapter-prologue .prologue-copy .prologue-lead {
+  max-width: 252px;
+  margin: 0;
+  color: color-mix(in srgb, var(--chapter-ink) 68%, transparent);
+  font-size: 12px;
+  line-height: 1.95;
+  letter-spacing: .08em;
+}
+
+.chapter-prologue .prologue-copy .chapter-next {
+  margin-top: 17px;
+}
+
+
+.chapter-prologue .prologue-particle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.chapter-prologue .cinematic-particle-portrait {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  overflow: visible;
+  filter: drop-shadow(0 28px 48px rgba(30, 86, 80, .1));
+}
+
+.chapter-prologue .cinematic-particle-portrait .particle-portrait-base,
+.chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-base {
+  filter: saturate(1.09) brightness(1.035) contrast(1.015);
+}
+
+.chapter-prologue .cinematic-particle-portrait .particle-portrait-canvas {
+  filter: saturate(1.24) brightness(1.015) contrast(1.1) drop-shadow(0 0 1.4px rgba(54, 126, 117, .34));
+}
+
+@media (max-width: 980px) {
+  .chapter-prologue .prologue-particle {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .72;
+  }
+}
+
+@media (max-width: 700px) {
+  .chapter-prologue .prologue-particle {
+    inset: 0;
+    opacity: .62;
+  }
+
+  .chapter-prologue .cinematic-particle-portrait .particle-portrait-base,
+  .chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-base {
+    filter: saturate(1.06) brightness(1.025) contrast(1.01);
+  }
+}
+
+.chapter-prologue .cinematic-particle-portrait .particle-portrait-base {
+  transform: scale(.986);
+  filter: saturate(.72) brightness(1.08) contrast(.9) blur(16px);
+  transition:
+    opacity 1.12s cubic-bezier(.16, .82, .22, 1),
+    transform 2.12s cubic-bezier(.16, .82, .22, 1),
+    filter 1.52s cubic-bezier(.2, .72, .22, 1);
+}
+
+.chapter-prologue .cinematic-particle-portrait .particle-portrait-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(.994);
+  clip-path: circle(0px at var(--portrait-reveal-x, 51%) var(--portrait-reveal-y, 12%));
+  filter: saturate(.96) brightness(1.055) contrast(.98) blur(7px);
+  transition:
+    clip-path 2.15s cubic-bezier(.2, .7, .2, 1),
+    opacity 1.4s cubic-bezier(.18, .72, .2, 1),
+    transform 2.15s cubic-bezier(.2, .7, .2, 1),
+    filter 2.15s cubic-bezier(.2, .7, .2, 1);
+  will-change: clip-path, opacity, transform, filter;
+  pointer-events: none;
+}
+
+.chapter-prologue .cinematic-particle-portrait.is-silhouette .particle-portrait-base {
+  opacity: .22;
+  transform: scale(.993);
+  filter: saturate(.9) brightness(1.055) contrast(.95) blur(9px);
+}
+
+.chapter-prologue .cinematic-particle-portrait.is-revealing .particle-portrait-base {
+  opacity: .22;
+  transform: scale(.993);
+  filter: saturate(.9) brightness(1.055) contrast(.95) blur(9px);
+}
+
+.chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-base {
+  opacity: 0;
+}
+
+.chapter-prologue .cinematic-particle-portrait.is-revealing .particle-portrait-reveal,
+.chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-reveal {
+  opacity: 1;
+  transform: scale(1);
+  clip-path: circle(var(--portrait-reveal-radius, 110%) at var(--portrait-reveal-x, 51%) var(--portrait-reveal-y, 12%));
+  filter: saturate(1.09) brightness(1.035) contrast(1.015) blur(0);
+}
+
+.chapter-prologue .cinematic-particle-portrait .particle-portrait-canvas {
+  opacity: 1;
+  transition: opacity 2.2s cubic-bezier(.18, .72, .2, 1);
+}
+
+.chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-canvas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-prologue .cinematic-particle-portrait .particle-portrait-reveal,
+  .chapter-prologue .cinematic-particle-portrait .particle-portrait-base,
+  .chapter-prologue .cinematic-particle-portrait .particle-portrait-canvas { transition: none; }
+
+  .chapter-prologue .cinematic-particle-portrait.is-revealing .particle-portrait-reveal,
+  .chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-reveal {
+    clip-path: none;
+  }
+}
+@media (max-width: 980px) {
+  .chapter-prologue .prologue-title-backdrop {
+    left: 4.5vw;
+    top: 45%;
+    width: 74vw;
+  }
+
+  .chapter-prologue .prologue-title-index {
+    margin-bottom: 15px;
+  }
+
+  .chapter-prologue .prologue-title-kicker {
+    font-size: 11px;
+    letter-spacing: .4em;
+  }
+
+  .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(56px, 7.1vw, 76px);
+  }
+
+  .chapter-prologue .prologue-copy {
+    left: 4.5vw;
+    top: clamp(102px, 13.5vh, 136px);
+    width: 252px;
+    max-width: 252px;
+  }
+}
+
+@media (max-width: 700px) {
+  .chapter-prologue .prologue-title-backdrop {
+    left: 20px;
+    right: 20px;
+    top: 46%;
+    width: auto;
+    color: rgba(23, 59, 57, .5);
+  }
+
+  .chapter-prologue[data-state="active"] .prologue-title-backdrop {
+    opacity: .6;
+    transform: translateY(-50%);
+  }
+
+  .chapter-prologue .prologue-title-index {
+    gap: 8px;
+    margin-bottom: 11px;
+    font-size: 7px;
+  }
+
+  .chapter-prologue .prologue-title-index i {
+    width: 24px;
+  }
+
+  .chapter-prologue .prologue-title-kicker {
+    margin-bottom: 8px;
+    font-size: 10px;
+    letter-spacing: .36em;
+  }
+
+  .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(44px, 11.3vw, 58px);
+    line-height: .94;
+  }
+
+  .chapter-prologue .prologue-copy {
+    left: 20px;
+    top: 88px;
+    width: min(252px, 70vw);
+    max-width: 70vw;
+  }
+
+  .chapter-prologue .prologue-copy::before {
+    margin-bottom: 13px;
+  }
+
+  .chapter-prologue .prologue-copy .prologue-lead {
+    font-size: 11px;
+    line-height: 1.82;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-prologue .prologue-title-backdrop {
+    transition: none;
+  }
+}
+

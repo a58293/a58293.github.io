@@ -1,0 +1,121 @@
+.particle-portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  isolation: isolate;
+}
+
+.particle-portrait-base,
+.particle-portrait-fallback,
+.particle-portrait-depth,
+.particle-portrait-reflection,
+.particle-portrait-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle-portrait-depth,
+.particle-portrait-reflection {
+  z-index: 0;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.particle-portrait-fallback {
+  z-index: 0;
+  object-fit: contain;
+  opacity: 0;
+  mix-blend-mode: normal;
+  filter: saturate(.82) brightness(1.02) contrast(.96) blur(3px);
+  transform: scale(.992);
+  transition:
+    opacity 1.25s cubic-bezier(.16, .82, .22, 1),
+    transform 2.1s cubic-bezier(.16, .82, .22, 1),
+    filter 1.7s cubic-bezier(.2, .72, .22, 1);
+  pointer-events: none;
+}
+
+.particle-portrait.is-silhouette .particle-portrait-fallback {
+  opacity: 0;
+  transform: scale(.997);
+  filter: saturate(.9) brightness(1.01) contrast(.98) blur(5px);
+}
+
+.particle-portrait.is-revealing .particle-portrait-fallback {
+  opacity: 0;
+}
+
+.particle-portrait.is-assembled .particle-portrait-fallback {
+  opacity: 0;
+  transform: scale(1);
+}
+
+.particle-portrait-base {
+  z-index: 1;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(.996);
+  transition:
+    opacity 2.8s cubic-bezier(.22, .7, .18, 1),
+    transform 3.2s cubic-bezier(.22, .7, .18, 1),
+    filter 3.2s ease;
+  filter: saturate(.82) brightness(1.04) blur(1.5px);
+  pointer-events: none;
+}
+
+.particle-portrait.is-assembled .particle-portrait-base {
+  opacity: 1;
+  transform: scale(1);
+  filter: saturate(1) brightness(1) blur(0);
+}
+
+.particle-portrait-canvas {
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 3.4s cubic-bezier(.22, .7, .18, 1) .45s;
+  pointer-events: none;
+}
+
+.particle-portrait.is-assembled .particle-portrait-canvas {
+  opacity: 0;
+}
+
+.particle-portrait-status {
+  position: absolute;
+  z-index: 3;
+  right: 6%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(22, 66, 62, .52);
+  font: 8px/1 Georgia, serif;
+  letter-spacing: .24em;
+}
+
+.particle-portrait-status span {
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  animation: particle-status-pulse 1.4s ease-in-out infinite;
+}
+
+.particle-portrait.is-assembled .particle-portrait-status span {
+  background: currentColor;
+  animation: none;
+}
+
+@keyframes particle-status-pulse {
+  50% { transform: scale(1.55); opacity: .35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle-portrait-base { opacity: 0; transition: none; }
+  .particle-portrait.is-assembled .particle-portrait-base { opacity: 1; }
+  .particle-portrait-canvas { transition: none; }
+  .particle-portrait-status span { animation: none; background: currentColor; }
+}

@@ -1,0 +1,265 @@
+/* Detail view: quiet chapter rail, local magnifier and legible verification. */
+@media (min-width: 701px) {
+  .flower-experience .experience-pagination {
+    right: clamp(18px, 2.1vw, 34px);
+    width: 78px;
+    padding: 7px 0;
+    gap: 5px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .flower-experience .experience-progress {
+    inset: 10px 1px 10px auto;
+    width: 1px;
+    border-radius: 0;
+    background: rgba(16, 73, 67, 0.16);
+  }
+  .flower-experience .experience-progress::after {
+    width: 1px;
+    background: linear-gradient(180deg, #bf9d61, #0c514a);
+    box-shadow: 0 0 12px rgba(20, 93, 84, 0.24);
+  }
+  .flower-experience .experience-pagination button {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 18px;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 12px 0 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #174c47;
+    opacity: 0.34;
+    transform: none;
+    transition: opacity 320ms cubic-bezier(.22,.8,.22,1), color 320ms ease;
+  }
+  .flower-experience .experience-pagination button::before {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: #f4f5ef;
+    transform: translateY(-50%);
+    transition: 320ms ease;
+  }
+  .flower-experience .experience-pagination button::after { display: none; }
+  .flower-experience .experience-pagination button span {
+    grid-column: 2;
+    justify-self: end;
+    font: 600 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+    letter-spacing: .1em;
+  }
+  .flower-experience .experience-pagination button b {
+    position: absolute;
+    right: 26px;
+    z-index: 2;
+    display: block !important;
+    width: max-content;
+    min-width: 62px;
+    padding: 7px 10px;
+    border: 1px solid rgba(16,73,67,.12);
+    background: rgba(247,248,242,.94);
+    box-shadow: 0 8px 24px rgba(14,57,53,.08);
+    color: #164c47;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-align: right;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(6px);
+    pointer-events: none;
+    transition: opacity 320ms ease, transform 320ms cubic-bezier(.22,.8,.22,1);
+  }
+  .flower-experience .experience-pagination button:hover,
+  .flower-experience .experience-pagination button.is-active {
+    opacity: 1;
+    color: #0b5049;
+  }
+  .flower-experience .experience-pagination button.is-active::before {
+    width: 8px;
+    height: 8px;
+    border-color: #0b5049;
+    background: #0b5049;
+  }
+  .flower-experience .experience-pagination button:hover b,
+  .flower-experience .experience-pagination button:focus-visible b,
+  .flower-experience .experience-pagination button.is-active b {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.detail-focus.is-costume-view { cursor: crosshair; touch-action: manipulation; }
+
+/* Keep the arrival particles readable and leave a restrained particulate sheen after assembly. */
+.flower-experience .chapter-prologue .prologue-particle {
+  display: block;
+  visibility: visible;
+  z-index: 3;
+  opacity: 1;
+}
+.flower-experience .chapter-prologue .particle-portrait-canvas {
+  display: block;
+  visibility: visible;
+  z-index: 4;
+  opacity: 1 !important;
+  filter: saturate(1.42) brightness(.94) contrast(1.34) drop-shadow(0 0 2px rgba(31,102,94,.46));
+}
+.flower-experience .chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-canvas {
+  opacity: .14 !important;
+  mix-blend-mode: multiply;
+}
+
+.flower-experience .chapter-prologue .prologue-copy .chapter-next,
+.flower-experience .chapter-prologue .prologue-copy .prologue-verify {
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+}
+.flower-experience .chapter-prologue .prologue-copy .prologue-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+  padding: 13px 15px;
+  border: 1px solid #0b4f48;
+  color: #f4f8f5;
+  background: #0b4f48;
+  box-shadow: 0 12px 28px rgba(4,49,45,.14);
+  font-size: clamp(12px, .82vw, 14px);
+  letter-spacing: .13em;
+  transition: color 320ms ease, background 320ms ease, transform 320ms cubic-bezier(.22,.8,.22,1);
+}
+.flower-experience .chapter-prologue .prologue-copy .prologue-verify:hover {
+  color: #fff;
+  background: #073d38;
+  transform: translateY(-2px);
+}
+
+.detail-focus.is-costume-view::after,
+.costume-highlight-layer,
+.costume-pan-controls { display: none !important; }
+.detail-focus.is-costume-view .costume-main-layer {
+  z-index: 1;
+  opacity: 1;
+  filter: brightness(.98) saturate(.94) contrast(1.035) drop-shadow(0 20px 28px rgba(0,24,23,.2));
+}
+.costume-view-index::after { content: " / DETAIL LENS"; }
+.costume-focus-marker {
+  position: absolute;
+  z-index: 7;
+  left: var(--zoom-x, 50%);
+  top: var(--zoom-y, 48%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(244,249,244,.88);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(8,54,50,.22), 0 8px 26px rgba(0,28,25,.23);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 210ms cubic-bezier(.2,.75,.2,1), top 210ms cubic-bezier(.2,.75,.2,1);
+}
+.costume-focus-marker::before,
+.costume-focus-marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(244,249,244,.76);
+  transform: translate(-50%, -50%);
+}
+.costume-focus-marker::before { width: 12px; height: 1px; }
+.costume-focus-marker::after { width: 1px; height: 12px; }
+.costume-detail-lens {
+  position: absolute;
+  z-index: 8;
+  left: 18px;
+  bottom: 18px;
+  width: clamp(158px, 17vw, 220px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(226,239,232,.55);
+  background: #dfe9e4;
+  box-shadow: 0 18px 45px rgba(0,23,22,.3), inset 0 0 0 1px rgba(255,255,255,.16);
+  pointer-events: none;
+}
+.costume-detail-lens::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 8px solid rgba(7,45,42,.16);
+  pointer-events: none;
+}
+.costume-detail-lens img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 260ms cubic-bezier(.2,.75,.2,1);
+}
+.costume-detail-lens > div {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  color: #f2f7f3;
+  background: linear-gradient(180deg, transparent, rgba(5,34,31,.9));
+}
+.costume-detail-lens span { font-size: 9px; letter-spacing: .2em; opacity: .72; }
+.costume-detail-lens b { font-size: 12px; font-weight: 500; letter-spacing: .12em; }
+.detail-focus.is-costume-view .costume-piece-rail { bottom: 18px; }
+
+.chapter-verification .verification-copy > a {
+  min-width: clamp(250px, 25vw, 340px);
+  min-height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  border: 1px solid #0b4f48 !important;
+  color: #f4f8f5 !important;
+  background: #0b4f48 !important;
+  box-shadow: 0 14px 34px rgba(4,49,45,.18);
+  font-size: 14px;
+  letter-spacing: .16em;
+}
+.chapter-verification .verification-copy > a * {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+.chapter-verification .verification-copy > a:hover {
+  color: #fff !important;
+  background: #073d38 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 19px 42px rgba(4,49,45,.25);
+}
+
+@media (max-width: 700px) {
+  .costume-focus-marker { width: 36px; height: 36px; }
+  .costume-detail-lens {
+    left: 10px;
+    top: 70px;
+    bottom: auto;
+    width: 112px;
+  }
+  .detail-focus.is-costume-view .costume-piece-rail { bottom: 10px; }
+  .chapter-verification .verification-copy > a {
+    width: 100%;
+    min-width: 0;
+    min-height: 58px;
+  }
+}

@@ -1,0 +1,47 @@
+/* Separate transparent artwork: the motifs extend beyond the silk rectangle. */
+.home-experience[data-product-theme] #series.series-diptych { display: grid; grid-template-rows: auto minmax(300px, 1fr); gap: 10px; padding: clamp(112px, 13svh, 136px) clamp(24px, 5.5vw, 88px) 76px; overflow-y: auto; overscroll-behavior-y: contain; background: radial-gradient(ellipse at 50% 54%, var(--current-paper), transparent 65%), var(--current-mist); }
+.volume-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; color: var(--current-ink); }
+.volume-heading > div > p { margin: 0 0 8px; font-size: .75rem; letter-spacing: .22em; color: var(--current-accent); }
+.volume-heading h2 { margin: 0; font-size: clamp(32px, 3.8vw, 54px); line-height: 1.2; font-weight: 400; letter-spacing: .08em; }
+.volume-heading > p { margin: 0 0 4px; font-size: 1rem; line-height: 1.7; color: var(--current-muted); }
+.volume-heading > p > span { display: block; font-size: .875rem; }
+.volume-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(30px, 5vw, 85px); width: min(100%, 1000px); height: 100%; min-height: 300px; margin: 0 auto; padding-inline: 10px; }
+.volume-panel { min-width: 0; height: calc(100% - 28px); min-height: 270px; display: grid; grid-template-rows: minmax(0, 1fr) auto; position: relative; color: var(--current-ink); }
+.volume-panel.volume-floral { align-self: start; cursor: pointer; }.volume-panel.volume-angel { align-self: end; }
+.volume-art { position: relative; min-height: 0; width: 100%; height: 100%; }
+.volume-art-pending { height: 100%; width: 70%; margin: auto; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--current-ink) 18%, transparent); color: var(--current-muted); background: color-mix(in srgb, var(--current-paper) 50%, transparent); font-size: .75rem; letter-spacing: .12em; }
+.volume-art > img { width: 100%; height: 100%; object-fit: contain; object-position: center; filter: drop-shadow(0 13px 13px color-mix(in srgb, var(--current-ink) 12%, transparent)); transform-origin: center 62%; transition: transform .52s cubic-bezier(.22, 1, .36, 1), filter .4s ease, opacity .3s ease; }
+.volume-angel .volume-art > img { opacity: .86; }
+.volume-caption { display: flex; align-items: end; justify-content: space-between; gap: 12px; width: 84%; margin: 4px auto 0; padding: 12px 0 0; border-top: 1px solid color-mix(in srgb, var(--current-ink) 18%, transparent); transition: border-color .35s ease, transform .45s cubic-bezier(.22, 1, .36, 1); }
+.volume-caption p { margin: 0 0 5px; font-size: .75rem; line-height: 1.5; letter-spacing: .1em; color: var(--current-muted); }
+.volume-caption h3 { margin: 0; font-size: clamp(25px, 2.5vw, 36px); font-weight: 400; line-height: 1.2; letter-spacing: .12em; }
+.volume-action, .volume-awaiting { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; flex-shrink: 0; font-size: .875rem; }
+.volume-action b { font-size: 24px; font-weight: 400; transition: transform .35s; }.volume-awaiting { color: var(--current-muted); }
+.volume-floral:focus-visible { outline: 2px solid currentColor; outline-offset: 8px; }
+.volume-floral:focus-visible .volume-art > img {
+  transform: translateY(-8px) scale(1.025);
+  filter: brightness(1.035) saturate(1.04) drop-shadow(0 20px 22px color-mix(in srgb, var(--current-ink) 21%, transparent));
+}
+.volume-floral:focus-visible .volume-caption { border-top-color: color-mix(in srgb, var(--current-accent) 72%, transparent); transform: translateY(-2px); }
+.volume-floral:active .volume-art > img { transform: translateY(-1px) scale(.985); transition-duration: .09s; }
+.volume-floral:active .volume-action b { transform: translate(4px, -4px) scale(.9); }
+@media (hover: hover) {
+  .volume-floral:hover .volume-art > img {
+    transform: translateY(-8px) scale(1.025);
+    filter: brightness(1.035) saturate(1.04) drop-shadow(0 20px 22px color-mix(in srgb, var(--current-ink) 21%, transparent));
+  }
+  .volume-floral:hover .volume-caption { border-top-color: color-mix(in srgb, var(--current-accent) 72%, transparent); transform: translateY(-2px); }
+  .volume-floral:hover .volume-action b { transform: translate(3px, -3px); }
+  .volume-floral:active .volume-art > img { transform: translateY(-1px) scale(.985); }
+}
+@media (max-width: 760px) {
+  .home-experience[data-product-theme] #series.series-diptych { padding: 108px 24px 66px; grid-template-rows: auto minmax(280px, 1fr); gap: 20px; }
+  .volume-heading { align-items: start; gap: 12px; }.volume-heading > p { font-size: .875rem; max-width: 11em; }.volume-heading > p > span { display: none; }
+  .volume-heading h2 { font-size: clamp(28px, 5vw, 38px); }.volume-gallery { gap: 8px; padding: 0; }
+  .volume-panel { height: calc(100% - 22px); }.volume-panel.volume-angel { padding-top: 22px; }
+  .volume-caption { width: 92%; flex-direction: column; align-items: start; gap: 6px; padding-top: 10px; }
+  .volume-caption p { font-size: .75rem; letter-spacing: 0; min-height: 36px; }.volume-caption h3 { font-size: 26px; }
+  .volume-action, .volume-awaiting { font-size: .875rem; min-height: 44px; }
+}
+@media (max-width: 420px) { .volume-heading { flex-direction: column; }.volume-heading > p { max-width: none; }.volume-gallery { min-height: 300px; } }
+@media (prefers-reduced-motion: reduce) { .volume-art > img, .volume-action b { transition: none; }.volume-floral:hover .volume-art > img, .volume-floral:hover .volume-action b { transform: none; } }

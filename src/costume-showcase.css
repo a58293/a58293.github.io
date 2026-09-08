@@ -1,0 +1,328 @@
+/* Costume archive — scalable for a complete worn look and future individual assets. */
+.flower-experience .detail-focus.is-costume-view {
+  border: 1px solid rgba(208, 231, 222, 0.16);
+  background:
+    radial-gradient(ellipse at 50% 112%, rgba(173, 216, 199, 0.2), transparent 37%),
+    linear-gradient(138deg, #071817 0%, #102c28 54%, #071b19 100%);
+  box-shadow:
+    inset 0 0 110px rgba(0, 0, 0, 0.28),
+    0 32px 78px rgba(20, 58, 54, 0.16);
+}
+
+.flower-experience .detail-focus.is-costume-view::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.018)),
+    radial-gradient(ellipse at 50% 104%, rgba(220, 242, 232, 0.17), transparent 31%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.013) 0 1px, transparent 1px 5px);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-base-layer {
+  opacity: 0.96;
+  filter: brightness(0.76) saturate(0.78) contrast(1.025);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-highlight-layer {
+  filter:
+    brightness(1.08)
+    saturate(1.06)
+    contrast(1.035)
+    drop-shadow(0 20px 38px rgba(201, 235, 220, 0.15));
+}
+
+.flower-experience .detail-focus.is-costume-view.costume-mode-complete .detail-image-window {
+  box-sizing: border-box;
+}
+
+.flower-experience .detail-focus.is-costume-view.costume-mode-pieces .detail-image-window {
+  box-sizing: border-box;
+}
+
+.flower-experience .detail-focus.is-costume-view.costume-mode-pieces .detail-image-window::after {
+  content: "DETAIL STUDY";
+  position: absolute;
+  left: 28px;
+  bottom: 78px;
+  z-index: 5;
+  color: rgba(220, 238, 230, 0.38);
+  font: 10px/1.2 Georgia, serif;
+  letter-spacing: 0.24em;
+  pointer-events: none;
+}
+
+.flower-experience .costume-mode-switch {
+  position: absolute;
+  z-index: 9;
+  top: 14px;
+  right: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(126px, 1fr));
+  width: min(330px, calc(100% - 170px));
+  padding: 4px;
+  border: 1px solid rgba(222, 239, 232, 0.16);
+  border-radius: 3px;
+  background: rgba(7, 23, 21, 0.7);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+.flower-experience .costume-mode-switch button {
+  display: grid;
+  grid-template-columns: 23px 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px 7px;
+  min-height: 48px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 2px;
+  color: rgba(225, 240, 234, 0.58);
+  background: transparent;
+  text-align: left;
+  transition: color 0.35s ease, background-color 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flower-experience .costume-mode-switch button span {
+  grid-row: 1 / 3;
+  align-self: center;
+  font: 10px/1 Georgia, serif;
+}
+
+.flower-experience .costume-mode-switch button b {
+  align-self: end;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.flower-experience .costume-mode-switch button small {
+  align-self: start;
+  font: 9px/1.15 Georgia, serif;
+  letter-spacing: 0.13em;
+  opacity: 0.66;
+}
+
+.flower-experience .costume-mode-switch button.is-active {
+  color: #e4f1eb;
+  background: rgba(210, 235, 224, 0.105);
+}
+
+.flower-experience .costume-mode-switch button:is(:hover, :focus-visible) {
+  color: #f1f7f4;
+  background: rgba(210, 235, 224, 0.08);
+}
+
+.flower-experience .costume-mode-switch button:focus-visible,
+.flower-experience .costume-piece-rail button:focus-visible {
+  outline: 1px solid rgba(226, 241, 234, 0.72);
+  outline-offset: -2px;
+}
+
+.flower-experience .costume-piece-rail {
+  position: absolute;
+  z-index: 8;
+  top: 82px;
+  right: 16px;
+  bottom: 78px;
+  display: grid;
+  align-content: center;
+  width: 142px;
+  border-left: 1px solid rgba(220, 238, 230, 0.15);
+  background: linear-gradient(90deg, transparent, rgba(7, 23, 21, 0.22));
+}
+
+.flower-experience .costume-piece-rail button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px 7px;
+  min-height: 58px;
+  padding: 9px 8px 9px 14px;
+  border: 0;
+  border-bottom: 1px solid rgba(220, 238, 230, 0.1);
+  color: rgba(224, 239, 232, 0.48);
+  background: transparent;
+  text-align: left;
+  transition: color 0.35s ease, background-color 0.35s ease, padding 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flower-experience .costume-piece-rail button::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 24%;
+  bottom: 24%;
+  width: 2px;
+  background: #d9ebe3;
+  transform: scaleY(0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flower-experience .costume-piece-rail button span {
+  grid-row: 1 / 3;
+  align-self: center;
+  font: 10px/1 Georgia, serif;
+}
+
+.flower-experience .costume-piece-rail button b {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+}
+
+.flower-experience .costume-piece-rail button small {
+  overflow: hidden;
+  font: 9px/1.2 Georgia, serif;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.68;
+}
+
+.flower-experience .costume-piece-rail button.is-active {
+  padding-left: 19px;
+  color: #e5f1ec;
+  background: linear-gradient(90deg, rgba(210, 235, 224, 0.1), transparent);
+}
+
+.flower-experience .costume-piece-rail button.is-active::before {
+  transform: scaleY(1);
+}
+
+.flower-experience .costume-piece-rail button:is(:hover, :focus-visible) {
+  color: #f0f7f4;
+  background: rgba(210, 235, 224, 0.065);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-view-index {
+  left: 18px;
+  top: 22px;
+  max-width: calc(100% - 370px);
+  font-size: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.18em;
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-view-index::after {
+  content: " / MOVABLE LIGHT";
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls {
+  bottom: 14px;
+  width: min(410px, calc(100% - 36px));
+  padding-block: 8px;
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls label > span {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.flower-experience .costume-reading-meta {
+  display: block;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+  color: var(--chapter-ink);
+  font: 10px/1.4 Georgia, serif;
+  letter-spacing: 0.18em;
+  opacity: 0.66;
+}
+
+@media (max-width: 1050px) {
+  .flower-experience .detail-focus.is-costume-view.costume-mode-pieces .detail-image-window {
+    padding-right: 136px;
+  }
+
+  .flower-experience .costume-piece-rail {
+    width: 126px;
+  }
+
+  .flower-experience .costume-piece-rail button {
+    min-height: 53px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience .costume-mode-switch {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+  }
+
+  .flower-experience .costume-mode-switch button {
+    min-height: 43px;
+    padding: 6px 8px;
+  }
+
+  .flower-experience .costume-mode-switch button b {
+    font-size: 12px;
+  }
+
+  .flower-experience .costume-mode-switch button small,
+  .flower-experience .costume-view-index,
+  .flower-experience .detail-focus.is-costume-view.costume-mode-pieces .detail-image-window::after {
+    display: none;
+  }
+
+  .flower-experience .costume-piece-rail {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 52px;
+    display: flex;
+    width: auto;
+    overflow-x: auto;
+    border: 1px solid rgba(220, 238, 230, 0.13);
+    background: rgba(7, 23, 21, 0.72);
+    scrollbar-width: none;
+  }
+
+  .flower-experience .costume-piece-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .flower-experience .costume-piece-rail button {
+    flex: 0 0 104px;
+    grid-template-columns: 18px 1fr;
+    min-height: 43px;
+    padding: 6px 8px;
+    border-right: 1px solid rgba(220, 238, 230, 0.1);
+    border-bottom: 0;
+  }
+
+  .flower-experience .costume-piece-rail button small {
+    display: none;
+  }
+
+  .flower-experience .costume-piece-rail button.is-active {
+    padding-left: 11px;
+  }
+
+  .flower-experience .detail-focus.is-costume-view .costume-pan-controls {
+    bottom: 6px;
+    grid-template-columns: 30px minmax(100px, 1fr) 30px;
+    width: calc(100% - 16px);
+    padding: 5px 7px;
+  }
+
+  .flower-experience .detail-focus.is-costume-view .costume-pan-controls label > span {
+    display: none;
+  }
+
+  .flower-experience .costume-reading-meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .costume-mode-switch button,
+  .flower-experience .costume-piece-rail button {
+    transition: none;
+  }
+}

@@ -1,0 +1,44 @@
+/* Shared mobile and WeChat WebView guardrails. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { padding: 0; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+img { max-width: 100%; }
+
+@supports (height: 100dvh) {
+  .home-experience,
+  .home-experience .home-stage,
+  .flower-collection,
+  .flower-experience,
+  .verify-world,
+  .legal-world { min-height: 100dvh; }
+  .flower-collection { height: 100dvh; }
+  .home-experience .site-shell .hero.home-featured-hero { height: 100dvh; }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .site-search-layer { background: rgba(4, 25, 23, .9); }
+  .site-search-panel { background: #f1f7f3; }
+  .flower-character-copy { background: rgba(6, 37, 35, .95); }
+  .flower-collection .flower-collection-brand,
+  .flower-collection .flower-collection-actions,
+  .flower-collection .flower-roster { background: rgba(5, 34, 31, .94); }
+}
+
+@media (pointer: coarse) {
+  :is(a, button, input) { min-height: 44px; }
+  .flower-carousel-window { cursor: default; }
+}
+
+@media (max-width: 600px) {
+  .home-experience .site-header { padding-top: max(14px, env(safe-area-inset-top)); }
+  .home-experience .home-pagination { padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+  .flower-experience .experience-pagination { bottom: max(8px, env(safe-area-inset-bottom)); }
+  .verify-page-footer, .legal-world > footer { padding-bottom: max(22px, env(safe-area-inset-bottom)); }
+  .home-footer-summary { display: none; }
+}
+
+@media (prefers-reduced-data: reduce) {
+  .particle-portrait-canvas { display: none; }
+  .cinematic-particle-portrait .particle-portrait-reveal { opacity: 1 !important; mask-image: none !important; -webkit-mask-image: none !important; }
+}

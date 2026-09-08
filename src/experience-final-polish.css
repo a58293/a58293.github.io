@@ -1,0 +1,420 @@
+/* Final experience system — hierarchy, discoverability, touch comfort and restraint. */
+.flower-experience {
+  --ux-ease: cubic-bezier(.16, 1, .3, 1);
+  --ux-line: color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+  --ux-paper: color-mix(in srgb, var(--chapter-background) 92%, white 8%);
+  color: var(--chapter-ink);
+}
+
+.flower-experience .experience-header {
+  min-height: 74px;
+  padding: 15px clamp(22px, 3.4vw, 56px);
+  border-bottom: 1px solid var(--ux-line);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--chapter-background) 95%, transparent),
+    color-mix(in srgb, var(--chapter-background) 78%, transparent));
+  box-shadow: 0 12px 38px color-mix(in srgb, var(--chapter-ink) 4%, transparent);
+  backdrop-filter: blur(18px) saturate(1.08);
+  transition: color .8s var(--ux-ease), background .8s var(--ux-ease), border-color .8s ease;
+}
+
+.flower-experience .experience-brand {
+  min-width: 220px;
+}
+.flower-experience .experience-brand strong { letter-spacing: .2em; }
+.flower-experience .experience-brand small {
+  margin-top: 3px;
+  color: color-mix(in srgb, var(--chapter-ink) 56%, transparent);
+  letter-spacing: .12em;
+  opacity: 1;
+}
+
+.flower-experience .experience-chapter-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 180px;
+  padding: 0 20px;
+  color: color-mix(in srgb, var(--chapter-ink) 72%, transparent);
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+.flower-experience .experience-chapter-title::before,
+.flower-experience .experience-chapter-title::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: color-mix(in srgb, var(--chapter-ink) 22%, transparent);
+}
+.flower-experience .experience-chapter-title span {
+  color: color-mix(in srgb, var(--chapter-ink) 64%, #b99050);
+  font: 600 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.flower-experience .experience-header > button {
+  min-width: 122px;
+  min-height: 40px;
+  justify-content: space-between;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, var(--chapter-ink) 22%, transparent);
+  color: var(--chapter-ink);
+  background: color-mix(in srgb, var(--chapter-background) 72%, transparent);
+  font-size: 11px;
+  letter-spacing: .14em;
+}
+.flower-experience .experience-header > button:hover {
+  border-color: color-mix(in srgb, var(--chapter-ink) 44%, transparent);
+  background: color-mix(in srgb, var(--chapter-ink) 7%, var(--chapter-background));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--chapter-ink) 8%, transparent);
+}
+
+.flower-experience :is(
+  .experience-brand,
+  .experience-header > button,
+  .experience-pagination button,
+  .chapter-next,
+  .prologue-verify,
+  .detail-tabs button,
+  .costume-mode-switch button,
+  .costume-piece-rail button,
+  .verification-copy > a
+):focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--chapter-ink) 72%, #b99050);
+  outline-offset: 4px;
+}
+
+@media (min-width: 1051px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 1;
+    left: clamp(56px, 5.7vw, 108px);
+    top: 55%;
+    width: min(52vw, 820px);
+    color: color-mix(in srgb, var(--chapter-ink) 64%, transparent);
+  }
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(80px, 7.4vw, 122px);
+    line-height: .88;
+    letter-spacing: .065em;
+  }
+  .flower-experience .chapter-prologue .prologue-copy {
+    z-index: 7;
+    right: clamp(88px, 8vw, 148px);
+    top: clamp(124px, 17vh, 178px);
+    width: min(292px, 22vw);
+    max-width: 292px;
+    padding: 18px 0 0;
+  }
+  .flower-experience .chapter-prologue .prologue-copy::after {
+    content: "SCROLL / SWIPE";
+    display: block;
+    margin-top: 20px;
+    color: color-mix(in srgb, var(--chapter-ink) 42%, transparent);
+    font: 8px/1.2 Georgia, serif;
+    letter-spacing: .25em;
+  }
+  .flower-experience .chapter-prologue .prologue-particle {
+    z-index: 3;
+    inset: 2.5vh 14vw -2vh 12vw;
+    width: auto;
+    height: auto;
+  }
+  .flower-experience .chapter-prologue .cinematic-particle-portrait {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+}
+
+.flower-experience .prologue-copy .chapter-next,
+.flower-experience .prologue-copy .prologue-verify {
+  min-height: 47px;
+  padding-inline: 15px;
+  border-radius: 0;
+}
+.flower-experience .prologue-copy .chapter-next {
+  border: 1px solid color-mix(in srgb, var(--chapter-ink) 22%, transparent);
+  background: color-mix(in srgb, var(--chapter-background) 82%, transparent);
+}
+.flower-experience .prologue-copy .chapter-next:hover {
+  border-color: color-mix(in srgb, var(--chapter-ink) 40%, transparent);
+  background: color-mix(in srgb, var(--chapter-ink) 5%, var(--chapter-background));
+}
+
+@media (min-width: 701px) {
+  .flower-experience .experience-pagination {
+    right: clamp(18px, 2.1vw, 34px);
+    width: 92px;
+  }
+  .flower-experience .experience-pagination button {
+    min-height: 38px;
+  }
+  .flower-experience .experience-pagination button b {
+    right: 28px;
+    display: grid !important;
+    grid-template-columns: auto;
+    gap: 3px;
+    min-width: 116px;
+    padding: 9px 11px 8px;
+    text-align: left;
+    transform: translateX(8px);
+    transition: opacity .26s ease, transform .42s var(--ux-ease);
+  }
+  .flower-experience .experience-pagination button b small {
+    display: block;
+    color: color-mix(in srgb, var(--chapter-ink) 46%, transparent);
+    font: 7px/1.2 Georgia, serif;
+    letter-spacing: .17em;
+  }
+  .flower-experience .experience-pagination button:hover b,
+  .flower-experience .experience-pagination button:focus-visible b,
+  .flower-experience .experience-pagination button.is-active b {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.flower-experience .revelation-copy,
+.flower-experience .detail-intro,
+.flower-experience .detail-reading,
+.flower-experience .becoming-copy,
+.flower-experience .verification-copy {
+  text-wrap: pretty;
+}
+.flower-experience :is(.revelation-copy, .detail-reading, .becoming-copy, .verification-copy) > p {
+  max-width: 34em;
+}
+.flower-experience .revelation-tags span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 11px;
+  border-color: color-mix(in srgb, var(--chapter-ink) 15%, transparent);
+  background: color-mix(in srgb, var(--chapter-background) 72%, transparent);
+}
+
+.flower-experience .detail-tabs button,
+.flower-experience .costume-mode-switch button,
+.flower-experience .costume-piece-rail button {
+  transition: color .3s ease, background .35s ease, opacity .3s ease, transform .42s var(--ux-ease);
+}
+.flower-experience .detail-tabs button:hover,
+.flower-experience .costume-piece-rail button:hover {
+  transform: translateX(3px);
+}
+.flower-experience .detail-tabs button.is-active {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--chapter-ink) 9%, transparent),
+    transparent 86%);
+}
+.flower-experience .detail-focus {
+  border: 1px solid color-mix(in srgb, var(--chapter-background) 20%, transparent);
+  box-shadow: 0 28px 70px color-mix(in srgb, #001d1b 22%, transparent);
+}
+
+.flower-experience .chapter-verification .verification-copy > a,
+.flower-experience .chapter-prologue .prologue-verify {
+  position: relative;
+  overflow: hidden;
+}
+.flower-experience .chapter-verification .verification-copy > a::before,
+.flower-experience .chapter-prologue .prologue-verify::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.16) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform .75s var(--ux-ease);
+  pointer-events: none;
+}
+.flower-experience .chapter-verification .verification-copy > a:hover::before,
+.flower-experience .chapter-prologue .prologue-verify:hover::before {
+  transform: translateX(130%);
+}
+
+/* Absolute positioning and the earlier grid alignment were combining into a
+   zero-width shrink-to-fit box. Stretch the visual plane between its insets so
+   the portrait and particle canvas always have a real drawing area. */
+.flower-experience .chapter-prologue .prologue-particle {
+  justify-self: stretch;
+  min-width: 1px;
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .flower-experience .experience-header {
+    min-height: 68px;
+    padding-inline: 26px;
+  }
+  .flower-experience .experience-brand { min-width: 190px; }
+  .flower-experience .chapter-prologue .prologue-copy {
+    right: 72px;
+    width: 250px;
+    max-width: 27vw;
+  }
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: 4vw;
+    right: 2vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .flower-experience .experience-header {
+    min-height: 62px;
+    padding: 10px 14px;
+  }
+  .flower-experience .experience-brand {
+    min-width: 0;
+  }
+  .flower-experience .experience-brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .flower-experience .experience-brand small {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .flower-experience .experience-header > button {
+    min-width: 92px;
+    min-height: 36px;
+    padding-inline: 10px;
+    font-size: 9px;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    left: 18px;
+    top: 48%;
+    width: min(74vw, 360px);
+  }
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(46px, 13vw, 58px);
+    line-height: .92;
+  }
+  .flower-experience .chapter-prologue .prologue-copy {
+    left: auto;
+    right: 18px;
+    top: 82px;
+    width: min(258px, 68vw);
+    max-width: 68vw;
+    text-align: left;
+  }
+  .flower-experience .chapter-prologue .prologue-copy .prologue-lead {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .flower-experience .chapter-prologue .prologue-copy .chapter-next,
+  .flower-experience .chapter-prologue .prologue-copy .prologue-verify {
+    min-height: 43px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: -12vw;
+    right: -12vw;
+    bottom: 36px;
+    opacity: .82;
+  }
+
+  .flower-experience .experience-pagination {
+    position: fixed;
+    z-index: 90;
+    left: 12px;
+    right: 12px;
+    top: auto;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: auto;
+    height: 48px;
+    padding: 5px 8px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+    border-radius: 0;
+    color: var(--chapter-ink);
+    background: color-mix(in srgb, var(--chapter-background) 88%, transparent);
+    box-shadow: 0 14px 38px color-mix(in srgb, var(--chapter-ink) 12%, transparent);
+    backdrop-filter: blur(18px) saturate(1.08);
+  }
+  .flower-experience .experience-progress { display: none; }
+  .flower-experience .experience-pagination button {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 38px;
+    padding: 0;
+    color: var(--chapter-ink);
+    opacity: .46;
+  }
+  .flower-experience .experience-pagination button::before {
+    right: 50%;
+    top: auto;
+    bottom: 3px;
+    width: 3px;
+    height: 3px;
+    border: 0;
+    background: currentColor;
+    transform: translateX(50%);
+  }
+  .flower-experience .experience-pagination button span {
+    grid-column: auto;
+    font-size: 9px;
+  }
+  .flower-experience .experience-pagination button b {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    bottom: calc(100% + 11px);
+    display: none !important;
+    min-width: max-content;
+    padding: 8px 10px;
+    color: var(--chapter-ink);
+    background: color-mix(in srgb, var(--chapter-background) 94%, transparent);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--chapter-ink) 10%, transparent);
+    font-size: 10px;
+    letter-spacing: .12em;
+    opacity: 0;
+    transform: translate(-50%, 5px);
+  }
+  .flower-experience .experience-pagination button b small { display: none; }
+  .flower-experience .experience-pagination button.is-active {
+    opacity: 1;
+  }
+  .flower-experience .experience-pagination button.is-active::before {
+    width: 14px;
+    height: 2px;
+    border-radius: 0;
+    background: currentColor;
+  }
+  .flower-experience .experience-pagination button.is-active b {
+    display: block !important;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  .flower-experience .experience-footer {
+    bottom: 72px;
+  }
+  .flower-experience .chapter-details {
+    padding-bottom: 68px;
+  }
+  .flower-experience .detail-focus {
+    box-shadow: 0 18px 42px color-mix(in srgb, #001d1b 18%, transparent);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .flower-experience {
+    --ux-line: color-mix(in srgb, var(--chapter-ink) 34%, transparent);
+  }
+  .flower-experience .experience-pagination button,
+  .flower-experience .experience-brand small { opacity: .82; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .chapter-verification .verification-copy > a::before,
+  .flower-experience .chapter-prologue .prologue-verify::before {
+    display: none;
+  }
+}

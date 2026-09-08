@@ -1,0 +1,159 @@
+/* Readability pass: keep the ceremonial display titles intact and lift the
+   supporting typography to comfortable editorial sizes. */
+.flower-experience .experience-brand strong {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+}
+
+.flower-experience .experience-brand small {
+  font-size: 10px;
+  line-height: 1.45;
+  letter-spacing: 0.16em;
+  opacity: 0.76;
+}
+
+.flower-experience .experience-chapter-title,
+.flower-experience .experience-header > button {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.17em;
+}
+
+.flower-experience .experience-chapter-title {
+  opacity: 0.74;
+}
+
+.flower-experience .experience-pagination button span,
+.flower-experience .revelation-number span,
+.flower-experience .prologue-title-index,
+.flower-experience .detail-reading > span,
+.flower-experience .becoming-copy li > span,
+.flower-experience .becoming-visual > span {
+  font-size: clamp(10px, 0.68vw, 12px);
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+}
+
+.flower-experience .experience-pagination button b {
+  font-size: 12px;
+}
+
+.flower-experience .experience-eyebrow,
+.flower-experience .revelation-tags,
+.flower-experience .prologue-side-note,
+.flower-experience .revelation-caption,
+.flower-experience .atlas-quiet-index small,
+.flower-experience .detail-tabs button span,
+.flower-experience .detail-tabs button small {
+  font-size: clamp(10px, 0.72vw, 12px);
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+}
+
+.flower-experience .prologue-title-kicker,
+.flower-experience .chapter-next,
+.flower-experience .detail-intro > span,
+.flower-experience .verification-copy > a {
+  font-size: clamp(12px, 0.82vw, 14px);
+  line-height: 1.55;
+  letter-spacing: 0.13em;
+}
+
+.flower-experience .prologue-copy .prologue-lead,
+.flower-experience .revelation-copy > p:not(.experience-eyebrow),
+.flower-experience .detail-reading p,
+.flower-experience .mirror-copy,
+.flower-experience .becoming-copy > p,
+.flower-experience .verification-copy > p {
+  font-size: clamp(14px, 0.92vw, 16px);
+  line-height: 1.9;
+  letter-spacing: 0.045em;
+}
+
+.flower-experience .revelation-copy blockquote {
+  font-size: clamp(18px, 1.55vw, 25px);
+  line-height: 1.65;
+}
+
+.flower-experience .atlas-quiet-index span,
+.flower-experience .atlas-quiet-index p,
+.flower-experience .detail-tabs button b,
+.flower-experience .becoming-copy li b,
+.flower-experience .verification-formula,
+.flower-experience .verification-formula span {
+  font-size: clamp(13px, 0.88vw, 15px);
+  line-height: 1.6;
+}
+
+.flower-experience .mirror-verse,
+.flower-experience .becoming-copy li small {
+  font-size: clamp(12px, 0.8vw, 14px);
+  line-height: 1.75;
+}
+
+.flower-experience .experience-footer,
+.flower-experience .experience-footer span,
+.flower-experience .experience-footer a {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 700px) {
+  .flower-experience .experience-brand strong {
+    font-size: 11px;
+  }
+
+  .flower-experience .experience-brand small {
+    font-size: 9px;
+  }
+
+  .flower-experience .experience-chapter-title,
+  .flower-experience .experience-header > button {
+    font-size: 10px;
+  }
+
+  .flower-experience .experience-pagination button span,
+  .flower-experience .revelation-number span,
+  .flower-experience .prologue-title-index,
+  .flower-experience .detail-reading > span,
+  .flower-experience .becoming-copy li > span,
+  .flower-experience .becoming-visual > span {
+    font-size: 9px;
+  }
+
+  .flower-experience .experience-pagination button b {
+    font-size: 11px;
+  }
+
+  .flower-experience .prologue-copy .prologue-lead,
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow),
+  .flower-experience .detail-reading p,
+  .flower-experience .becoming-copy > p,
+  .flower-experience .verification-copy > p {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .flower-experience .detail-tabs button b,
+  .flower-experience .becoming-copy li b,
+  .flower-experience .verification-formula,
+  .flower-experience .verification-formula span {
+    font-size: 12px;
+  }
+
+  .flower-experience .mirror-copy {
+    font-size: 12px;
+  }
+
+  .flower-experience .mirror-verse,
+  .flower-experience .becoming-copy li small {
+    font-size: 11px;
+  }
+
+  .flower-experience .experience-footer,
+  .flower-experience .experience-footer span,
+  .flower-experience .experience-footer a {
+    font-size: 10px;
+  }
+}

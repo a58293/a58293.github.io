@@ -1,0 +1,33 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "media:prepare": "node scripts/prepare-media.mjs",
+    "predev": "npm run media:prepare",
+    "prebuild": "npm run media:prepare",
+    "dev": "npm run build && vite preview --port=3000 --host=127.0.0.1 --configLoader runner",
+    "dev:hot": "vite --port=3000 --host=127.0.0.1 --configLoader runner",
+    "build": "npm run lint && vite build --configLoader runner",
+    "check:release": "npm run build && node scripts/check-release-basics.mjs",
+    "preview": "vite preview --host=127.0.0.1 --configLoader runner",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "motion": "^12.23.24",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/node": "^22.14.0",
+    "tailwindcss": "^4.1.14",
+    "typescript": "~5.8.2",
+    "vite": "^6.4.3"
+  }
+}

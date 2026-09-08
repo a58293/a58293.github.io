@@ -1,0 +1,673 @@
+/* Lotus prologue — museum exhibition composition inspired by the supplied
+   reference: curatorial typography, one dominant object and a fine guide line. */
+.flower-experience[data-chapter="prologue"] {
+  --museum-ink: #f1eee5;
+  --museum-muted: #a9c0b8;
+  --museum-gold: #c9a36b;
+  --museum-deep: #082b28;
+  color: var(--museum-ink);
+  background: var(--museum-deep);
+}
+
+.flower-experience .chapter-prologue {
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--museum-ink);
+  background:
+    radial-gradient(circle at 76% 29%, rgba(129, 184, 169, .17), transparent 25%),
+    radial-gradient(circle at 22% 76%, rgba(102, 148, 136, .1), transparent 32%),
+    linear-gradient(112deg, #0b3430 0%, #082c29 48%, #061f1e 100%) !important;
+}
+
+.flower-experience .chapter-prologue::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: linear-gradient(90deg, rgba(0,0,0,.44), transparent 45%);
+  opacity: .36;
+  pointer-events: none;
+}
+
+.flower-experience .chapter-prologue::after {
+  content: none;
+}
+
+.flower-experience[data-chapter="prologue"] .experience-backdrop {
+  opacity: .2;
+  mix-blend-mode: screen;
+}
+
+.flower-experience[data-chapter="prologue"] .experience-header {
+  color: var(--museum-ink);
+  border-bottom-color: rgba(223, 231, 224, .12);
+  background: linear-gradient(180deg, rgba(5, 30, 28, .94), rgba(5, 30, 28, .72));
+  box-shadow: 0 16px 36px rgba(0, 14, 13, .18);
+}
+
+.flower-experience[data-chapter="prologue"] :is(
+  .experience-brand,
+  .experience-brand strong,
+  .experience-chapter-title,
+  .experience-header > button
+) {
+  color: var(--museum-ink);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-brand small,
+.flower-experience[data-chapter="prologue"] .experience-chapter-title {
+  color: var(--museum-muted);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-header > button {
+  border-color: rgba(235, 229, 211, .3);
+  background: rgba(244, 239, 225, .055);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-header > button:hover {
+  border-color: rgba(210, 173, 112, .72);
+  background: rgba(201, 163, 107, .13);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-chapter-title::before,
+.flower-experience[data-chapter="prologue"] .experience-chapter-title::after {
+  background: rgba(201, 163, 107, .38);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-pagination { color: var(--museum-muted); }
+.flower-experience[data-chapter="prologue"] .experience-pagination button { color: inherit; }
+.flower-experience[data-chapter="prologue"] .experience-pagination button.is-active { color: var(--museum-ink); }
+
+.flower-experience[data-chapter="prologue"] .experience-pagination button b {
+  color: var(--museum-ink);
+  border: 1px solid rgba(235, 229, 211, .13);
+  background: rgba(5, 30, 28, .84);
+  box-shadow: 0 15px 38px rgba(0, 13, 12, .24);
+  backdrop-filter: blur(16px);
+}
+
+.flower-experience[data-chapter="prologue"] .experience-pagination button b small { color: var(--museum-muted); }
+
+.flower-experience .chapter-prologue .prologue-title-backdrop {
+  color: var(--museum-ink);
+  text-shadow: 0 12px 36px rgba(0, 16, 15, .42);
+}
+
+/* The previous light layout used a blurred paper patch behind the heading.
+   It becomes a bright rectangle on the dark exhibition stage, so the museum
+   composition deliberately removes it at every responsive breakpoint. */
+.flower-experience .chapter-prologue .prologue-title-backdrop::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.flower-experience .chapter-prologue .prologue-title-backdrop h1,
+.flower-experience .chapter-prologue .prologue-title-backdrop h1 .static-color-char {
+  color: var(--museum-ink) !important;
+  opacity: 1;
+}
+
+.flower-experience .chapter-prologue .prologue-title-index,
+.flower-experience .chapter-prologue .prologue-title-kicker { color: var(--museum-gold); }
+
+.flower-experience .chapter-prologue .prologue-title-index i {
+  background: var(--museum-gold);
+  opacity: .72;
+}
+
+.flower-experience .chapter-prologue .prologue-lead { color: var(--museum-muted); }
+
+.flower-experience .chapter-prologue .prologue-copy::after,
+.flower-experience .chapter-prologue .prologue-side-note { color: rgba(213, 227, 219, .56); }
+
+.flower-experience .chapter-prologue .prologue-side-note i { background: rgba(201, 163, 107, .6); }
+
+.flower-experience .chapter-prologue .prologue-copy .chapter-next,
+.flower-experience .chapter-prologue .prologue-copy .prologue-verify {
+  color: var(--museum-ink);
+  border-color: rgba(236, 231, 215, .3);
+}
+
+.flower-experience .chapter-prologue .prologue-copy .chapter-next {
+  background: rgba(240, 235, 219, .065);
+  backdrop-filter: blur(12px);
+}
+
+.flower-experience .chapter-prologue .prologue-copy .chapter-next:hover {
+  border-color: rgba(201, 163, 107, .74);
+  background: rgba(201, 163, 107, .12);
+}
+
+.flower-experience .chapter-prologue .prologue-copy .prologue-verify {
+  color: #082b28;
+  border-color: var(--museum-gold);
+  background: var(--museum-gold);
+  box-shadow: 0 15px 34px rgba(0, 15, 14, .18);
+}
+
+.flower-experience .chapter-prologue .particle-portrait-canvas {
+  filter: saturate(1.18) brightness(1.22) contrast(1.12) drop-shadow(0 0 3px rgba(144, 215, 198, .4)) !important;
+}
+
+.flower-experience .chapter-prologue .portrait-environment,
+.flower-experience .chapter-prologue .portrait-environment::before,
+.flower-experience .chapter-prologue .portrait-environment::after {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.flower-experience .chapter-prologue .portrait-environment {
+  inset: 0;
+}
+
+.flower-experience .chapter-prologue .portrait-environment::before,
+.flower-experience .chapter-prologue .portrait-environment::after {
+  content: "";
+}
+
+/* A broad reflected glow binds the pale costume to the dark exhibition room.
+   It is deliberately softer than the figure edge, so it reads as atmosphere
+   rather than a graphic halo. */
+.flower-experience .chapter-prologue .portrait-environment::before {
+  left: 19%;
+  right: 13%;
+  top: 12%;
+  bottom: 8%;
+  border-radius: 46% 54% 44% 56% / 36% 34% 66% 64%;
+  background:
+    radial-gradient(ellipse 35% 45% at 52% 34%, rgba(164, 211, 199, .2), transparent 76%),
+    radial-gradient(ellipse 58% 32% at 52% 78%, rgba(75, 139, 122, .18), transparent 78%),
+    linear-gradient(90deg, transparent 8%, rgba(77, 139, 124, .075) 43%, rgba(145, 192, 180, .08) 54%, transparent 91%);
+  filter: blur(28px);
+  opacity: .86;
+}
+
+/* Contact shadow and a trace of floor bounce stop the transparent cut-out from
+   floating above the stage. */
+.flower-experience .chapter-prologue .portrait-environment::after {
+  left: 25%;
+  right: 18%;
+  top: 76%;
+  bottom: auto;
+  height: 8.5%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center,
+      rgba(128, 181, 166, .2) 0 18%,
+      rgba(0, 17, 15, .48) 38%,
+      rgba(4, 29, 26, .24) 56%,
+      transparent 78%);
+  filter: blur(11px);
+  transform: perspective(400px) rotateX(66deg) scaleX(1.08);
+  opacity: .9;
+}
+
+.flower-experience .chapter-prologue .cinematic-particle-portrait {
+  position: relative;
+  z-index: 1;
+}
+
+/* A displaced, heavily diffused silhouette behaves like a real cast shadow.
+   Because it uses the same reveal mask, spatial depth grows with the portrait. */
+.flower-experience .chapter-prologue .particle-portrait-depth {
+  opacity: calc(var(--arrival-front, 0) * .23);
+  transform: translate(2.2%, 1.4%) scale(.985);
+  filter: brightness(.12) saturate(.5) blur(17px);
+  mask-image: linear-gradient(to bottom, #000 calc(var(--arrival-edge) - 13%), transparent calc(var(--arrival-edge) + 7%));
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--arrival-edge) - 13%), transparent calc(var(--arrival-edge) + 7%));
+}
+
+/* A restrained floor reflection gives the hem a physical surface without
+   turning the scene glossy or theatrical. */
+.flower-experience .chapter-prologue .particle-portrait-reflection {
+  opacity: calc(var(--arrival-front, 0) * .075);
+  transform-origin: 50% 76.5%;
+  transform: scaleY(-1) translateY(-.8%);
+  clip-path: inset(76.5% 0 0);
+  filter: blur(2.2px) brightness(.68) saturate(.62);
+  mask-image: linear-gradient(to bottom, transparent 0 75.5%, rgba(0,0,0,.5) 77%, transparent 94%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0 75.5%, rgba(0,0,0,.5) 77%, transparent 94%);
+}
+
+.flower-experience .chapter-prologue .portrait-foreground-haze {
+  position: absolute;
+  z-index: 2;
+  left: 22%;
+  right: 15%;
+  top: 72%;
+  height: 15%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(139, 188, 174, .12), rgba(76, 133, 119, .055) 46%, transparent 76%);
+  filter: blur(13px);
+  opacity: .52;
+  pointer-events: none;
+}
+
+.flower-experience .chapter-prologue .cinematic-particle-portrait.is-revealing .particle-portrait-reveal,
+.flower-experience .chapter-prologue .cinematic-particle-portrait.is-assembled .particle-portrait-reveal {
+  filter:
+    saturate(.99)
+    brightness(.97)
+    contrast(1.018)
+    drop-shadow(0 2px 1.5px rgba(2, 24, 21, .2))
+    drop-shadow(0 26px 34px rgba(0, 14, 12, .3)) !important;
+}
+
+@media (min-width: 1051px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 6;
+    left: clamp(70px, 7vw, 132px);
+    top: 31%;
+    width: min(31vw, 470px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(74px, 6.4vw, 108px);
+    line-height: .9;
+    letter-spacing: .04em;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    z-index: 8;
+    left: clamp(70px, 7vw, 132px);
+    right: auto;
+    top: 59%;
+    width: min(300px, 24vw);
+    max-width: 300px;
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    z-index: 3;
+    inset: clamp(80px, 8vh, 112px) 1.5vw -2vh 30vw;
+  }
+
+  .flower-experience .chapter-prologue .prologue-side-note {
+    z-index: 6;
+    left: clamp(70px, 7vw, 132px);
+    right: auto;
+    bottom: clamp(34px, 4.2vh, 58px);
+    width: min(335px, 27vw);
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 6;
+    left: 4.5vw;
+    top: 36%;
+    width: 38vw;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    z-index: 8;
+    left: 4.5vw;
+    right: auto;
+    top: 61%;
+    width: min(265px, 34vw);
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: 25vw;
+    right: -7vw;
+    top: 82px;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience .chapter-prologue .portrait-environment::before {
+    left: 20%;
+    right: 20%;
+    filter: blur(18px);
+  }
+
+  .flower-experience .chapter-prologue .portrait-environment::after {
+    left: 24%;
+    right: 24%;
+    top: 76%;
+  }
+
+  .flower-experience .chapter-prologue .portrait-foreground-haze {
+    left: 20%;
+    right: 20%;
+    top: 73%;
+    opacity: .42;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 6;
+    left: 18px;
+    top: 37%;
+    width: min(72vw, 330px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    color: var(--museum-ink);
+    font-size: clamp(48px, 14vw, 66px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    z-index: 8;
+    left: auto;
+    right: 14px;
+    top: 84px;
+    width: min(220px, 58vw);
+    max-width: 58vw;
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: -28vw;
+    right: -28vw;
+    top: 76px;
+    bottom: 30px;
+    opacity: .94;
+  }
+
+  .flower-experience[data-chapter="prologue"] .experience-pagination {
+    color: var(--museum-muted);
+    border-color: rgba(235, 229, 211, .16);
+    background: rgba(5, 30, 28, .86);
+  }
+}
+
+/* 03 / DETAILS — one continuous exhibition field. The former pale page and
+   dark media rectangle now share the same material, so depth comes from light
+   and translucency instead of hard containers. */
+.flower-experience[data-chapter="details"] {
+  --chapter-background: #082d2a !important;
+  --chapter-ink: #eef1e8 !important;
+  --chapter-muted: #a9beb6 !important;
+  --chapter-glow: #386c62 !important;
+  color: var(--chapter-ink);
+  background: var(--chapter-background);
+}
+
+.flower-experience[data-chapter="details"] .experience-header {
+  color: var(--chapter-ink);
+  border-bottom-color: rgba(231, 237, 228, .12);
+  background: linear-gradient(180deg, rgba(5, 31, 29, .95), rgba(5, 31, 29, .76));
+  box-shadow: 0 16px 40px rgba(0, 15, 14, .2);
+}
+
+.flower-experience[data-chapter="details"] :is(
+  .experience-brand,
+  .experience-brand strong,
+  .experience-chapter-title,
+  .experience-header > button
+) {
+  color: var(--chapter-ink);
+}
+
+.flower-experience[data-chapter="details"] .experience-brand small,
+.flower-experience[data-chapter="details"] .experience-chapter-title {
+  color: var(--chapter-muted);
+}
+
+.flower-experience[data-chapter="details"] .experience-header > button {
+  border-color: rgba(232, 237, 226, .26);
+  background: rgba(239, 239, 224, .05);
+}
+
+.flower-experience .chapter-details {
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--chapter-ink);
+  background:
+    radial-gradient(ellipse 52% 76% at 52% 52%, rgba(67, 119, 106, .24), transparent 69%),
+    radial-gradient(circle at 83% 18%, rgba(126, 169, 157, .12), transparent 27%),
+    linear-gradient(118deg, #0a3430 0%, #082d2a 52%, #061f1e 100%) !important;
+}
+
+.flower-experience .chapter-details::before {
+  content: "" !important;
+  position: absolute;
+  z-index: 0;
+  display: block !important;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px);
+  background-size: 92px 92px;
+  opacity: .3;
+  pointer-events: none;
+}
+
+.flower-experience .chapter-details :is(.detail-intro, .detail-reading, .detail-tabs) {
+  color: var(--chapter-ink);
+}
+
+.flower-experience .chapter-details .experience-eyebrow,
+.flower-experience .chapter-details .detail-intro > span,
+.flower-experience .chapter-details .detail-reading > span,
+.flower-experience .chapter-details .detail-reading p,
+.flower-experience .chapter-details .costume-reading-meta {
+  color: var(--chapter-muted);
+}
+
+.flower-experience .chapter-details .detail-intro h2,
+.flower-experience .chapter-details .detail-intro h2 .static-color-char,
+.flower-experience .chapter-details .detail-reading h3 {
+  color: var(--chapter-ink) !important;
+  text-shadow: 0 14px 34px rgba(0, 16, 14, .24);
+}
+
+.flower-experience .chapter-details .detail-focus,
+.flower-experience .chapter-details .detail-focus.is-costume-view {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.flower-experience .chapter-details .detail-focus::before,
+.flower-experience .chapter-details .detail-focus.is-costume-view::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -8% -10% -7%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 58% 78% at 50% 53%, rgba(73, 132, 116, .3), rgba(29, 80, 69, .13) 53%, transparent 76%);
+  filter: blur(28px);
+  opacity: .9;
+  pointer-events: none;
+}
+
+.flower-experience .chapter-details .detail-image-window {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.flower-experience .chapter-details .detail-image-window > img,
+.flower-experience .chapter-details .detail-focus.is-costume-view .costume-main-layer {
+  filter:
+    brightness(.98)
+    saturate(.98)
+    contrast(1.035)
+    drop-shadow(0 28px 40px rgba(0, 14, 13, .3));
+}
+
+.flower-experience .chapter-details .costume-mode-switch {
+  border-color: rgba(231, 238, 226, .15);
+  color: var(--chapter-ink);
+  background: rgba(5, 34, 31, .52);
+  box-shadow: none;
+  backdrop-filter: blur(20px) saturate(.9);
+}
+
+.flower-experience .chapter-details .costume-mode-switch button {
+  color: rgba(218, 229, 220, .56);
+}
+
+.flower-experience .chapter-details .costume-mode-switch button.is-active {
+  color: var(--chapter-ink);
+  background: rgba(201, 163, 107, .16);
+  box-shadow: inset 0 0 0 1px rgba(201, 163, 107, .34);
+}
+
+.flower-experience .chapter-details .costume-mode-switch button:is(:hover, :focus-visible):not(.is-active) {
+  color: var(--chapter-ink);
+  background: rgba(238, 240, 228, .07);
+}
+
+.flower-experience .chapter-details .costume-piece-rail {
+  border: 0;
+  border-left: 1px solid rgba(231, 238, 226, .14);
+  color: var(--chapter-muted);
+  background: linear-gradient(90deg, rgba(5, 32, 29, .14), rgba(5, 32, 29, .7));
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+}
+
+.flower-experience .chapter-details .costume-piece-rail button {
+  border-bottom-color: rgba(231, 238, 226, .09);
+  color: rgba(218, 229, 220, .48);
+}
+
+.flower-experience .chapter-details .costume-piece-rail button::before {
+  background: #c9a36b;
+}
+
+.flower-experience .chapter-details .costume-piece-rail button.is-active,
+.flower-experience .chapter-details .costume-piece-rail button:is(:hover, :focus-visible) {
+  color: var(--chapter-ink);
+  background: linear-gradient(90deg, rgba(201, 163, 107, .13), transparent);
+}
+
+.flower-experience .chapter-details .costume-view-index {
+  border-left-color: rgba(201, 163, 107, .65) !important;
+  color: rgba(231, 237, 226, .74) !important;
+  background: rgba(5, 34, 31, .34) !important;
+  backdrop-filter: blur(12px);
+}
+
+.flower-experience .chapter-details .costume-view-index::after {
+  color: rgba(207, 220, 211, .42) !important;
+}
+
+.flower-experience .chapter-details .costume-focus-marker {
+  border-color: rgba(201, 163, 107, .9);
+  box-shadow: 0 0 0 1px rgba(238, 238, 222, .18), 0 10px 28px rgba(0, 17, 15, .28);
+}
+
+.flower-experience .chapter-details .costume-focus-marker::before,
+.flower-experience .chapter-details .costume-focus-marker::after {
+  background: rgba(201, 163, 107, .86);
+}
+
+.flower-experience .chapter-details .costume-detail-lens {
+  border: 1px solid rgba(201, 163, 107, .48);
+  border-radius: 50%;
+  background: rgba(17, 62, 55, .72);
+  box-shadow: 0 20px 50px rgba(0, 18, 16, .3), inset 0 0 0 8px rgba(230, 236, 224, .045);
+  backdrop-filter: blur(16px);
+}
+
+.flower-experience .chapter-details .costume-detail-lens::after {
+  border: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 34px rgba(0, 21, 18, .28);
+}
+
+.flower-experience .chapter-details .costume-detail-lens > div {
+  padding: 24px 18px 14px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(5, 31, 28, .92));
+}
+
+.flower-experience .chapter-details .detail-tabs {
+  border-top-color: rgba(230, 237, 226, .12);
+}
+
+.flower-experience .chapter-details .detail-tabs button {
+  border-bottom-color: rgba(230, 237, 226, .09);
+  color: var(--chapter-ink);
+  background: transparent;
+  opacity: .48;
+}
+
+.flower-experience .chapter-details .detail-tabs button span,
+.flower-experience .chapter-details .detail-tabs button small {
+  color: var(--chapter-muted);
+}
+
+.flower-experience .chapter-details .detail-tabs button.is-active,
+.flower-experience .chapter-details .detail-tabs button:is(:hover, :focus-visible) {
+  color: var(--chapter-ink);
+  background: linear-gradient(90deg, rgba(201, 163, 107, .13), transparent 86%);
+  opacity: 1;
+}
+
+.flower-experience .chapter-details .detail-tabs button.is-active span,
+.flower-experience .chapter-details .detail-tabs button.is-active small {
+  color: #d2b47e;
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination {
+  color: var(--chapter-muted);
+}
+
+.flower-experience[data-chapter="details"] .experience-progress {
+  background: rgba(223, 232, 223, .14);
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination button {
+  color: inherit;
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination button::before {
+  border-color: currentColor;
+  background: #082d2a;
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination button.is-active {
+  color: var(--chapter-ink);
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination button.is-active::before {
+  border-color: #c9a36b;
+  background: #c9a36b;
+}
+
+.flower-experience[data-chapter="details"] .experience-pagination button b {
+  color: var(--chapter-ink);
+  border-color: rgba(228, 235, 224, .14);
+  background: rgba(5, 31, 28, .88);
+  box-shadow: 0 14px 34px rgba(0, 15, 14, .22);
+}
+
+@media (max-width: 700px) {
+  .flower-experience .chapter-details {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% 39%, rgba(70, 126, 111, .24), transparent 73%),
+      linear-gradient(150deg, #0a3430, #082d2a 58%, #061f1e) !important;
+  }
+
+  .flower-experience .chapter-details .detail-focus::before,
+  .flower-experience .chapter-details .detail-focus.is-costume-view::before {
+    inset: -10% -24%;
+    filter: blur(22px);
+  }
+
+  .flower-experience .chapter-details .costume-mode-switch,
+  .flower-experience .chapter-details .costume-piece-rail {
+    background: rgba(5, 34, 31, .72);
+  }
+
+  .flower-experience .chapter-details .costume-detail-lens {
+    width: 126px;
+  }
+
+  .flower-experience[data-chapter="details"] .experience-pagination {
+    border-color: rgba(231, 238, 226, .14);
+    color: var(--chapter-muted);
+    background: rgba(5, 30, 28, .88);
+  }
+}

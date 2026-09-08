@@ -1,0 +1,1710 @@
+.flower-experience {
+  --ease-lumen: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drift: cubic-bezier(0.22, 0.72, 0.2, 1);
+  --fluid-gutter: clamp(22px, 5vw, 88px);
+  --experience-scroll: 0;
+  container-type: inline-size;
+}
+
+/* A restrained paper-like grain: perceptible in still areas, invisible over detail. */
+.flower-experience::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.042;
+  background-image:
+    radial-gradient(rgba(18, 57, 53, 0.72) 0.55px, transparent 0.72px),
+    radial-gradient(rgba(255, 255, 255, 0.82) 0.5px, transparent 0.7px);
+  background-position: 0 0, 3px 3px;
+  background-size: 5px 5px, 7px 7px;
+  mix-blend-mode: multiply;
+}
+
+.flower-experience .experience-scroll {
+  scroll-snap-type: y mandatory;
+  scroll-padding-block: 0;
+  scrollbar-gutter: stable;
+}
+
+.flower-experience .experience-chapter {
+  --chapter-parallax: 0;
+  --chapter-distance: 0;
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+
+/* The page itself moves slowly, creating a rear plane behind chapter content. */
+.flower-experience .experience-backdrop span {
+  translate: 0 calc(var(--experience-scroll) * -1.1vh);
+  scale: calc(1 + var(--experience-scroll) * 0.006);
+  will-change: translate, scale;
+}
+
+.flower-experience .experience-backdrop i {
+  background-position:
+    0 calc(var(--experience-scroll) * -4px),
+    calc(var(--experience-scroll) * 3px) 0;
+  will-change: background-position;
+}
+
+/* Natural stagger: each piece settles after its chapter becomes active. */
+.flower-experience .experience-chapter > .chapter-reveal {
+  filter: blur(2.4px);
+  transition:
+    opacity 1.15s var(--ease-lumen),
+    transform 1.45s var(--ease-lumen),
+    filter 1.25s var(--ease-lumen);
+  will-change: opacity, transform, filter;
+}
+
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal {
+  filter: blur(0);
+}
+
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal:nth-child(1) { transition-delay: 0.04s; }
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal:nth-child(2) { transition-delay: 0.12s; }
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal:nth-child(3) { transition-delay: 0.2s; }
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal:nth-child(4) { transition-delay: 0.28s; }
+.flower-experience .experience-chapter[data-state="active"] > .chapter-reveal:nth-child(5) { transition-delay: 0.36s; }
+
+.flower-experience .experience-chapter[data-state="past"] > .chapter-reveal {
+  filter: blur(1px);
+}
+
+/* Foreground image plane: BJD imagery travels farther than copy. */
+.flower-experience :is(.prologue-particle, .revelation-visual, .detail-focus, .becoming-visual) {
+  translate: 0 calc(var(--chapter-parallax) * -4.2vh);
+  scale: calc(1 - var(--chapter-distance) * 0.012);
+  will-change: translate, scale;
+}
+
+/* Middle copy plane. */
+.flower-experience :is(
+  .prologue-title-backdrop,
+  .prologue-copy,
+  .revelation-copy,
+  .detail-intro,
+  .detail-reading,
+  .becoming-copy,
+  .verification-copy,
+  .mirror-title
+) {
+  translate: 0 calc(var(--chapter-parallax) * 1.5vh);
+  will-change: translate;
+}
+
+/* Peripheral information remains nearest to the page plane. */
+.flower-experience :is(.prologue-side-note, .atlas-quiet-index, .experience-footer) {
+  translate: 0 calc(var(--chapter-parallax) * 0.7vh);
+  will-change: translate;
+}
+
+.flower-experience :is(.mirror-ripples, .verification-orbit) {
+  translate: 0 calc(var(--chapter-parallax) * -2.6vh);
+  scale: calc(1 + var(--chapter-distance) * 0.018);
+  will-change: translate, scale;
+}
+
+/* Fluid editorial grids on wide canvases. */
+@media (min-width: 1051px) {
+  .flower-experience .chapter-revelation {
+    grid-template-columns: minmax(280px, 0.6fr) minmax(560px, 1.4fr);
+    gap: clamp(46px, 6.5vw, 116px);
+    padding-inline: clamp(68px, 8vw, 148px);
+  }
+
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(200px, 0.48fr) minmax(520px, 1.42fr) minmax(220px, 0.5fr);
+    gap: clamp(30px, 3.8vw, 66px);
+    padding-inline: clamp(62px, 7.2vw, 132px);
+  }
+
+  .flower-experience .chapter-becoming {
+    grid-template-columns: minmax(560px, 1.16fr) minmax(380px, 0.84fr);
+    gap: clamp(54px, 7vw, 120px);
+    padding-inline: clamp(68px, 8vw, 148px);
+  }
+}
+
+
+/* Editorial hierarchy: one dominant line, one visual subject, quiet supporting copy. */
+.flower-experience :is(h1, h2, h3) {
+  text-wrap: balance;
+  font-kerning: normal;
+}
+
+.flower-experience .experience-eyebrow {
+  margin-bottom: clamp(16px, 2.2vh, 24px);
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: 0.34em;
+}
+
+.flower-experience .revelation-copy {
+  align-self: center;
+  max-width: 400px;
+}
+
+.flower-experience .revelation-number {
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.flower-experience .revelation-copy h2 {
+  font-size: clamp(68px, 6vw, 100px);
+  line-height: 0.94;
+  letter-spacing: 0.015em;
+}
+
+.flower-experience .revelation-copy blockquote {
+  max-width: 300px;
+  margin: 32px 0 18px;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.55;
+}
+
+.flower-experience .revelation-copy > p {
+  max-width: 350px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 2.05;
+  letter-spacing: 0.075em;
+}
+
+.flower-experience .detail-intro {
+  padding-top: 5vh;
+}
+
+.flower-experience .detail-intro h2 {
+  max-width: 5em;
+  margin-bottom: 16px;
+  font-size: clamp(30px, 2.8vw, 46px);
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+}
+
+.flower-experience .detail-intro > span {
+  display: block;
+  max-width: 13em;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.flower-experience .detail-reading {
+  max-width: 270px;
+  padding: 0 0 8vh;
+}
+
+.flower-experience .detail-reading > span {
+  font-size: 8px;
+  letter-spacing: 0.22em;
+}
+
+.flower-experience .detail-reading h3 {
+  margin: 18px 0 20px;
+  font-size: clamp(54px, 5.2vw, 82px);
+  line-height: 0.95;
+}
+
+.flower-experience .detail-reading p {
+  max-width: 250px;
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 0.07em;
+}
+
+.flower-experience .detail-tabs {
+  max-width: 210px;
+}
+
+.flower-experience .becoming-copy {
+  max-width: 600px;
+}
+
+.flower-experience .becoming-copy h2 {
+  font-size: clamp(52px, 5vw, 80px);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.flower-experience .becoming-copy > p {
+  max-width: 500px;
+  margin: 28px 0 22px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.flower-experience .becoming-copy ol {
+  max-width: 520px;
+  margin-top: 26px;
+  padding: 0;
+}
+
+.flower-experience .verification-copy h2 {
+  font-size: clamp(58px, 6.2vw, 96px);
+  line-height: 1.06;
+  letter-spacing: 0.005em;
+}
+
+.flower-experience .verification-copy > p {
+  max-width: 570px;
+  font-size: 12px;
+  line-height: 2;
+}
+.flower-experience .detail-tabs button {
+  position: relative;
+  transition:
+    opacity 0.45s var(--ease-lumen),
+    padding 0.55s var(--ease-lumen),
+    background-color 0.55s var(--ease-lumen),
+    translate 0.55s var(--ease-lumen);
+}
+
+.flower-experience .detail-tabs button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24%;
+  bottom: 24%;
+  width: 2px;
+  background: currentColor;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.6s var(--ease-lumen);
+}
+
+.flower-experience .detail-tabs button.is-active::before {
+  transform: scaleY(1);
+}
+
+.flower-experience :is(.experience-header a, .experience-header button, .chapter-next, .verification-copy > a, .revelation-tags span) {
+  transition:
+    color 0.45s var(--ease-lumen),
+    border-color 0.45s var(--ease-lumen),
+    background-color 0.45s var(--ease-lumen),
+    box-shadow 0.65s var(--ease-lumen),
+    opacity 0.45s var(--ease-lumen),
+    translate 0.55s var(--ease-lumen),
+    scale 0.55s var(--ease-lumen);
+}
+
+.flower-experience :is(.revelation-visual img, .becoming-visual img, .detail-focus img) {
+  will-change: filter, scale;
+  transition:
+    filter 1s var(--ease-lumen),
+    scale 1.2s var(--ease-lumen);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flower-experience :is(.experience-header > button, .chapter-next):hover {
+    translate: 0 -2px;
+  }
+
+  .flower-experience .experience-pagination button:hover {
+    opacity: 1;
+    translate: -4px 0;
+  }
+
+  .flower-experience .detail-tabs button:hover {
+    opacity: 0.82;
+    padding-left: 18px;
+    background: color-mix(in srgb, currentColor 5%, transparent);
+    translate: 3px 0;
+  }
+
+  .flower-experience .revelation-tags span:hover {
+    translate: 0 -2px;
+    scale: 1.015;
+  }
+
+  .flower-experience .verification-copy > a:hover {
+    translate: 0 -3px;
+    box-shadow: 0 14px 38px color-mix(in srgb, currentColor 14%, transparent);
+  }
+
+  .flower-experience :is(.revelation-visual, .becoming-visual):hover img {
+    scale: 1.012;
+    filter: saturate(0.78) contrast(1.025);
+  }
+
+  .flower-experience .detail-focus:hover img {
+    scale: 1.01;
+    filter: saturate(0.84) contrast(1.025);
+  }
+}
+
+@media (max-width: 1050px) {
+  .flower-experience :is(.prologue-particle, .revelation-visual, .detail-focus, .becoming-visual) {
+    translate: 0 calc(var(--chapter-parallax) * -2.6vh);
+  }
+
+  .flower-experience :is(
+    .prologue-title-backdrop,
+    .prologue-copy,
+    .revelation-copy,
+    .detail-intro,
+    .detail-reading,
+    .becoming-copy,
+    .verification-copy,
+    .mirror-title
+  ) {
+    translate: 0 calc(var(--chapter-parallax) * 1vh);
+  }
+
+  .flower-experience .revelation-copy h2 {
+    font-size: clamp(56px, 7vw, 78px);
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(48px, 6vw, 66px);
+  }
+
+  .flower-experience .becoming-copy h2,
+  .flower-experience .verification-copy h2 {
+    font-size: clamp(48px, 6vw, 72px);
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience::after {
+    opacity: 0.032;
+  }
+
+  .flower-experience .experience-chapter::after {
+    inset: 8px;
+  }
+
+  .flower-experience :is(.prologue-particle, .revelation-visual, .detail-focus, .becoming-visual) {
+    translate: 0 calc(var(--chapter-parallax) * -1.6vh);
+  }
+
+  .flower-experience :is(
+    .prologue-title-backdrop,
+    .prologue-copy,
+    .revelation-copy,
+    .detail-intro,
+    .detail-reading,
+    .becoming-copy,
+    .verification-copy,
+    .mirror-title
+  ) {
+    translate: 0 calc(var(--chapter-parallax) * 0.6vh);
+  }
+
+  .flower-experience .revelation-copy h2 {
+    font-size: 50px;
+  }
+
+  .flower-experience .revelation-copy blockquote {
+    margin: 22px 0 14px;
+    font-size: 15px;
+  }
+
+  .flower-experience .detail-intro h2 {
+    max-width: none;
+    font-size: 30px;
+  }
+
+  .flower-experience .detail-reading {
+    max-width: none;
+    padding: 0;
+  }
+
+  .flower-experience .detail-reading h3 {
+    margin: 8px 0 10px;
+    font-size: 42px;
+  }
+
+  .flower-experience .detail-tabs {
+    width: 100%;
+    max-width: none;
+  }
+
+  .flower-experience .becoming-copy h2,
+  .flower-experience .verification-copy h2 {
+    font-size: 44px;
+    line-height: 1.12;
+  }
+
+  .flower-experience .becoming-copy > p,
+  .flower-experience .verification-copy > p {
+    font-size: 11px;
+    line-height: 1.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .experience-scroll {
+    scroll-behavior: auto;
+  }
+
+  .flower-experience :is(
+    .experience-backdrop span,
+    .prologue-particle,
+    .revelation-visual,
+    .detail-focus,
+    .becoming-visual,
+    .prologue-title-backdrop,
+    .prologue-copy,
+    .revelation-copy,
+    .detail-intro,
+    .detail-reading,
+    .becoming-copy,
+    .verification-copy,
+    .mirror-title,
+    .prologue-side-note,
+    .atlas-quiet-index,
+    .experience-footer,
+    .mirror-ripples,
+    .verification-orbit
+  ) {
+    translate: none !important;
+    scale: none !important;
+  }
+
+  .flower-experience .experience-chapter > .chapter-reveal,
+  .flower-experience :is(.revelation-visual img, .becoming-visual img, .detail-focus img) {
+    transition: none !important;
+    filter: none !important;
+  }
+}
+
+/* Contemporary Chinese editorial art direction. */
+@media (min-width: 1051px) {
+  .flower-experience .experience-header {
+    padding: 22px clamp(28px, 3.2vw, 54px);
+  }
+
+  .flower-experience .experience-brand small {
+    opacity: 0.42;
+  }
+
+  .flower-experience .experience-chapter-title {
+    font-size: 7px;
+    letter-spacing: 0.34em;
+    opacity: 0.52;
+  }
+
+  .flower-experience .experience-pagination {
+    right: clamp(18px, 2vw, 34px);
+    gap: 16px;
+  }
+
+  .flower-experience :is(
+    .chapter-prologue,
+    .chapter-revelation,
+    .chapter-details,
+    .chapter-becoming,
+    .chapter-verification
+  )::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 18vw;
+    right: 18vw;
+    border-inline: 1px solid color-mix(in srgb, currentColor 7%, transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--chapter-glow) 7%, transparent) 48%,
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .flower-experience :is(
+    .chapter-revelation,
+    .chapter-details,
+    .chapter-becoming,
+    .chapter-verification
+  )::after {
+    position: absolute;
+    z-index: 7;
+    left: clamp(25px, 2.6vw, 48px);
+    top: 50%;
+    color: var(--chapter-muted);
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.28em;
+    writing-mode: vertical-rl;
+    transform: translateY(-50%);
+    opacity: 0.56;
+    pointer-events: none;
+  }
+
+  .flower-experience .chapter-revelation::after {
+    content: "花神图谱 · 原典序列一";
+  }
+
+  .flower-experience .chapter-details::after {
+    content: "造物细节 · 妆面与衣装";
+  }
+
+  .flower-experience .chapter-becoming::after {
+    content: "从二维设定至可触真形";
+  }
+
+  .flower-experience .chapter-verification::after {
+    content: "独立身份 · 官方核验";
+  }
+
+  /* 01 — the opening behaves like a vertical Chinese book cover. */
+  .flower-experience .chapter-prologue {
+    display: block;
+    padding: 0;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    left: clamp(52px, 6vw, 108px);
+    top: 52%;
+    width: auto;
+    height: min(58vh, 590px);
+    color: color-mix(in srgb, var(--chapter-ink) 72%, transparent);
+    writing-mode: vertical-rl;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-index {
+    position: absolute;
+    left: 2px;
+    top: -52px;
+    margin: 0;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-kicker {
+    margin: 0 0 0 17px;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.5em;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    margin: 0;
+    font-size: clamp(68px, 6.4vw, 104px);
+    line-height: 0.94;
+    letter-spacing: 0.09em;
+    text-shadow: none;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    left: auto;
+    right: clamp(76px, 7.5vw, 138px);
+    top: clamp(116px, 16vh, 170px);
+    width: min(286px, 22vw);
+    max-width: 286px;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy::before {
+    width: 48px;
+    margin-bottom: 22px;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy .prologue-lead {
+    max-width: 270px;
+    font-size: 12px;
+    line-height: 2.15;
+    letter-spacing: 0.09em;
+  }
+
+  .flower-experience .chapter-prologue .prologue-side-note {
+    position: absolute;
+    left: 21vw;
+    right: 21vw;
+    bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    writing-mode: horizontal-tb;
+    letter-spacing: 0.2em;
+    opacity: 0.46;
+  }
+
+  .flower-experience .chapter-prologue .prologue-side-note i {
+    width: 58px;
+    height: 1px;
+  }
+
+  /* 02 — a central portrait with independent marginalia. */
+  .flower-experience .chapter-revelation {
+    display: block;
+    padding: 0;
+  }
+
+  .flower-experience .revelation-visual {
+    position: absolute;
+    z-index: 2;
+    inset: 8vh 18vw 4vh;
+    width: auto;
+    height: auto;
+  }
+
+  .flower-experience .revelation-copy {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .flower-experience .revelation-copy .experience-eyebrow {
+    position: absolute;
+    left: 5.5vw;
+    top: 18vh;
+    margin: 0;
+    writing-mode: vertical-rl;
+  }
+
+  .flower-experience .revelation-number {
+    position: absolute;
+    left: 5.4vw;
+    bottom: 12vh;
+    margin: 0;
+    font-size: 14px;
+    writing-mode: vertical-rl;
+  }
+
+  .flower-experience .revelation-number span {
+    margin: 12px 0 0;
+    font-size: 7px;
+  }
+
+  .flower-experience .revelation-copy h2 {
+    position: absolute;
+    left: 9.5vw;
+    top: 31vh;
+    margin: 0;
+    font-size: clamp(58px, 5.6vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+  }
+
+  .flower-experience .revelation-copy blockquote {
+    position: absolute;
+    right: 5.5vw;
+    top: 22vh;
+    width: 260px;
+    margin: 0;
+    padding: 0 0 0 18px;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow) {
+    position: absolute;
+    right: 5.5vw;
+    top: 39vh;
+    width: 270px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 2.2;
+    letter-spacing: 0.09em;
+  }
+
+  .flower-experience .revelation-tags {
+    position: absolute;
+    right: 5.5vw;
+    top: 66vh;
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    font-size: 9px;
+  }
+
+  .flower-experience .atlas-quiet-index {
+    left: 21vw;
+    right: 21vw;
+    bottom: 24px;
+    padding: 0;
+  }
+
+  /* 03 — the detail portrait is the page; labels live in the margins. */
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(190px, 18vw) minmax(520px, 1fr) minmax(220px, 20vw);
+    gap: clamp(28px, 3.2vw, 58px);
+    padding: 96px clamp(48px, 5vw, 92px) 38px;
+  }
+
+  .flower-experience .detail-intro {
+    padding: 3vh 0 0;
+  }
+
+  .flower-experience .detail-intro h2 {
+    max-width: none;
+    max-height: 34vh;
+    margin: 0 0 0 auto;
+    font-size: clamp(38px, 3.7vw, 58px);
+    line-height: 1;
+    letter-spacing: 0.12em;
+    writing-mode: vertical-rl;
+  }
+
+  .flower-experience .detail-intro > span {
+    max-width: 12em;
+    margin: 24px 0 0 auto;
+    text-align: right;
+  }
+
+  .flower-experience .detail-focus {
+    z-index: 2;
+    margin-inline: -1.5vw;
+  }
+
+  .flower-experience .detail-reading {
+    align-self: center;
+    max-width: 250px;
+    padding: 8vh 0 0;
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(58px, 5.2vw, 82px);
+  }
+
+  .flower-experience .detail-tabs {
+    width: 100%;
+    max-width: 190px;
+    padding-bottom: 3vh;
+  }
+
+  /* 04 — the pause is intentionally almost empty. */
+  .flower-experience .chapter-mirror {
+    padding-inline: 12vw;
+  }
+
+  .flower-experience .mirror-title h2 {
+    font-size: clamp(72px, 8vw, 126px);
+    line-height: 0.92;
+    letter-spacing: 0.015em;
+  }
+
+  .flower-experience .mirror-copy {
+    width: min(250px, 19vw);
+    font-size: 11px;
+    line-height: 2.15;
+  }
+
+  .flower-experience .mirror-copy-left {
+    left: 8vw;
+    top: 24%;
+  }
+
+  .flower-experience .mirror-copy-right {
+    right: 8vw;
+    bottom: 21%;
+  }
+
+  /* 05 — image and making notes share a calm editorial spread. */
+  .flower-experience .chapter-becoming {
+    grid-template-columns: minmax(560px, 1.15fr) minmax(380px, 0.85fr);
+    gap: clamp(58px, 7vw, 122px);
+    padding: 92px clamp(74px, 8vw, 142px) 42px;
+  }
+
+  .flower-experience .becoming-visual {
+    height: min(84vh, 840px);
+  }
+
+  .flower-experience .becoming-copy {
+    max-width: 560px;
+    padding-top: 2vh;
+  }
+
+  .flower-experience .becoming-copy h2 {
+    font-size: clamp(54px, 5vw, 78px);
+    line-height: 1.08;
+  }
+
+  .flower-experience .becoming-copy ol {
+    margin-top: 24px;
+  }
+
+  .flower-experience .becoming-copy li {
+    grid-template-columns: 34px 1fr;
+    gap: 14px;
+    padding: 13px 0;
+  }
+
+  /* 06 — the final action remains singular and ceremonial. */
+  .flower-experience .chapter-verification::before {
+    left: 20vw;
+    right: 20vw;
+  }
+
+  .flower-experience .verification-copy {
+    width: min(860px, 70vw);
+  }
+
+  .flower-experience .verification-copy h2 {
+    font-size: clamp(58px, 6vw, 92px);
+  }
+
+  .flower-experience .verification-copy > p {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 1051px) and (max-height: 760px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    height: 50vh;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1,
+  .flower-experience .revelation-copy h2 {
+    font-size: 58px;
+  }
+
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow) {
+    top: 42vh;
+    line-height: 1.9;
+  }
+
+  .flower-experience .revelation-tags {
+    top: 69vh;
+  }
+}
+
+/* Spatial exhibition correction: preserve hierarchy, remove cover/editorial framing. */
+@media (min-width: 1051px) {
+  .flower-experience :is(
+    .chapter-prologue,
+    .chapter-revelation,
+    .chapter-details,
+    .chapter-becoming,
+    .chapter-verification
+  )::before,
+  .flower-experience :is(
+    .chapter-revelation,
+    .chapter-details,
+    .chapter-becoming,
+    .chapter-verification
+  )::after {
+    display: none;
+  }
+
+  .flower-experience .experience-pagination {
+    width: 34px;
+    padding-left: 12px;
+  }
+
+  .flower-experience .experience-pagination button {
+    grid-template-columns: 1fr;
+  }
+
+  .flower-experience .experience-pagination button b {
+    display: none;
+  }
+
+  .flower-experience .experience-pagination button span {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Opening: title floats behind the goddess instead of behaving like a cover title. */
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    left: clamp(46px, 5vw, 88px);
+    top: 58%;
+    width: min(48vw, 760px);
+    height: auto;
+    color: color-mix(in srgb, var(--chapter-ink) 62%, transparent);
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-index {
+    position: static;
+    margin-bottom: 17px;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-kicker {
+    margin: 0 0 12px;
+    font-size: 11px;
+    letter-spacing: 0.46em;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(72px, 7.2vw, 116px);
+    line-height: 0.9;
+    letter-spacing: 0.055em;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    right: clamp(62px, 7vw, 126px);
+    top: clamp(122px, 17vh, 182px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-side-note {
+    left: clamp(38px, 4vw, 68px);
+    right: auto;
+    justify-content: flex-start;
+  }
+
+  /* Portrait reveal: central figure, floating annotations, no column or page metaphor. */
+  .flower-experience .revelation-copy .experience-eyebrow {
+    left: 5.5vw;
+    top: 20vh;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .revelation-number {
+    left: 5.5vw;
+    bottom: 14vh;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .revelation-number span {
+    margin: 0 0 0 12px;
+  }
+
+  .flower-experience .revelation-copy h2 {
+    left: 5.5vw;
+    top: 34vh;
+    width: 300px;
+    font-size: clamp(62px, 6vw, 94px);
+    line-height: 0.96;
+    letter-spacing: 0.035em;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .revelation-copy blockquote {
+    top: 24vh;
+  }
+
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow) {
+    top: 42vh;
+  }
+
+  .flower-experience .revelation-tags {
+    top: 68vh;
+    display: flex;
+    gap: 17px;
+  }
+
+  .flower-experience .atlas-quiet-index {
+    left: 5.5vw;
+    right: auto;
+    width: 220px;
+  }
+
+  /* Detail view: keep side information but return the title to natural reading. */
+  .flower-experience .detail-intro {
+    padding-top: 6vh;
+  }
+
+  .flower-experience .detail-intro h2 {
+    max-width: 5em;
+    max-height: none;
+    margin: 0;
+    font-size: clamp(34px, 3.1vw, 50px);
+    line-height: 1.08;
+    letter-spacing: 0.055em;
+    writing-mode: horizontal-tb;
+  }
+
+  .flower-experience .detail-intro > span {
+    margin: 20px 0 0;
+    text-align: left;
+  }
+
+  .flower-experience .detail-focus {
+    margin-inline: -2.5vw;
+  }
+
+  .flower-experience .detail-reading {
+    padding-top: 5vh;
+  }
+
+  /* Later chapters remain cinematic spreads, without visible paper rails. */
+  .flower-experience .chapter-becoming {
+    padding-inline: clamp(60px, 7.2vw, 128px);
+  }
+
+  .flower-experience .verification-copy {
+    width: min(900px, 76vw);
+  }
+}
+
+/* Density correction after long-form copy removal. */
+@media (min-width: 1051px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    top: 56%;
+    width: min(56vw, 900px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(84px, 8.2vw, 132px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    right: clamp(48px, 5vw, 92px);
+    top: clamp(132px, 19vh, 198px);
+    width: 300px;
+    max-width: 24vw;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy .prologue-lead {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .flower-experience .chapter-prologue .cinematic-particle-portrait {
+    width: 106%;
+    height: 106%;
+    margin: -2% 0 0 -3%;
+  }
+
+  .flower-experience .revelation-visual {
+    inset: 3vh 12vw -1vh;
+  }
+
+  .flower-experience .revelation-copy .experience-eyebrow,
+  .flower-experience .revelation-number,
+  .flower-experience .revelation-copy h2 {
+    left: 4vw;
+  }
+
+  .flower-experience .revelation-copy h2 {
+    top: 32vh;
+    width: 340px;
+    font-size: clamp(70px, 6.6vw, 104px);
+  }
+
+  .flower-experience .revelation-copy blockquote,
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow),
+  .flower-experience .revelation-tags {
+    right: 4vw;
+    width: 290px;
+  }
+
+  .flower-experience .revelation-copy blockquote {
+    top: 29vh;
+  }
+
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow) {
+    top: 42vh;
+  }
+
+  .flower-experience .revelation-tags {
+    top: 53vh;
+  }
+
+  .flower-experience .atlas-quiet-index {
+    left: 4vw;
+    bottom: 30px;
+  }
+
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(170px, 15.5vw) minmax(600px, 1fr) minmax(200px, 17vw);
+    gap: clamp(18px, 2.2vw, 40px);
+    padding: 88px clamp(36px, 4vw, 72px) 30px;
+  }
+
+  .flower-experience .detail-focus {
+    margin-inline: -4vw;
+  }
+
+  .flower-experience .detail-intro h2 {
+    font-size: clamp(38px, 3.5vw, 56px);
+  }
+
+  .flower-experience .detail-reading {
+    max-width: 280px;
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(66px, 5.8vw, 92px);
+  }
+
+  .flower-experience .mirror-ripples {
+    width: min(80vw, 1120px);
+    opacity: 0.2;
+  }
+
+  .flower-experience .mirror-title h2 {
+    font-size: clamp(92px, 10vw, 156px);
+    line-height: 0.84;
+  }
+
+  .flower-experience .mirror-copy {
+    width: min(280px, 21vw);
+  }
+
+  .flower-experience .mirror-copy-left {
+    left: 12vw;
+    top: 27%;
+  }
+
+  .flower-experience .mirror-copy-right {
+    right: 12vw;
+    bottom: 23%;
+  }
+
+  .flower-experience .chapter-becoming {
+    grid-template-columns: minmax(620px, 1.23fr) minmax(380px, 0.77fr);
+    gap: clamp(38px, 4.5vw, 78px);
+    padding: 82px clamp(48px, 5.5vw, 98px) 34px;
+  }
+
+  .flower-experience .becoming-visual {
+    height: min(88vh, 900px);
+    margin-left: -3vw;
+  }
+
+  .flower-experience .becoming-copy h2 {
+    font-size: clamp(60px, 5.6vw, 88px);
+  }
+
+  .flower-experience .becoming-copy ol {
+    max-width: 560px;
+  }
+
+  .flower-experience .verification-orbit {
+    width: min(60vw, 860px);
+    opacity: 0.17;
+  }
+
+  .flower-experience .verification-copy {
+    width: min(980px, 82vw);
+  }
+
+  .flower-experience .verification-copy h2 {
+    font-size: clamp(68px, 6.8vw, 106px);
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .flower-experience .chapter-prologue,
+  .flower-experience .chapter-revelation,
+  .flower-experience .chapter-details,
+  .flower-experience .chapter-becoming {
+    padding-inline: 4vw;
+  }
+
+  .flower-experience .prologue-particle,
+  .flower-experience .revelation-visual {
+    left: 2vw;
+    right: 2vw;
+  }
+
+  .flower-experience .detail-focus {
+    margin-right: -4vw;
+  }
+}
+
+/* Navigation clarity: detail selector and chapter position must read as controls. */
+@media (min-width: 701px) {
+  .flower-experience .detail-tabs {
+    width: 100%;
+    max-width: 230px;
+  }
+
+  .flower-experience .detail-tabs button {
+    min-height: 48px;
+    padding: 13px 10px 13px 12px;
+    border-bottom-color: color-mix(in srgb, var(--chapter-ink) 17%, transparent);
+    color: var(--chapter-ink);
+    opacity: 0.58;
+  }
+
+  .flower-experience .detail-tabs button span {
+    color: color-mix(in srgb, var(--chapter-ink) 72%, transparent);
+    font-size: 9px;
+  }
+
+  .flower-experience .detail-tabs button b {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+
+  .flower-experience .detail-tabs button small {
+    color: color-mix(in srgb, var(--chapter-ink) 64%, transparent);
+    font-size: 7.5px;
+  }
+
+  .flower-experience .detail-tabs button::before {
+    top: 18%;
+    bottom: 18%;
+    width: 3px;
+  }
+
+  .flower-experience .detail-tabs button.is-active {
+    padding-left: 18px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--chapter-ink) 8%, transparent),
+      transparent 84%
+    );
+    opacity: 1;
+  }
+
+  .flower-experience .detail-tabs button.is-active span,
+  .flower-experience .detail-tabs button.is-active small {
+    color: var(--chapter-ink);
+  }
+
+  .flower-experience .detail-tabs button:is(:hover, :focus-visible) {
+    padding-left: 18px;
+    background: color-mix(in srgb, var(--chapter-ink) 6%, transparent);
+    opacity: 0.88;
+  }
+
+  .flower-experience .detail-tabs button.is-active:hover {
+    opacity: 1;
+  }
+
+  .flower-experience .detail-tabs button:focus-visible {
+    outline: 1px solid color-mix(in srgb, var(--chapter-ink) 46%, transparent);
+    outline-offset: 3px;
+  }
+
+  .flower-experience .experience-pagination {
+    right: clamp(16px, 1.7vw, 28px);
+    gap: 5px;
+    width: 54px;
+    padding: 10px 8px 10px 20px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 12%, transparent);
+    border-radius: 30px;
+    background: color-mix(in srgb, var(--chapter-background) 76%, transparent);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--chapter-ink) 7%, transparent);
+    backdrop-filter: blur(14px);
+  }
+
+  .flower-experience .experience-progress {
+    left: 11px;
+    top: 16px;
+    bottom: 16px;
+    background: color-mix(in srgb, var(--chapter-ink) 22%, transparent);
+  }
+
+  .flower-experience .experience-pagination button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 31px;
+    padding: 0;
+    color: var(--chapter-ink);
+    opacity: 0.56;
+    transform: none;
+  }
+
+  .flower-experience .experience-pagination button::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+    width: 4px;
+    height: 4px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: var(--chapter-background);
+    transition:
+      width 0.5s var(--ease-lumen),
+      height 0.5s var(--ease-lumen),
+      background-color 0.5s var(--ease-lumen),
+      transform 0.5s var(--ease-lumen);
+  }
+
+  .flower-experience .experience-pagination button span {
+    color: inherit;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .flower-experience .experience-pagination button b {
+    display: none;
+  }
+
+  .flower-experience .experience-pagination button.is-active {
+    opacity: 1;
+  }
+
+  .flower-experience .experience-pagination button.is-active::after {
+    width: 7px;
+    height: 7px;
+    background: currentColor;
+    transform: translateX(-1.5px);
+  }
+
+  .flower-experience .experience-pagination button.is-active b {
+    position: absolute;
+    right: calc(100% + 18px);
+    display: block;
+    min-width: max-content;
+    padding: 7px 10px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+    color: var(--chapter-ink);
+    background: color-mix(in srgb, var(--chapter-background) 84%, transparent);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--chapter-ink) 6%, transparent);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    backdrop-filter: blur(12px);
+  }
+
+  .flower-experience .experience-pagination button:is(:hover, :focus-visible) {
+    opacity: 1;
+    translate: -2px 0;
+  }
+
+  .flower-experience .experience-pagination button:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience .detail-tabs button {
+    color: var(--chapter-ink);
+    opacity: 0.62;
+  }
+
+  .flower-experience .detail-tabs button.is-active {
+    color: var(--chapter-ink);
+    background: color-mix(in srgb, var(--chapter-ink) 8%, transparent);
+    opacity: 1;
+  }
+}
+
+/* Costume reveal: an irregular fabric-shaped aperture with horizontal panning. */
+.flower-experience .detail-image-window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.flower-experience .detail-image-window > img {
+  display: block;
+}
+
+.flower-experience .detail-focus.is-costume-view {
+  isolation: isolate;
+  overflow: hidden;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+  background:
+    radial-gradient(circle at 50% 104%, rgba(214, 238, 228, 0.2), transparent 27%),
+    linear-gradient(145deg, #071615, #102724 62%, #081a19);
+  box-shadow:
+    inset 0 0 90px rgba(0, 0, 0, 0.36),
+    0 30px 72px rgba(20, 58, 54, 0.18);
+}
+
+.flower-experience .detail-focus.is-costume-view::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  background:
+    radial-gradient(circle at var(--garment-pan) 104%, rgba(230, 248, 239, 0.34), transparent 24%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 4px);
+  transition: background-position 0.3s ease;
+  pointer-events: none;
+}
+
+.flower-experience .detail-focus.is-costume-view::after {
+  content: "";
+  position: absolute;
+  inset: 2.5%;
+  z-index: 1;
+  display: block;
+  clip-path: polygon(
+    35% 0%, 70% 0%, 67% 7%, 74% 13%, 66% 20%, 77% 27%,
+    69% 34%, 80% 42%, 70% 49%, 78% 57%, 65% 65%, 74% 73%,
+    58% 81%, 65% 89%, 52% 100%, 22% 100%, 29% 91%, 18% 83%,
+    28% 74%, 16% 65%, 25% 55%, 15% 46%, 25% 37%, 18% 28%,
+    30% 19%, 25% 10%
+  );
+  background: rgba(218, 239, 229, 0.11);
+  filter: drop-shadow(0 0 24px rgba(213, 241, 229, 0.16));
+  pointer-events: none;
+}
+
+.flower-experience .detail-focus.is-costume-view .detail-image-window {
+  z-index: 2;
+  clip-path: polygon(
+    35% 0%, 70% 0%, 67% 7%, 74% 13%, 66% 20%, 77% 27%,
+    69% 34%, 80% 42%, 70% 49%, 78% 57%, 65% 65%, 74% 73%,
+    58% 81%, 65% 89%, 52% 100%, 22% 100%, 29% 91%, 18% 83%,
+    28% 74%, 16% 65%, 25% 55%, 15% 46%, 25% 37%, 18% 28%,
+    30% 19%, 25% 10%
+  );
+  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.34));
+}
+
+.flower-experience .detail-focus.is-costume-view .detail-image-window img {
+  pointer-events: none;
+  filter: saturate(1.04) brightness(1.035) contrast(1.02);
+  transition:
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+  will-change: transform;
+}
+
+.flower-experience .detail-focus.is-costume-view.is-dragging {
+  cursor: grabbing;
+}
+
+.flower-experience .detail-focus.is-costume-view.is-dragging .detail-image-window img {
+  transition: none;
+}
+
+.flower-experience .costume-view-index {
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  top: 18px;
+  color: rgba(224, 239, 232, 0.72);
+  font: 8px/1 Georgia, serif;
+  letter-spacing: 0.24em;
+  pointer-events: none;
+}
+
+.flower-experience .costume-pan-controls {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: 36px minmax(190px, 280px) 36px;
+  align-items: center;
+  gap: 10px;
+  width: min(420px, calc(100% - 36px));
+  padding: 10px 12px;
+  border: 1px solid rgba(224, 240, 233, 0.17);
+  border-radius: 3px;
+  color: #dcebe4;
+  background: rgba(7, 24, 22, 0.72);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+  transform: translateX(-50%);
+}
+
+.flower-experience .costume-pan-controls button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(224, 240, 233, 0.2);
+  border-radius: 50%;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 15px;
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    transform 0.45s var(--ease-lumen);
+}
+
+.flower-experience .costume-pan-controls button:hover,
+.flower-experience .costume-pan-controls button:focus-visible {
+  border-color: rgba(224, 240, 233, 0.58);
+  background: rgba(224, 240, 233, 0.1);
+  transform: scale(1.06);
+}
+
+.flower-experience .costume-pan-controls button:focus-visible,
+.flower-experience .costume-pan-controls input:focus-visible {
+  outline: 1px solid #dcebe4;
+  outline-offset: 3px;
+}
+
+.flower-experience .costume-pan-controls label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.flower-experience .costume-pan-controls label > span {
+  color: rgba(224, 239, 232, 0.72);
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+.flower-experience .costume-pan-controls input[type="range"] {
+  width: 100%;
+  height: 14px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.flower-experience .costume-pan-controls input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+  background: rgba(224, 240, 233, 0.34);
+}
+
+.flower-experience .costume-pan-controls input[type="range"]::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  appearance: none;
+  border: 1px solid #dcebe4;
+  border-radius: 50%;
+  background: #173f3a;
+  box-shadow: 0 0 0 3px rgba(220, 235, 228, 0.12);
+}
+
+.flower-experience .costume-pan-controls input[type="range"]::-moz-range-track {
+  height: 1px;
+  background: rgba(224, 240, 233, 0.34);
+}
+
+.flower-experience .costume-pan-controls input[type="range"]::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #dcebe4;
+  border-radius: 50%;
+  background: #173f3a;
+  box-shadow: 0 0 0 3px rgba(220, 235, 228, 0.12);
+}
+
+@media (max-width: 700px) {
+  .flower-experience .detail-focus.is-costume-view .detail-image-window,
+  .flower-experience .detail-focus.is-costume-view::after {
+    clip-path: polygon(
+      24% 0%, 79% 0%, 73% 10%, 83% 20%, 73% 31%, 86% 43%,
+      75% 55%, 84% 67%, 67% 79%, 72% 90%, 59% 100%, 12% 100%,
+      22% 88%, 10% 76%, 20% 63%, 8% 49%, 19% 36%, 11% 23%,
+      26% 12%
+    );
+  }
+
+  .flower-experience .costume-pan-controls {
+    bottom: 10px;
+    grid-template-columns: 32px minmax(120px, 1fr) 32px;
+    width: calc(100% - 20px);
+    padding: 8px;
+  }
+
+  .flower-experience .costume-pan-controls button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .detail-focus.is-costume-view .detail-image-window img {
+    transition: none;
+  }
+}
+
+/* Corrected costume lighting: a movable diagonal beam reveals the full garment. */
+.flower-experience .detail-focus.is-costume-view {
+  background:
+    radial-gradient(ellipse at 50% 104%, rgba(205, 235, 222, 0.14), transparent 34%),
+    linear-gradient(145deg, #061413, #102421 58%, #071716);
+}
+
+.flower-experience .detail-focus.is-costume-view::before {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(220, 242, 232, 0.18), transparent 30%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 4px);
+}
+
+.flower-experience .detail-focus.is-costume-view::after {
+  inset: -12%;
+  z-index: 4;
+  clip-path: none;
+  background: linear-gradient(
+    112deg,
+    transparent 37%,
+    rgba(203, 234, 222, 0.04) 42%,
+    rgba(235, 251, 244, 0.42) 49%,
+    rgba(255, 255, 255, 0.62) 52%,
+    rgba(214, 241, 230, 0.18) 58%,
+    transparent 65%
+  );
+  background-size: 230% 100%;
+  background-position: var(--garment-pan) center;
+  background-repeat: no-repeat;
+  filter: blur(9px);
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  transition: background-position 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flower-experience .detail-focus.is-costume-view .detail-image-window {
+  clip-path: none;
+  filter: none;
+}
+
+.flower-experience .detail-focus.is-costume-view .detail-image-window > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-base-layer {
+  z-index: 1;
+  opacity: 0.88;
+  filter: brightness(0.5) saturate(0.52) contrast(1.02);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-highlight-layer {
+  z-index: 3;
+  opacity: 1;
+  clip-path: none;
+  filter:
+    brightness(1.12)
+    saturate(1.14)
+    contrast(1.06)
+    drop-shadow(0 18px 32px rgba(201, 235, 220, 0.18));
+  mask-image: linear-gradient(
+    112deg,
+    transparent 34%,
+    rgba(0, 0, 0, 0.16) 39%,
+    #000 47%,
+    #000 57%,
+    rgba(0, 0, 0, 0.28) 63%,
+    transparent 69%
+  );
+  mask-size: 230% 100%;
+  mask-position: var(--garment-pan) center;
+  mask-repeat: no-repeat;
+  transition:
+    mask-position 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease;
+}
+
+.flower-experience .detail-focus.is-costume-view.is-dragging::after,
+.flower-experience .detail-focus.is-costume-view.is-dragging .costume-highlight-layer {
+  transition: none;
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-view-index::after {
+  content: " / ANGLED LIGHT";
+  color: rgba(224, 239, 232, 0.42);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls {
+  z-index: 7;
+}
+
+@media (max-width: 700px) {
+  .flower-experience .detail-focus.is-costume-view .detail-image-window,
+  .flower-experience .detail-focus.is-costume-view::after {
+    clip-path: none;
+  }
+
+  .flower-experience .detail-focus.is-costume-view::after,
+  .flower-experience .detail-focus.is-costume-view .costume-highlight-layer {
+    background-size: 190% 100%;
+    mask-size: 190% 100%;
+  }
+}

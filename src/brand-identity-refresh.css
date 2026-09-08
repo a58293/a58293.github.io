@@ -1,0 +1,383 @@
+/* Official identity mark and the quiet bas-relief material language. */
+
+.brand-mark,
+.experience-brand-mark,
+.verify-brand-mark,
+.footer-mark {
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.brand-logo-image {
+  display: block;
+  width: 92%;
+  height: 92%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  mix-blend-mode: normal;
+  transition: filter .7s ease, opacity .35s ease;
+}
+
+.home-experience[data-home-chapter="top"] .brand-logo-image,
+.home-experience[data-home-chapter="verify"] .brand-logo-image,
+.flower-experience[data-chapter="prologue"] .brand-logo-image,
+.flower-experience[data-chapter="details"] .brand-logo-image {
+  filter: invert(1);
+  mix-blend-mode: normal;
+}
+
+.brand-mark,
+.experience-brand-mark,
+.verify-brand-mark {
+  display: grid;
+  place-items: center;
+}
+
+.site-shell footer .footer-mark {
+  display: grid;
+  place-items: center;
+}
+
+.site-shell footer .footer-mark .brand-logo-image {
+  filter: invert(1);
+  mix-blend-mode: normal;
+}
+
+/* Original lotus bas-relief: quiet framing from both page edges. */
+.flower-experience .official-gallery-chapter,
+.flower-experience .chapter-verification {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.flower-experience .official-gallery-chapter::before,
+.flower-experience .chapter-verification::before {
+  display: none;
+}
+
+.flower-experience .lotus-relief {
+  --relief-opacity: .34;
+  position: absolute;
+  z-index: 1;
+  left: -3%;
+  top: 83%;
+  width: 106%;
+  height: auto;
+  max-width: none;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: luminosity;
+  opacity: var(--relief-opacity);
+  filter:
+    grayscale(1)
+    contrast(1.08)
+    brightness(1.015)
+    drop-shadow(-3px -3px 2px rgba(255, 255, 255, .92))
+    drop-shadow(5px 6px 8px rgba(57, 94, 86, .2));
+  -webkit-mask-image:
+    radial-gradient(ellipse 31% 68% at 0% 100%, #000 0%, rgba(0, 0, 0, .9) 54%, transparent 100%),
+    radial-gradient(ellipse 31% 68% at 100% 100%, #000 0%, rgba(0, 0, 0, .9) 54%, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse 31% 68% at 0% 100%, #000 0%, rgba(0, 0, 0, .9) 54%, transparent 100%),
+    radial-gradient(ellipse 31% 68% at 100% 100%, #000 0%, rgba(0, 0, 0, .9) 54%, transparent 100%);
+  transition: opacity .24s ease, filter .36s ease;
+  will-change: opacity;
+}
+
+.flower-experience .lotus-relief-gallery {
+  top: 83%;
+  --relief-opacity: .34;
+}
+
+.flower-experience .lotus-relief-verification {
+  left: -8%;
+  top: auto;
+  bottom: 0;
+  width: 116%;
+  --relief-opacity: .44;
+  transform: none;
+  filter:
+    grayscale(1)
+    contrast(1.2)
+    brightness(1.01)
+    drop-shadow(-5px -5px 3px rgba(255, 255, 255, .98))
+    drop-shadow(8px 10px 12px rgba(48, 84, 77, .3));
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 21%, transparent 36%, transparent 64%, #000 79%, #000 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 21%, transparent 36%, transparent 64%, #000 79%, #000 100%);
+}
+
+.flower-experience[data-transition="out"] .experience-chapter[data-state="active"] .lotus-relief {
+  opacity: 0;
+}
+
+.flower-experience[data-transition="in"] .experience-chapter[data-state="active"] .lotus-relief {
+  animation: lotus-relief-settle .74s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes lotus-relief-settle {
+  0%, 22% { opacity: 0; }
+  100% { opacity: var(--relief-opacity); }
+}
+
+.flower-experience .official-gallery-copy,
+.flower-experience .official-gallery-stage,
+.flower-experience .verification-copy {
+  position: relative;
+  z-index: 3;
+}
+
+.flower-experience .official-gallery-copy > p {
+  color: rgba(33, 78, 72, .76);
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: .025em;
+}
+
+.flower-experience .official-gallery-tabs {
+  border-color: rgba(44, 91, 84, .22);
+  background: rgba(255,255,255,.2);
+}
+
+.flower-experience .official-gallery-tabs button {
+  color: #466c66;
+  border-color: rgba(44, 91, 84, .16);
+  opacity: .76;
+}
+
+.flower-experience .official-gallery-tabs button:hover {
+  color: #174d47;
+  opacity: 1;
+}
+
+.flower-experience .official-gallery-tabs button.is-active {
+  color: #8a6427;
+  background: rgba(190, 151, 80, .13);
+  opacity: 1;
+}
+
+.flower-experience .official-gallery-tabs button small {
+  color: currentColor;
+  opacity: .7;
+}
+
+.flower-experience .official-photo-status {
+  display: grid;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 4px 0 4px 18px;
+  border: 0;
+  border-left: 2px solid rgba(155, 120, 59, .46);
+  background: transparent;
+}
+
+.flower-experience .official-photo-status span {
+  grid-column: 1 / -1;
+  color: #9b783b;
+  font: 600 8px/1.2 Georgia, serif;
+  letter-spacing: .18em;
+}
+
+.flower-experience .official-photo-status b {
+  color: #234f49;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+
+.flower-experience .official-photo-status small {
+  color: #5e7c76;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.flower-experience .official-gallery-contact {
+  display: block;
+  padding: 18px 18px 82px;
+  border-color: rgba(52, 94, 87, .18);
+  background: rgba(224, 234, 229, .5);
+}
+
+.flower-experience .official-contact-sheet {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(150px, .65fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  height: 100%;
+}
+
+.flower-experience .official-photo-frame {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-width: 0;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(48, 89, 82, .15);
+  color: #315b55;
+  background:
+    linear-gradient(145deg, rgba(242, 246, 243, .78), rgba(188, 207, 200, .56));
+}
+
+.flower-experience .official-photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(48, 89, 82, .1);
+  pointer-events: none;
+}
+
+.flower-experience .official-photo-frame-main {
+  grid-row: 1 / 3;
+  background:
+    radial-gradient(circle at 44% 38%, rgba(255, 255, 255, .6), transparent 44%),
+    linear-gradient(145deg, rgba(213, 226, 220, .76), rgba(164, 190, 182, .58));
+}
+
+.flower-experience .official-photo-frame span,
+.flower-experience .official-photo-frame small {
+  position: relative;
+  z-index: 1;
+  font: 600 7px/1.3 Georgia, serif;
+  letter-spacing: .18em;
+}
+
+.flower-experience .official-photo-frame span { margin-bottom: 8px; color: #9b783b; }
+.flower-experience .official-photo-frame small { margin-top: 7px; opacity: .52; }
+
+.flower-experience .official-photo-frame b {
+  position: relative;
+  z-index: 1;
+  font: 400 clamp(22px, 2.4vw, 38px)/1.15 "Noto Serif SC", "Songti SC", serif;
+  letter-spacing: .08em;
+}
+
+.flower-experience .official-photo-frame-main b {
+  font-size: clamp(38px, 4.2vw, 68px);
+}
+
+.flower-experience .official-gallery-empty {
+  display: grid;
+  place-items: center;
+  border-color: rgba(52, 94, 87, .18);
+  background:
+    linear-gradient(rgba(51, 91, 84, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 91, 84, .045) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(183, 205, 197, .52), rgba(236, 241, 237, .72));
+  background-size: 48px 48px, 48px 48px, auto;
+}
+
+.flower-experience .official-gallery-placeholder {
+  width: min(72%, 420px);
+  color: #315b55;
+  text-align: center;
+}
+
+.flower-experience .official-gallery-placeholder > span {
+  font: 600 8px/1.4 Georgia, serif;
+  letter-spacing: .22em;
+}
+
+.flower-experience .official-gallery-placeholder > b {
+  display: block;
+  margin: 26px 0 16px;
+  font: 400 clamp(36px, 4vw, 58px)/1.2 "Noto Serif SC", "Songti SC", serif;
+  letter-spacing: .08em;
+}
+
+.flower-experience .official-gallery-placeholder > p {
+  margin: 0;
+  color: rgba(49, 91, 85, .66);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.flower-experience .official-gallery-placeholder > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 34px auto 0;
+  width: min(100%, 300px);
+}
+
+.flower-experience .official-gallery-placeholder i {
+  height: 3px;
+  background: rgba(45, 88, 81, .17);
+}
+
+@media (max-width: 600px) {
+  .brand-mark .brand-logo-image,
+  .experience-brand-mark .brand-logo-image,
+  .verify-brand-mark .brand-logo-image {
+    width: 88%;
+    height: 88%;
+  }
+
+  .flower-experience .lotus-relief {
+    left: -30%;
+    top: 86%;
+    width: 160%;
+    filter:
+      grayscale(1)
+      contrast(1.06)
+      brightness(1.02)
+      drop-shadow(-2px -2px 1px rgba(255, 255, 255, .88))
+      drop-shadow(3px 4px 6px rgba(57, 94, 86, .18));
+    -webkit-mask-image:
+      radial-gradient(ellipse 30% 64% at 0% 100%, #000 0%, rgba(0, 0, 0, .88) 52%, transparent 100%),
+      radial-gradient(ellipse 30% 64% at 100% 100%, #000 0%, rgba(0, 0, 0, .88) 52%, transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 30% 64% at 0% 100%, #000 0%, rgba(0, 0, 0, .88) 52%, transparent 100%),
+      radial-gradient(ellipse 30% 64% at 100% 100%, #000 0%, rgba(0, 0, 0, .88) 52%, transparent 100%);
+  }
+
+  .flower-experience .lotus-relief-gallery {
+    top: 86%;
+    --relief-opacity: .28;
+  }
+
+  .flower-experience .official-photo-status { margin-top: 14px; padding: 13px 14px; }
+  .flower-experience .official-photo-status small { font-size: 9px; }
+  .flower-experience .official-gallery-placeholder { width: 82%; }
+  .flower-experience .official-gallery-placeholder > b { margin: 18px 0 12px; font-size: 34px; }
+  .flower-experience .official-gallery-contact { padding: 10px 10px 68px; }
+  .flower-experience .official-contact-sheet {
+    grid-template-columns: 1.2fr .8fr;
+    gap: 8px;
+  }
+  .flower-experience .official-photo-frame { padding: 12px; }
+  .flower-experience .official-photo-frame::before { inset: 8px; }
+  .flower-experience .official-photo-frame b { font-size: 19px; }
+  .flower-experience .official-photo-frame-main b { font-size: 31px; }
+  .flower-experience .lotus-relief-verification {
+    left: -30%;
+    top: auto;
+    bottom: 0;
+    width: 160%;
+    --relief-opacity: .36;
+    transform: none;
+    filter:
+      grayscale(1)
+      contrast(1.15)
+      brightness(1.015)
+      drop-shadow(-3px -3px 2px rgba(255, 255, 255, .94))
+      drop-shadow(5px 7px 9px rgba(48, 84, 77, .25));
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 18%, transparent 34%, transparent 66%, #000 82%, #000 100%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 18%, transparent 34%, transparent 66%, #000 82%, #000 100%);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .flower-experience .lotus-relief {
+    --relief-opacity: .29;
+    mix-blend-mode: normal;
+    filter: none;
+  }
+}

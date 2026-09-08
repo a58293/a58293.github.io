@@ -1,0 +1,383 @@
+/* Global editorial safety — visual overlap may suggest depth, never remove legibility. */
+.flower-experience :is(
+  .prologue-title-backdrop,
+  .prologue-copy,
+  .revelation-copy,
+  .detail-intro,
+  .detail-reading,
+  .mirror-title,
+  .mirror-copy,
+  .becoming-copy,
+  .verification-copy
+) {
+  min-width: 0;
+}
+
+.flower-experience :is(h1, h2, h3, blockquote, p, small, b, span) {
+  text-overflow: clip;
+}
+
+.flower-experience :is(h1, h2, h3) {
+  position: relative;
+  overflow: visible;
+  word-break: keep-all;
+}
+
+@media (min-width: 1051px) {
+  .flower-experience .experience-header {
+    grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+    column-gap: clamp(22px, 3vw, 52px);
+  }
+
+  .flower-experience .experience-brand,
+  .flower-experience .experience-header > button,
+  .flower-experience .experience-chapter-title {
+    white-space: nowrap;
+  }
+
+  /* 01 — a dedicated title field and a shifted portrait field. */
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 4;
+    left: clamp(48px, 5vw, 88px);
+    top: 56%;
+    width: min(35vw, 560px);
+    isolation: isolate;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -30px -82px -30px -26px;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--chapter-background) 98%, transparent) 0%,
+      color-mix(in srgb, var(--chapter-background) 92%, transparent) 62%,
+      transparent 100%
+    );
+    filter: blur(8px);
+    pointer-events: none;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    width: max-content;
+    max-width: none;
+    font-size: clamp(70px, 5.9vw, 98px);
+    letter-spacing: 0.045em;
+    white-space: nowrap;
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: 5vw;
+    right: -3vw;
+    width: auto;
+  }
+
+  .flower-experience .chapter-prologue .cinematic-particle-portrait {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .flower-experience .chapter-prologue .prologue-copy {
+    z-index: 6;
+    right: clamp(72px, 7vw, 128px);
+    width: min(260px, 20vw);
+    max-width: 260px;
+  }
+
+  /* 02 — annotations occupy the margins; the portrait owns the centre. */
+  .flower-experience .revelation-visual {
+    inset: 4vh 19vw -1vh;
+  }
+
+  .flower-experience .revelation-copy {
+    z-index: 6;
+  }
+
+  .flower-experience .revelation-copy .experience-eyebrow,
+  .flower-experience .revelation-number,
+  .flower-experience .revelation-copy h2,
+  .flower-experience .atlas-quiet-index {
+    left: clamp(46px, 4.2vw, 74px);
+  }
+
+  .flower-experience .revelation-copy h2 {
+    width: max-content;
+    max-width: 28vw;
+    font-size: clamp(62px, 5.25vw, 88px);
+    white-space: nowrap;
+  }
+
+  .flower-experience .revelation-copy blockquote,
+  .flower-experience .revelation-copy > p:not(.experience-eyebrow),
+  .flower-experience .revelation-tags {
+    right: clamp(84px, 7vw, 126px);
+    width: min(250px, 20vw);
+  }
+
+  /* 03 — true three-column exhibit; the image may not trespass into copy. */
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(180px, 0.5fr) minmax(520px, 1.5fr) minmax(205px, 0.58fr);
+    gap: clamp(22px, 2.35vw, 40px);
+    padding: 88px clamp(76px, 6vw, 108px) 30px clamp(48px, 4.5vw, 82px);
+  }
+
+  .flower-experience .detail-intro,
+  .flower-experience .detail-reading,
+  .flower-experience .detail-tabs {
+    position: relative;
+    z-index: 6;
+  }
+
+  .flower-experience .detail-focus {
+    z-index: 2;
+    min-width: 0;
+    margin-inline: 0;
+  }
+
+  .flower-experience .detail-intro h2 {
+    width: max-content;
+    max-width: 100%;
+    font-size: clamp(36px, 3vw, 48px);
+    line-height: 1.12;
+    letter-spacing: 0.045em;
+    white-space: nowrap;
+  }
+
+  .flower-experience .detail-intro > span {
+    max-width: 15em;
+  }
+
+  .flower-experience .detail-reading {
+    max-width: 100%;
+    padding-top: 3vh;
+  }
+
+  .flower-experience .detail-reading h3 {
+    width: max-content;
+    max-width: 100%;
+    margin-block: 18px;
+    font-size: clamp(44px, 4vw, 66px);
+    line-height: 1.04;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+  }
+
+  .flower-experience .detail-reading p {
+    max-width: 18em;
+  }
+
+  .flower-experience .detail-tabs {
+    max-width: 100%;
+  }
+
+  /* 04 — preserve the large motif, but keep both notes outside its measure. */
+  .flower-experience .mirror-title {
+    z-index: 4;
+  }
+
+  .flower-experience .mirror-title h2 {
+    font-size: clamp(84px, 8.2vw, 130px);
+  }
+
+  .flower-experience .mirror-copy {
+    z-index: 5;
+    width: min(240px, 18vw);
+  }
+
+  /* 05 — remove the negative image bleed and let both columns breathe. */
+  .flower-experience .chapter-becoming {
+    grid-template-columns: minmax(0, 1.14fr) minmax(340px, 0.86fr);
+    gap: clamp(40px, 4.8vw, 78px);
+    padding: 86px clamp(84px, 7vw, 126px) 36px clamp(54px, 5vw, 92px);
+  }
+
+  .flower-experience .becoming-visual {
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  .flower-experience .becoming-copy {
+    position: relative;
+    z-index: 5;
+    min-width: 0;
+  }
+
+  .flower-experience .becoming-copy h2 {
+    width: min(100%, 8em);
+    font-size: clamp(50px, 4.7vw, 76px);
+  }
+
+  /* 06 — keep the orbit atmospheric and always behind the action. */
+  .flower-experience .verification-orbit {
+    z-index: 1;
+  }
+
+  .flower-experience .verification-copy {
+    z-index: 5;
+    width: min(820px, 68vw);
+    margin-right: 7vw;
+  }
+
+  .flower-experience .verification-copy h2 {
+    font-size: clamp(60px, 5.8vw, 92px);
+  }
+
+  /* The chapter label already lives in the header; suppress the floating tag
+     that previously entered the right-hand text column. */
+  .flower-experience .experience-pagination button.is-active b {
+    display: none;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 4;
+    left: 4.5vw;
+    width: min(43vw, 420px);
+    isolation: isolate;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -24px -58px -24px -18px;
+    background: linear-gradient(90deg, var(--chapter-background) 0 66%, transparent 100%);
+    filter: blur(7px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(54px, 7vw, 70px);
+    white-space: nowrap;
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: 8vw;
+    right: -5vw;
+    width: auto;
+  }
+
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(180px, 0.58fr) minmax(0, 1.42fr);
+    gap: 26px;
+    padding: 88px 74px 28px 4vw;
+  }
+
+  .flower-experience .detail-focus {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .flower-experience .detail-intro,
+  .flower-experience .detail-reading,
+  .flower-experience .detail-tabs {
+    position: relative;
+    z-index: 6;
+  }
+
+  .flower-experience .detail-intro h2,
+  .flower-experience .detail-reading h3 {
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(42px, 5.4vw, 58px);
+  }
+
+  .flower-experience .chapter-becoming {
+    grid-template-columns: minmax(0, 0.9fr) minmax(310px, 1.1fr);
+    gap: 34px;
+    padding-right: 76px;
+  }
+
+  .flower-experience .becoming-visual {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .flower-experience .verification-copy {
+    width: min(720px, calc(100vw - 140px));
+    margin-right: 58px;
+  }
+
+  .flower-experience .experience-pagination button.is-active b {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .flower-experience .experience-chapter {
+    min-height: 680px;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop {
+    z-index: 5;
+    left: 20px;
+    right: auto;
+    width: min(76vw, 390px);
+    isolation: isolate;
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -20px -54px -20px -14px;
+    background: linear-gradient(90deg, var(--chapter-background) 0 62%, transparent 100%);
+    filter: blur(6px);
+  }
+
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    width: max-content;
+    max-width: none;
+    font-size: clamp(42px, 10.5vw, 55px);
+    letter-spacing: 0.035em;
+    white-space: nowrap;
+  }
+
+  .flower-experience .chapter-prologue .prologue-particle {
+    left: 12vw;
+    right: -10vw;
+    width: auto;
+  }
+
+  .flower-experience .detail-focus {
+    margin-inline: 0;
+  }
+
+  .flower-experience .detail-intro h2,
+  .flower-experience .detail-reading h3 {
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(36px, 10vw, 46px);
+  }
+
+  .flower-experience .becoming-copy,
+  .flower-experience .verification-copy,
+  .flower-experience .mirror-title,
+  .flower-experience .mirror-copy {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+@media (max-height: 720px) and (min-width: 701px) {
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 {
+    font-size: clamp(58px, 5.2vw, 76px);
+  }
+
+  .flower-experience .detail-reading h3 {
+    font-size: clamp(40px, 4.2vw, 58px);
+  }
+
+  .flower-experience .detail-intro {
+    padding-top: 2vh;
+  }
+}

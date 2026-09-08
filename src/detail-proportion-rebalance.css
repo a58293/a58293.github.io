@@ -1,0 +1,183 @@
+/* 03 / Details — let the garment own the room; information floats around it. */
+@media (min-width: 1051px) {
+  .flower-experience .chapter-details {
+    grid-template-columns: minmax(205px, .32fr) minmax(0, 1.68fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: clamp(26px, 2.4vw, 42px);
+    padding: 88px clamp(72px, 5vw, 92px) 30px clamp(38px, 3.2vw, 58px);
+  }
+
+  .flower-experience .chapter-details .detail-intro {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    width: 100%;
+    padding-top: clamp(22px, 4vh, 42px);
+  }
+
+  .flower-experience .chapter-details .detail-intro h2 {
+    font-size: clamp(38px, 3.1vw, 50px);
+  }
+
+  .flower-experience .chapter-details .detail-intro > span {
+    display: block;
+    max-width: 13em;
+    margin-top: 22px;
+    line-height: 1.9;
+  }
+
+  .flower-experience .chapter-details .detail-tabs {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 0 clamp(8px, 2vh, 22px);
+    padding: 0;
+    border-top: 1px solid rgba(230, 237, 226, .12);
+  }
+
+  .flower-experience .chapter-details .detail-tabs button {
+    grid-template-columns: 30px minmax(58px, 1fr) auto;
+    min-height: 50px;
+    padding: 10px 8px;
+  }
+
+  .flower-experience .chapter-details .detail-tabs button.is-active {
+    padding-left: 15px;
+  }
+
+  .flower-experience .chapter-details .detail-focus,
+  .flower-experience .chapter-details .detail-focus.is-costume-view {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .flower-experience .chapter-details .detail-image-window {
+    width: 100%;
+    height: 100%;
+  }
+
+  .flower-experience .chapter-details .detail-reading {
+    position: absolute;
+    z-index: 9;
+    right: clamp(56px, 4.2vw, 76px);
+    top: 54%;
+    grid-column: auto;
+    grid-row: auto;
+    width: clamp(176px, 13vw, 212px);
+    max-width: none;
+    padding: 16px 0 16px 18px;
+    border-left: 1px solid rgba(201, 163, 107, .42);
+    background: linear-gradient(90deg, rgba(5, 34, 31, .76), rgba(5, 34, 31, .38) 68%, transparent);
+    backdrop-filter: blur(8px);
+    transform: translateY(-50%);
+  }
+
+  .flower-experience .chapter-details .detail-reading > span {
+    font-size: 9px;
+    letter-spacing: .22em;
+  }
+
+  .flower-experience .chapter-details .detail-reading h3 {
+    width: auto;
+    margin: 13px 0 11px;
+    font-size: clamp(32px, 2.65vw, 43px);
+    line-height: 1.04;
+    white-space: nowrap;
+  }
+
+  .flower-experience .chapter-details .detail-reading p {
+    max-width: 17em;
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.75;
+  }
+
+  .flower-experience .chapter-details .costume-reading-meta {
+    display: block;
+    margin-top: 13px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(230, 237, 226, .12);
+  }
+
+  .flower-experience .chapter-details .costume-mode-switch {
+    top: 12px;
+    right: 20px;
+    width: min(286px, 31%);
+  }
+
+  .flower-experience .chapter-details .costume-view-index {
+    top: 16px;
+    left: 18px;
+    max-width: calc(60% - 30px);
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail,
+  .flower-experience .chapter-details .detail-focus.is-costume-view .costume-piece-rail {
+    top: auto;
+    left: 50%;
+    right: auto;
+    bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(92px, 1fr));
+    width: min(610px, 59%);
+    height: auto;
+    border: 1px solid rgba(231, 238, 226, .13);
+    border-left: 1px solid rgba(231, 238, 226, .13);
+    background: rgba(5, 32, 29, .66);
+    box-shadow: 0 16px 40px rgba(0, 17, 15, .22);
+    transform: translateX(-50%);
+    backdrop-filter: blur(18px) saturate(.9);
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail button {
+    min-height: 58px;
+    padding: 9px 10px;
+    border-right: 1px solid rgba(231, 238, 226, .08);
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail button:last-child {
+    border-right: 0;
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail button::before {
+    left: 0;
+    top: auto;
+    bottom: -1px;
+    width: 0;
+    height: 1px;
+    transition: width .42s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail button.is-active::before {
+    width: 100%;
+  }
+
+  .flower-experience .chapter-details .costume-piece-rail button span,
+  .flower-experience .chapter-details .costume-piece-rail button b,
+  .flower-experience .chapter-details .costume-piece-rail button small {
+    white-space: nowrap;
+  }
+
+  .flower-experience[data-chapter="details"] .experience-pagination {
+    right: 16px;
+  }
+}
+
+@media (min-width: 1051px) and (max-height: 760px) {
+  .flower-experience .chapter-details .detail-intro { padding-top: 12px; }
+  .flower-experience .chapter-details .detail-tabs button { min-height: 44px; }
+  .flower-experience .chapter-details .costume-piece-rail,
+  .flower-experience .chapter-details .detail-focus.is-costume-view .costume-piece-rail {
+    bottom: 10px;
+  }
+}

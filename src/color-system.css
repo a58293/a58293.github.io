@@ -1,0 +1,172 @@
+:root {
+  --lumen-jade: #2e887b;
+  --lumen-deep-jade: #123f3a;
+  --lumen-water: #69b8ad;
+  --lumen-lotus: #cb6d83;
+  --lumen-gold: #c49a3f;
+  --lumen-cream: #fff8eb;
+}
+
+::selection { color: #fffaf0; background: #3b8c80; }
+
+.hover-color-char {
+  transition: filter .35s ease, text-shadow .35s ease;
+}
+
+.hover-color-char:hover {
+  filter: saturate(1.3) contrast(1.08);
+  text-shadow: 0 0 14px color-mix(in srgb, currentColor 28%, transparent);
+}
+
+/* 首页：白色为底，荷叶青为主，莲粉与月金负责点睛。 */
+.site-shell {
+  --page-base: #fffaf1;
+  --product-accent: var(--lumen-water);
+  --product-ink: var(--lumen-deep-jade);
+}
+
+.site-shell .hero {
+  background:
+    radial-gradient(circle at 76% 42%, rgba(105, 193, 177, .48), transparent 27%),
+    radial-gradient(circle at 17% 20%, rgba(203, 109, 131, .18), transparent 25%),
+    linear-gradient(135deg, #082b2c 0%, #18564f 56%, #0b3232 100%);
+}
+
+.site-shell .hero-line-second {
+  color: #a9e2d4 !important;
+  text-shadow: 0 10px 35px rgba(73, 181, 158, .2);
+}
+
+.site-shell .nav-verify {
+  border-color: rgba(247, 210, 219, .62);
+  background: rgba(205, 103, 128, .12);
+}
+
+.site-shell .primary-button {
+  border-color: rgba(255, 255, 255, .72);
+  background: linear-gradient(135deg, #fffaf0, #ccebe2);
+}
+
+.site-shell .series-section {
+  background:
+    radial-gradient(circle at 8% 14%, rgba(213, 175, 79, .14), transparent 25%),
+    linear-gradient(135deg, #fff9ef 0%, #e0f0e9 72%, #d4e9df 100%);
+}
+
+.site-shell .section-heading .eyebrow { color: #a4576b; opacity: .92; }
+.site-shell .series-active { box-shadow: 0 30px 80px rgba(32, 91, 82, .2); }
+.site-shell .series-coming { background: linear-gradient(155deg, #355f5a, #af7b89); }
+.site-shell .series-shade { background: linear-gradient(180deg, rgba(8, 42, 40, .02), rgba(7, 37, 36, .78)); }
+
+.site-shell .archive-section {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(202, 153, 54, .15), transparent 28%),
+    linear-gradient(145deg, #fffaf2, #eef7f1);
+}
+
+.site-shell .archive-image { background: linear-gradient(145deg, #b9ded3, #efd3d9 115%); }
+.site-shell .archive-image img { filter: saturate(.95) contrast(1.02); }
+.site-shell .archive-en { color: #a05c70; }
+.site-shell .outline-button { border-color: rgba(46, 136, 123, .48); }
+
+.site-shell .collectors-section { background: linear-gradient(145deg, #d4ece3, #f1dfe3); }
+.site-shell .collector-1 { background: linear-gradient(150deg, #285b57, #63a89c); }
+.site-shell .collector-2 { background: linear-gradient(160deg, #b36f82, #315b58 68%); }
+.site-shell .collector-3 { background: linear-gradient(145deg, #316b66, #c09b4e); }
+
+.site-shell .verify-section {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(105, 184, 173, .3), transparent 26%),
+    radial-gradient(circle at 16% 78%, rgba(203, 109, 131, .12), transparent 22%),
+    linear-gradient(135deg, #fffaf1, #e1f1e9);
+}
+
+.site-shell .light-button {
+  border-color: #25675f;
+  background: linear-gradient(135deg, #164a45, #2f8479);
+}
+
+/* 花神章节：动态主色之外增加莲粉与月金的微光，避免整页只有灰绿。 */
+.flower-experience .experience-backdrop span {
+  opacity: .58;
+  filter: blur(100px) saturate(1.28);
+}
+
+.flower-experience .experience-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(203, 109, 131, .13), transparent 22%),
+    radial-gradient(circle at 84% 80%, rgba(196, 154, 63, .12), transparent 24%);
+  pointer-events: none;
+}
+
+.flower-experience .experience-eyebrow {
+  color: color-mix(in srgb, var(--chapter-ink) 48%, #bd5f76 52%);
+  opacity: .95;
+}
+
+.flower-experience .chapter-next,
+.flower-experience .verification-copy > a {
+  border-color: color-mix(in srgb, var(--chapter-ink) 35%, var(--chapter-glow));
+}
+
+.flower-experience .revelation-tags span,
+.flower-experience .verification-formula span {
+  border-color: color-mix(in srgb, var(--chapter-ink) 24%, #bf7182);
+  background: color-mix(in srgb, var(--chapter-glow) 18%, transparent);
+}
+
+.flower-experience .experience-pagination button[aria-current="true"] span,
+.flower-experience .experience-progress span {
+  background: color-mix(in srgb, var(--chapter-ink) 60%, #c49332);
+}
+
+/* 防伪中心：保留可信的浅色空间，同时让核验动作与状态更醒目。 */
+.verify-world {
+  --verify-ink: #103f39;
+  --verify-muted: #527970;
+  --verify-line: rgba(30, 105, 95, .24);
+  background:
+    radial-gradient(circle at 79% 31%, rgba(72, 165, 148, .34), transparent 30%),
+    radial-gradient(circle at 13% 83%, rgba(204, 105, 129, .16), transparent 25%),
+    radial-gradient(circle at 52% 100%, rgba(202, 155, 61, .12), transparent 25%),
+    linear-gradient(125deg, #fff9ed 0%, #eef7ef 52%, #d3ebe1 100%);
+}
+
+.verify-world .verify-kicker { color: #a24f67; }
+.verify-world .verify-index { color: #966f24; opacity: .82; }
+.verify-world .verify-intro h1 > span:nth-child(2) { color: #247b70; }
+.verify-world .verify-trust-note > i { color: #b55e74; border-color: rgba(181, 94, 116, .35); }
+
+.verify-world .verify-console {
+  border-color: rgba(36, 125, 113, .3);
+  background: rgba(255, 252, 244, .78);
+  box-shadow: 0 34px 105px rgba(25, 101, 91, .16), 0 0 0 1px rgba(255, 255, 255, .46) inset;
+}
+
+.verify-world .verify-console-head > span { color: #a0586b; }
+.verify-world .verify-console-head b { color: #22776d; }
+.verify-world .verify-console input:focus { border-color: #2b9183; box-shadow: 0 5px 0 -3px rgba(43, 145, 131, .42); }
+.verify-world .verify-submit { border-color: #1b665d; background: linear-gradient(135deg, #18584f, #319184); box-shadow: 0 13px 30px rgba(31, 119, 107, .18); }
+.verify-world .verify-submit:hover:not(:disabled) { background: linear-gradient(135deg, #236d62, #43a091); }
+.verify-world .verify-seal:not(.verify-seal-failure) { background: rgba(64, 160, 143, .09); box-shadow: 0 0 38px rgba(48, 153, 134, .15); }
+.verify-world .verify-success dd span { color: #16806f; }
+
+/* 总览页也使用相同品牌色谱。 */
+.flower-total-world {
+  --total-bg: #a9d6ca;
+  --total-soft: #edf7f1;
+  --total-mid: #4f9d91;
+  --total-deep: #124943;
+  --total-ink: #103e39;
+  background: linear-gradient(135deg, #fff9ef, #eef8f2);
+}
+
+.flower-total-world .total-primary-action { background: linear-gradient(135deg, #144d47, #328b7f); }
+.flower-total-world .total-verify-link { border-color: rgba(194, 91, 117, .4); background: rgba(205, 109, 131, .08); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-color-char { transition: none; }
+}

@@ -1,0 +1,208 @@
+/* A cursor-adjacent inspection lens shared by every styling detail. */
+.flower-experience .chapter-details .detail-focus {
+  cursor: zoom-in;
+  touch-action: manipulation;
+}
+
+.flower-experience .chapter-details .detail-hover-marker {
+  left: var(--zoom-x, 50%);
+  top: var(--zoom-y, 48%);
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(.72);
+  transition:
+    left 70ms linear,
+    top 70ms linear,
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(.22, 1, .36, 1),
+    visibility 0s linear 220ms;
+}
+
+.flower-experience .chapter-details .detail-focus.is-detail-inspecting .detail-hover-marker {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0s;
+}
+
+.flower-experience .chapter-details .detail-hover-lens,
+.flower-experience .chapter-details .detail-focus.is-costume-view .detail-hover-lens {
+  z-index: 30;
+  left: var(--lens-x, 72%);
+  top: var(--lens-y, 68%);
+  bottom: auto;
+  width: clamp(154px, 15vw, 214px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(.88);
+  transform-origin: center;
+  pointer-events: none;
+  transition:
+    left 95ms linear,
+    top 95ms linear,
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(.22, 1, .36, 1),
+    visibility 0s linear 240ms;
+  will-change: left, top, opacity, transform;
+}
+
+.flower-experience .chapter-details .detail-focus.is-detail-inspecting .detail-hover-lens {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0s;
+}
+
+.flower-experience .chapter-details .detail-hover-lens > .detail-lens-scene {
+  position: absolute;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  transform: scale(var(--lens-magnification, 2.1));
+  pointer-events: none;
+  will-change: left, top, transform;
+}
+
+.flower-experience .chapter-details .detail-magnification-control {
+  display: grid;
+  gap: 9px;
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(230, 237, 226, .14);
+  color: rgba(225, 235, 226, .76);
+}
+
+.flower-experience .chapter-details .detail-magnification-control > span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.flower-experience .chapter-details .detail-magnification-control b,
+.flower-experience .chapter-details .detail-magnification-control output {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .14em;
+}
+
+.flower-experience .chapter-details .detail-magnification-control output {
+  color: #d2b47e;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"] {
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  cursor: ew-resize;
+  appearance: none;
+  background: transparent;
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+  background: linear-gradient(90deg, #d2b47e, rgba(225, 235, 226, .28));
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]::-webkit-slider-thumb {
+  width: 11px;
+  height: 11px;
+  margin-top: -5px;
+  border: 1px solid #d2b47e;
+  border-radius: 50%;
+  appearance: none;
+  background: #f3f2e9;
+  box-shadow: 0 0 0 4px rgba(210, 180, 126, .12);
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]::-moz-range-track {
+  height: 1px;
+  background: rgba(225, 235, 226, .28);
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]::-moz-range-progress {
+  height: 1px;
+  background: #d2b47e;
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #d2b47e;
+  border-radius: 50%;
+  background: #f3f2e9;
+  box-shadow: 0 0 0 4px rgba(210, 180, 126, .12);
+}
+
+.flower-experience .chapter-details .detail-magnification-control input[type="range"]:focus-visible {
+  outline: 1px solid rgba(210, 180, 126, .72);
+  outline-offset: 5px;
+}
+
+.flower-experience .chapter-details .detail-hover-lens .detail-lens-scene > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: none;
+  animation: none;
+  transition: none;
+  mix-blend-mode: normal;
+}
+
+.flower-experience .chapter-details .detail-hover-lens > .detail-lens-label {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  padding: 28px 16px 13px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(5, 31, 28, .92));
+}
+
+.flower-experience .chapter-details .detail-hover-lens > .detail-lens-label span {
+  font-size: 8px;
+  letter-spacing: .24em;
+}
+
+.flower-experience .chapter-details .detail-hover-lens > .detail-lens-label b {
+  font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .16em;
+}
+
+@media (max-width: 700px) {
+  .flower-experience .chapter-details .detail-hover-lens,
+  .flower-experience .chapter-details .detail-focus.is-costume-view .detail-hover-lens {
+    left: var(--lens-x, 68%);
+    top: var(--lens-y, 66%);
+    width: 118px;
+  }
+
+  .flower-experience .chapter-details .detail-hover-marker {
+    width: 24px;
+    height: 24px;
+  }
+
+  .flower-experience .chapter-details .detail-magnification-control {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .chapter-details .detail-hover-marker,
+  .flower-experience .chapter-details .detail-hover-lens,
+  .flower-experience .chapter-details .detail-lens-scene {
+    transition-duration: .01ms !important;
+  }
+}

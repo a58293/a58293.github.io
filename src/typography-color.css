@@ -1,0 +1,92 @@
+:root {
+  --lumen-jade: #247d71;
+  --lumen-deep-jade: #103f39;
+  --lumen-lotus: #b9506b;
+  --lumen-gold: #a77922;
+  --lumen-blue: #496ba7;
+}
+
+::selection { color: #fff; background: var(--lumen-jade); }
+
+.hover-color-char {
+  transition: filter .3s ease, text-shadow .3s ease;
+}
+
+.hover-color-char:hover {
+  filter: saturate(1.4) contrast(1.12);
+  text-shadow: 0 0 12px color-mix(in srgb, currentColor 24%, transparent);
+}
+
+/* 首页字体层级 */
+.site-shell .hero h1 { color: #f8fff9; }
+.site-shell .hero-line-second { color: #8fd4c4 !important; }
+.site-shell .hero .eyebrow { color: #efb6c3; opacity: .94; }
+.site-shell .hero-intro { color: rgba(240, 255, 249, .82); }
+.site-shell .section-heading h2,
+.site-shell .archive-copy h2,
+.site-shell .verify-copy h2 { color: var(--lumen-deep-jade); }
+.site-shell .section-heading .eyebrow,
+.site-shell .archive-copy .eyebrow,
+.site-shell .verify-copy .eyebrow { color: var(--lumen-lotus); opacity: 1; }
+.site-shell .section-heading > p:last-child,
+.site-shell .archive-description,
+.site-shell .verify-copy > p:not(.eyebrow) { color: #395f59; }
+.site-shell .archive-en { color: #9d5267; }
+.site-shell .series-content p,
+.site-shell .figure-caption { color: #efd59b; opacity: .92; }
+.site-shell .series-content span { color: #b9ecdf; opacity: 1; }
+.site-shell .collector-note { color: #855064; }
+.site-shell .verify-meta { color: #805361; opacity: .78; }
+
+/* 花神页字体层级 */
+.flower-experience .experience-eyebrow { color: #a84762; opacity: 1; }
+.flower-experience .prologue-title-index,
+.flower-experience .revelation-number,
+.flower-experience .detail-reading > span,
+.flower-experience .experience-chapter-title > span { color: var(--lumen-gold); opacity: .94; }
+.flower-experience .prologue-title-kicker,
+.flower-experience .revelation-copy blockquote,
+.flower-experience .verification-formula i { color: var(--lumen-lotus); }
+.flower-experience .prologue-lead,
+.flower-experience .revelation-copy > p,
+.flower-experience .verification-copy > p { color: color-mix(in srgb, var(--chapter-ink) 74%, transparent); }
+.flower-experience .chapter-next,
+.flower-experience .verification-copy > a { color: color-mix(in srgb, var(--chapter-ink) 78%, var(--lumen-jade)); }
+.flower-experience .revelation-tags span { color: color-mix(in srgb, var(--chapter-ink) 62%, var(--lumen-lotus)); }
+.flower-experience .experience-pagination button[aria-current="true"] b { color: var(--lumen-lotus); opacity: 1; }
+
+/* 防伪页字体与状态层级 */
+.verify-world { --verify-ink: #103f39; --verify-muted: #4d7068; }
+.verify-world .verify-kicker,
+.verify-world .verify-console-head > span { color: var(--lumen-lotus); }
+.verify-world .verify-index { color: var(--lumen-gold); opacity: .9; }
+.verify-world .verify-intro h1 { color: #123f3a; }
+.verify-world .verify-intro h1 > span:nth-child(2) { color: var(--lumen-jade); }
+.verify-world .verify-lead { color: #385e58; }
+.verify-world .verify-steps b { color: #174a44; }
+.verify-world .verify-steps small,
+.verify-world .verify-trust-note span { color: #56766f; }
+.verify-world .verify-trust-note b,
+.verify-world .verify-console-head b { color: var(--lumen-jade); }
+.verify-world .verify-console label b { color: #164942; }
+.verify-world .verify-console label small { color: #8f5363; }
+.verify-world .verify-console input { color: #0d4941; }
+.verify-world .verify-form-meta > span { color: var(--lumen-gold); }
+.verify-world .verify-form-meta button { color: #9d4f64; }
+.verify-world .verify-success h2 { color: #147466; }
+.verify-world .verify-success dd span { color: #0c7e6b; }
+.verify-world .verify-failure h2,
+.verify-world .verify-failure dd span { color: #9a493f; }
+
+/* 总览页字体层级 */
+.flower-total-world .total-header-title,
+.flower-total-world .total-section-heading > p { color: var(--lumen-lotus); opacity: 1; }
+.flower-total-world h1,
+.flower-total-world h2,
+.flower-total-world h3 { color: #12463f; }
+.flower-total-world .total-eyebrow,
+.flower-total-world .authentication-copy > p { color: var(--lumen-gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-color-char { transition: none; }
+}

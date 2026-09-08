@@ -1,0 +1,420 @@
+.flower-experience {
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+}
+
+.experience-backdrop span {
+  width: 56vw;
+  height: 56vw;
+  right: -12vw;
+  top: -18vw;
+  opacity: .2;
+  filter: blur(180px);
+}
+
+.experience-backdrop i {
+  opacity: .025;
+  background-size: 150px 150px;
+}
+
+.experience-header {
+  padding: 24px clamp(24px, 4vw, 68px);
+}
+
+.experience-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-color: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.experience-pagination {
+  right: clamp(18px, 2.4vw, 38px);
+  gap: 15px;
+}
+
+.experience-progress {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.experience-chapter {
+  width: min(100%, 1800px);
+  margin: 0 auto;
+}
+
+.chapter-prologue {
+  grid-template-columns: minmax(220px, .62fr) minmax(500px, 1.48fr) minmax(140px, .42fr);
+  gap: clamp(18px, 2vw, 38px);
+  padding: 94px clamp(54px, 7vw, 124px) 42px;
+}
+
+.prologue-copy {
+  align-self: center;
+  max-width: 410px;
+}
+
+.prologue-copy h1 {
+  font-size: clamp(48px, 5.3vw, 86px);
+  line-height: 1.04;
+  letter-spacing: .01em;
+}
+
+.prologue-copy h1 > span:nth-child(2) {
+  margin: .16em 0 0;
+}
+
+.prologue-lead {
+  max-width: 360px;
+  margin-top: 28px;
+  font-size: 12px;
+  line-height: 2.15;
+}
+
+.prologue-particle {
+  width: min(59vw, 940px);
+  margin-left: -4vw;
+}
+
+.prologue-particle .particle-portrait {
+  filter: drop-shadow(0 30px 55px rgba(31, 80, 75, .12));
+}
+
+.particle-portrait-status {
+  display: none;
+}
+
+.prologue-side-note {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  align-self: center;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  height: 44vh;
+  gap: 16px;
+  writing-mode: vertical-rl;
+  letter-spacing: .28em;
+  opacity: .68;
+}
+
+.prologue-side-note i {
+  width: 1px;
+  height: 58px;
+}
+
+.chapter-revelation {
+  grid-template-columns: minmax(230px, .58fr) minmax(520px, 1.35fr) minmax(150px, .35fr);
+  gap: clamp(18px, 2.4vw, 46px);
+  padding: 94px clamp(62px, 7.5vw, 132px) 38px;
+}
+
+.revelation-copy {
+  max-width: 390px;
+}
+
+.revelation-number {
+  margin-bottom: 14px;
+  font-size: 28px;
+}
+
+.revelation-copy h2 {
+  font-size: clamp(58px, 6.2vw, 94px);
+}
+
+.revelation-copy blockquote {
+  margin: 26px 0 16px;
+  font-size: 15px;
+}
+
+.revelation-copy > p {
+  font-size: 12px;
+  line-height: 2.1;
+}
+
+.revelation-visual {
+  width: 100%;
+  height: min(82vh, 850px);
+  justify-self: center;
+}
+
+.transparent-goddess {
+  display: block;
+  opacity: 0;
+  transition: opacity 1.55s cubic-bezier(.22, .7, .18, 1);
+}
+
+.transparent-goddess.is-ready {
+  opacity: 1;
+}
+
+.revelation-visual img,
+.becoming-visual img,
+.detail-focus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: normal;
+  mask-image: none;
+  filter: drop-shadow(0 28px 42px rgba(26, 73, 68, .12));
+}
+
+.revelation-caption {
+  left: 12%;
+  right: 12%;
+  bottom: 0;
+  opacity: .72;
+}
+
+.atlas-quiet-index {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  display: block;
+  align-self: end;
+  padding-bottom: 7vh;
+}
+
+.atlas-quiet-index > div {
+  display: block;
+}
+
+.atlas-quiet-index > div > * {
+  display: block;
+  margin: 0 0 9px;
+}
+
+.atlas-quiet-index > i,
+.atlas-quiet-index > div:last-child {
+  display: none;
+}
+
+.chapter-details {
+  grid-template-columns: minmax(210px, .55fr) minmax(500px, 1.35fr) minmax(220px, .55fr);
+  grid-template-rows: 1fr;
+  gap: clamp(22px, 3vw, 54px);
+  padding: 96px clamp(62px, 7vw, 122px) 40px;
+}
+
+.detail-intro {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  padding-top: 6vh;
+}
+
+.detail-intro h2 {
+  font-size: clamp(44px, 4.6vw, 72px);
+}
+
+.detail-focus {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: stretch;
+  min-height: 0;
+}
+
+.detail-focus::after,
+.detail-focus figcaption {
+  display: none;
+}
+
+.detail-focus img {
+  animation: none;
+  transition: opacity 1s ease, transform 1.6s cubic-bezier(.22, .7, .18, 1);
+}
+
+.detail-reading {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  padding: 0 0 10vh;
+}
+
+.detail-reading h3 {
+  font-size: clamp(48px, 5vw, 78px);
+}
+
+.detail-tabs {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 0;
+  padding-bottom: 4vh;
+}
+
+.detail-tabs button {
+  grid-template-columns: 25px 1fr auto;
+  grid-template-rows: 1fr;
+  align-items: center;
+  padding: 12px 0;
+  border-right: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.detail-tabs button span {
+  grid-row: 1;
+}
+
+.detail-tabs button.is-active {
+  padding-left: 12px;
+}
+
+.chapter-mirror {
+  padding-left: clamp(50px, 9vw, 150px);
+  padding-right: clamp(50px, 9vw, 150px);
+}
+
+.mirror-ripples {
+  width: min(58vw, 780px);
+  opacity: .14;
+}
+
+.mirror-title h2 {
+  font-size: clamp(62px, 7.4vw, 116px);
+}
+
+.chapter-becoming {
+  grid-template-columns: minmax(480px, 1.05fr) minmax(400px, .95fr);
+  gap: clamp(44px, 7vw, 118px);
+  padding: 94px clamp(70px, 9vw, 150px) 42px;
+}
+
+.becoming-visual {
+  height: min(82vh, 820px);
+}
+
+.becoming-visual img {
+  object-position: center;
+}
+
+.becoming-visual > span {
+  left: 9%;
+  bottom: 3%;
+}
+
+.becoming-copy h2 {
+  font-size: clamp(48px, 5vw, 78px);
+}
+
+.verification-orbit {
+  width: min(50vw, 720px);
+  opacity: .12;
+}
+
+.verification-copy {
+  width: min(920px, 82vw);
+}
+
+.verification-copy h2 {
+  font-size: clamp(50px, 6vw, 94px);
+}
+
+@media (max-width: 1050px) {
+  .chapter-prologue,
+  .chapter-revelation {
+    grid-template-columns: .7fr 1.3fr;
+  }
+
+  .prologue-side-note,
+  .atlas-quiet-index {
+    display: none;
+  }
+
+  .chapter-details {
+    grid-template-columns: .58fr 1.2fr;
+  }
+
+  .detail-reading {
+    grid-column: 1;
+    align-self: center;
+    padding-bottom: 0;
+  }
+
+  .detail-focus {
+    grid-column: 2;
+  }
+
+  .detail-tabs {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .experience-backdrop i { display: none; }
+
+  .chapter-prologue,
+  .chapter-revelation {
+    display: block;
+    padding: 86px 22px 24px;
+    text-align: left;
+  }
+
+  .prologue-copy,
+  .revelation-copy {
+    position: relative;
+    z-index: 5;
+    margin: 2vh 0 0;
+    max-width: 78vw;
+  }
+
+  .prologue-copy h1,
+  .revelation-copy h2 {
+    font-size: 48px;
+  }
+
+  .prologue-lead,
+  .revelation-copy > p {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 11px;
+  }
+
+  .prologue-particle,
+  .revelation-visual {
+    position: absolute;
+    left: -26vw;
+    right: -26vw;
+    bottom: -1vh;
+    width: auto;
+    height: auto;
+    margin: 0;
+    opacity: .58;
+  }
+
+  .revelation-visual {
+    height: 70vh;
+    bottom: -8vh;
+  }
+
+  .chapter-details {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 46vh auto auto;
+    padding: 82px 20px 20px;
+  }
+
+  .detail-intro,
+  .detail-focus,
+  .detail-reading,
+  .detail-tabs {
+    grid-column: 1;
+  }
+
+  .detail-intro { grid-row: 1; padding: 0; }
+  .detail-focus { grid-row: 2; }
+  .detail-reading { grid-row: 3; }
+  .detail-tabs { grid-row: 4; grid-template-columns: repeat(4, 1fr); padding: 0; }
+  .detail-tabs button { display: block; text-align: center; padding: 10px 4px; border-right: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
+  .detail-tabs button.is-active { padding-left: 4px; }
+
+  .chapter-becoming {
+    grid-template-columns: 1fr;
+    padding: 84px 22px 28px;
+  }
+
+  .becoming-visual {
+    inset: 16% -24% -8% 8%;
+    opacity: .3;
+  }
+}

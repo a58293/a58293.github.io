@@ -1,0 +1,32 @@
+/* Apply to every route, including loaders, transition overlays and form text.
+   Wait for successful loading so a missing font never makes text disappear. */
+html[data-custom-font-body="ready"] body,
+html[data-custom-font-body="ready"] body *,
+html[data-custom-font-body="ready"] body::before,
+html[data-custom-font-body="ready"] body::after,
+html[data-custom-font-body="ready"] body *::before,
+html[data-custom-font-body="ready"] body *::after {
+  font-family: var(--custom-font-body) !important;
+}
+html[data-custom-font-body="ready"] ::placeholder {
+  font-family: inherit !important;
+}
+html[data-custom-font-ui="ready"] :is(header, nav, button, input, select, textarea, label),
+html[data-custom-font-ui="ready"] :is(header, nav, button, input, select, textarea, label) * {
+  font-family: var(--custom-font-ui) !important;
+}
+html[data-custom-font-latin="ready"] :is(.eyebrow, .experience-eyebrow, .archive-en, .figure-caption, .prologue-lead, .verify-index, .verify-console-head, .brand strong, .experience-brand strong, .verify-brand strong, small, [lang="en"]),
+html[data-custom-font-latin="ready"] :is(.eyebrow, .experience-eyebrow, .archive-en, .brand strong, .experience-brand strong, .verify-brand strong, [lang="en"]) * {
+  font-family: var(--custom-font-latin) !important;
+}
+html[data-custom-font-title="ready"] :is(h1, h2, h3, h4, h5, h6),
+html[data-custom-font-title="ready"] :is(h1, h2, h3, h4, h5, h6) * {
+  font-family: var(--custom-font-title) !important;
+}
+.not-found-page { min-height: 100svh; display: grid; place-content: center; gap: 24px; padding: 32px; background: #edf4ef; color: #173f3a; text-align: center; }
+.not-found-page h1 { font-size: clamp(32px, 5vw, 64px); }
+.not-found-page a { display: inline-block; padding: 16px 24px; border: 1px solid currentColor; }
+.not-found-page a:focus-visible,
+.not-found-page button:focus-visible { outline: 3px solid #9b783b; outline-offset: 5px; }
+.site-error-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.site-error-actions button { min-height: 54px; padding: 16px 24px; border: 1px solid #173f3a; color: #edf4ef; background: #173f3a; cursor: pointer; }

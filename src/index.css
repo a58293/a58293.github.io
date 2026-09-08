@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Legacy Genkai/NamiSong files fail browser decoding; preserve files but use
+   the existing fallback stack until valid originals/custom fonts are supplied. */
+
+@theme {
+  --font-en: "Genkai", "Times New Roman", Georgia, serif;
+  --font-zh: "NamiSong", "Songti SC", "STSong", "SimSun", serif;
+  --font-site: "NamiSong", "Songti SC", "STSong", "SimSun", serif;
+  --font-mincho: "Genkai", "NamiSong", "Songti SC", "STSong", "SimSun", serif;
+  --font-custom: "Genkai", "NamiSong", "Songti SC", "STSong", "SimSun", serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: #FFFDFC;
+  color: #111827;
+  font-family: "Genkai", "NamiSong", "Songti SC", "STSong", "SimSun", serif;
+  font-weight: 400;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "palt";
+}
+
+.font-en {
+  font-family: "Genkai", "Times New Roman", Georgia, serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.font-zh {
+  font-family: "NamiSong", "Songti SC", "STSong", "SimSun", serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.font-site {
+  font-family: "NamiSong", "Songti SC", "STSong", "SimSun", serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.font-mincho {
+  font-family: "Genkai", "NamiSong", "Songti SC", "STSong", "SimSun", serif !important;
+  font-weight: 400 !important;
+  font-synthesis: none !important;
+  font-style: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, a {
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-weight: 400;
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility perspective-1500 {
+  perspective: 1500px;
+}

@@ -1,0 +1,164 @@
+/* 首页所有章节共享当期产品色阶；仅覆盖颜色，保留布局、动效、字体和正式图片。 */
+.home-experience[data-product-theme],
+.home-experience[data-product-theme] .site-shell {
+  --ink: var(--current-ink);
+  --deep: var(--current-deep);
+  --jade: var(--current-accent);
+  --mist: var(--current-mist);
+  --ice: var(--current-light);
+  --page-base: var(--current-paper);
+  --product-accent: var(--current-main);
+  --product-ink: var(--current-ink);
+  --home-dark: var(--current-ink);
+  --home-deep: var(--current-deep);
+  --home-paper: var(--current-paper);
+  --home-mist: var(--current-mist);
+  --home-jade: var(--current-main);
+  --home-gold: var(--current-soft);
+  --lumen-deep-jade: var(--current-ink);
+  --lumen-jade: var(--current-accent);
+  --lumen-lotus: var(--current-accent);
+  --lumen-gold: var(--current-accent);
+  color: var(--current-ink);
+  background: var(--current-paper);
+}
+
+.home-experience[data-product-theme] { --home-chrome: var(--current-ink); }
+.home-experience[data-product-theme]:is([data-home-chapter="top"], [data-home-chapter="verify"]) {
+  --home-chrome: var(--current-soft);
+}
+
+.home-experience[data-product-theme] ::selection { color: var(--current-light); background: var(--current-accent); }
+.home-experience[data-product-theme] :is(a, button):focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.home-experience[data-product-theme] .home-stage { background: var(--current-deep); }
+.home-experience[data-product-theme] :is(.site-header, .home-pagination, .home-scene-caption) { color: var(--home-chrome); }
+.home-experience[data-product-theme] .site-header::after {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--home-chrome) 28%, transparent), transparent);
+}
+.home-experience[data-product-theme] .brand small { color: var(--home-chrome); opacity: 1; }
+.home-experience[data-product-theme] .site-header nav a { opacity: 1; }
+.home-experience[data-product-theme] .nav-verify {
+  color: var(--current-ink);
+  border-color: var(--current-main);
+  background: var(--current-mist);
+}
+.home-experience[data-product-theme] .nav-verify > span:last-child { color: inherit; }
+.home-experience[data-product-theme] .nav-verify:hover { background: var(--current-soft); }
+.home-experience[data-product-theme] .home-pagination::before { background: currentColor; }
+.home-experience[data-product-theme] .home-pagination button > b {
+  color: var(--current-light);
+  background: var(--current-ink);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--current-deep) 20%, transparent);
+}
+.home-experience[data-product-theme] :is(.home-pagination button > span, .home-pagination button > b small, .home-scene-caption > small) { opacity: 1; }
+
+/* 深水色序章：天水碧标题、浅青按钮和同色光晕。 */
+.home-experience[data-product-theme] .hero {
+  color: var(--current-light);
+  background: radial-gradient(ellipse at 77% 50%, color-mix(in srgb, var(--current-main) 20%, transparent), transparent 42%),
+    linear-gradient(112deg, var(--current-deep) 0 40%, var(--current-ink) 75%, var(--current-middle));
+}
+.home-experience[data-product-theme] :is(.hero, .verify-section)::before { border-color: color-mix(in srgb, var(--current-main) 18%, transparent); }
+.home-experience[data-product-theme] .hero::after { background-image: radial-gradient(var(--current-soft) .7px, transparent .7px); }
+.home-experience[data-product-theme] .hero-aura {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--current-main) 6%, transparent)),
+    radial-gradient(ellipse at 48% 54%, color-mix(in srgb, var(--current-main) 17%, transparent), transparent 52%);
+}
+.home-experience[data-product-theme] .hero h1 { color: var(--current-light); }
+.home-experience[data-product-theme] .hero h1 .hero-line-second {
+  color: var(--current-main) !important; /* Replaces the legacy important heading accent. */
+  text-shadow: 0 10px 35px color-mix(in srgb, var(--current-main) 15%, transparent);
+}
+.home-experience[data-product-theme] :is(.hero .eyebrow, .hero-intro, .figure-caption, .scroll-note, .home-verify-button small) { color: var(--current-soft); opacity: 1; }
+.home-experience[data-product-theme] .hero-figure::before {
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--current-deep) 60%, transparent), transparent 70%);
+}
+.home-experience[data-product-theme] .hero-figure img {
+  filter: saturate(.9) contrast(.98) drop-shadow(0 34px 55px color-mix(in srgb, var(--current-deep) 40%, transparent));
+}
+.home-experience[data-product-theme] .primary-button {
+  color: var(--current-ink);
+  border-color: var(--current-main);
+  background: var(--current-main);
+}
+.home-experience[data-product-theme] .primary-button:hover { background: var(--current-soft); }
+.home-experience[data-product-theme] .home-verify-button {
+  color: var(--current-light);
+  border-color: var(--current-main);
+  background: color-mix(in srgb, var(--current-main) 8%, transparent);
+}
+.home-experience[data-product-theme] .home-verify-button:hover {
+  border-color: var(--current-soft);
+  background: color-mix(in srgb, var(--current-main) 16%, transparent);
+}
+
+/* 浅色章节仍保留层次，不再混入莲粉或月金。 */
+.home-experience[data-product-theme] .series-section {
+  background: linear-gradient(color-mix(in srgb, var(--current-accent) 5%, transparent) 1px, transparent 1px), var(--current-mist);
+  background-size: 100% 25%;
+}
+.home-experience[data-product-theme] .archive-section {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--current-accent) 4%, transparent) 1px, transparent 1px), var(--current-paper);
+  background-size: 12.5% 100%;
+}
+.home-experience[data-product-theme] .collectors-section { background: var(--current-mist); }
+.home-experience[data-product-theme] :is(.section-heading h2, .archive-copy h2, .archive-copy dd) { color: var(--current-ink); }
+.home-experience[data-product-theme] :is(.section-heading .eyebrow, .archive-copy .eyebrow, .archive-en) { color: var(--current-accent); opacity: 1; }
+.home-experience[data-product-theme] :is(.section-heading > p:last-child, .archive-description, .archive-copy dt, .vertical-label, .collector-note) { color: var(--current-muted); }
+.home-experience[data-product-theme] .series-card { color: var(--current-light); background: var(--current-ink); }
+.home-experience[data-product-theme] .series-active { box-shadow: 0 30px 80px color-mix(in srgb, var(--current-ink) 18%, transparent); }
+.home-experience[data-product-theme] .series-shade {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--current-deep) 3%, transparent), color-mix(in srgb, var(--current-deep) 88%, transparent));
+}
+.home-experience[data-product-theme] :is(.series-content p, .series-content span, .series-number) { color: var(--current-soft); opacity: 1; }
+.home-experience[data-product-theme] .series-coming {
+  color: var(--current-ink);
+  background: linear-gradient(150deg, var(--current-mist), var(--current-soft));
+}
+.home-experience[data-product-theme] .series-coming :is(.series-content p, .series-content span, .series-number) { color: var(--current-muted); }
+.home-experience[data-product-theme] .series-content h3 span { color: inherit; }
+.home-experience[data-product-theme] .halo::before,
+.home-experience[data-product-theme] .halo::after,
+.home-experience[data-product-theme] .halo span { border-color: color-mix(in srgb, var(--current-accent) 25%, transparent); }
+.home-experience[data-product-theme] .halo span { background: var(--current-accent); box-shadow: 0 0 24px var(--current-main); }
+.home-experience[data-product-theme] .archive-image { background: transparent; }
+.home-experience[data-product-theme] :is(.archive-image::before, .archive-copy dl, .archive-copy dl div) { border-color: color-mix(in srgb, var(--current-accent) 24%, transparent); }
+.home-experience[data-product-theme] .outline-button { color: var(--current-accent); border-color: var(--current-accent); }
+.home-experience[data-product-theme] .outline-button:hover { color: var(--current-ink); border-color: var(--current-ink); }
+.home-experience[data-product-theme] .collector-placeholder {
+  color: var(--current-light);
+  border-color: var(--current-main);
+  background: linear-gradient(155deg, var(--current-middle), var(--current-deep));
+}
+.home-experience[data-product-theme] .collector-2 { background: linear-gradient(165deg, var(--current-ink), var(--current-middle)); }
+.home-experience[data-product-theme] .collector-3 { background: linear-gradient(145deg, var(--current-middle), var(--current-ink)); }
+.home-experience[data-product-theme] .collector-placeholder::before { border-color: color-mix(in srgb, var(--current-main) 35%, transparent); }
+.home-experience[data-product-theme] .collector-placeholder::after { background-image: radial-gradient(color-mix(in srgb, var(--current-main) 30%, transparent) .7px, transparent .8px); }
+
+/* 核验入口仍是深色章，说明卡采用浅青底；不改变演示状态或核验功能。 */
+.home-experience[data-product-theme] .verify-section {
+  color: var(--current-light);
+  background: radial-gradient(circle at 82% 45%, color-mix(in srgb, var(--current-main) 16%, transparent), transparent 32%),
+    linear-gradient(115deg, var(--current-deep), var(--current-ink) 68%, var(--current-deep));
+}
+.home-experience[data-product-theme] .site-shell .verify-section .verify-copy h2 { color: var(--current-light); }
+.home-experience[data-product-theme] .site-shell .verify-section .verify-copy > p { color: var(--current-soft); opacity: 1; }
+.home-experience[data-product-theme] .site-shell .verify-section .verify-copy > .eyebrow { color: var(--current-soft); }
+.home-experience[data-product-theme] .site-shell .home-verify-primary {
+  color: var(--current-ink);
+  border-color: var(--current-main);
+  background: var(--current-mist);
+  box-shadow: 0 22px 56px color-mix(in srgb, var(--current-deep) 28%, transparent), inset 0 1px 0 var(--current-light);
+}
+.home-experience[data-product-theme] .site-shell .home-verify-primary:hover {
+  color: var(--current-ink);
+  background: var(--current-paper);
+  box-shadow: 0 24px 58px color-mix(in srgb, var(--current-deep) 36%, transparent), inset 0 1px 0 var(--current-light);
+}
+.home-experience[data-product-theme] .site-shell .home-verify-primary:focus-visible { outline-color: var(--current-main); }
+.home-experience[data-product-theme] .site-shell .home-verify-primary :is(.lookup-card-heading, .lookup-card-action) { border-color: var(--current-main); }
+.home-experience[data-product-theme] .site-shell .home-verify-primary :is(small, .lookup-card-note) { color: var(--current-muted); }
+.home-experience[data-product-theme] .site-shell .home-verify-primary .lookup-card-credentials p { color: var(--current-ink); }
+.home-experience[data-product-theme] .lookup-card-credentials > div > span { color: var(--current-accent); }
+.home-experience[data-product-theme] .home-chapter-final > footer { color: var(--current-soft); border-color: color-mix(in srgb, var(--current-main) 20%, transparent); background: transparent; }
+.home-experience[data-product-theme] .home-footer small { color: var(--current-soft); opacity: 1; }

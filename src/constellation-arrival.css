@@ -1,0 +1,42 @@
+/* One continuous timeline owns the image and canvas; older phase overrides
+   must not snap opacity or switch blend modes at the hand-off. */
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival {
+  --arrival-underlay: 0;
+  --arrival-front: 0;
+  --arrival-edge: -20%;
+  filter: none;
+}
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival .particle-portrait-base {
+  opacity: var(--arrival-underlay) !important;
+  transform: none !important;
+  filter: blur(5px) saturate(.9) !important;
+  transition: none !important;
+}
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival .particle-portrait-reveal {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: var(--arrival-front) !important;
+  transform: none !important;
+  clip-path: none !important;
+  filter: saturate(1.04) brightness(.98) contrast(1.04) !important;
+  mask-image: linear-gradient(to bottom, #000 calc(var(--arrival-edge) - 13%), transparent calc(var(--arrival-edge) + 7%));
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--arrival-edge) - 13%), transparent calc(var(--arrival-edge) + 7%));
+  transition: none !important;
+  will-change: mask-image;
+  pointer-events: none;
+}
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival .particle-portrait-canvas {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transition: none !important;
+}
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival[data-particle-state="assembled"] .particle-portrait-reveal,
+:is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival[data-particle-state="fallback"] .particle-portrait-reveal {
+  mask-image: none;
+  -webkit-mask-image: none;
+  will-change: auto;
+}

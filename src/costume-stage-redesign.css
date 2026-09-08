@@ -1,0 +1,227 @@
+/* 03 / Costume — an open museum stage, not a dark media rectangle. */
+.flower-experience .chapter-details {
+  background:
+    radial-gradient(circle at 16% 74%, rgba(114, 163, 148, 0.085), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(194, 215, 207, 0.17), transparent 31%),
+    linear-gradient(118deg, #f7f5ef 0%, #f0f3ee 52%, #f8f6f1 100%);
+}
+
+.flower-experience .detail-focus.is-costume-view {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.flower-experience .detail-focus.is-costume-view::before {
+  inset: 2% 3% 1%;
+  border-radius: 48% 52% 46% 54% / 18% 22% 20% 24%;
+  background:
+    radial-gradient(ellipse at 51% 105%, rgba(184, 222, 208, 0.22), transparent 35%),
+    radial-gradient(ellipse 63% 88% at 52% 52%,
+      rgba(7, 37, 34, 0.97) 0%,
+      rgba(10, 49, 44, 0.94) 39%,
+      rgba(25, 78, 68, 0.77) 56%,
+      rgba(85, 133, 118, 0.24) 69%,
+      transparent 82%);
+  filter: blur(16px);
+  opacity: 0.96;
+}
+
+.flower-experience .detail-focus.is-costume-view::after {
+  inset: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 38%,
+    rgba(213, 236, 226, 0.03) 43%,
+    rgba(240, 250, 245, 0.32) 49%,
+    rgba(255, 255, 255, 0.5) 52%,
+    rgba(214, 239, 228, 0.14) 58%,
+    transparent 64%
+  );
+  background-size: 230% 100%;
+  background-position: var(--garment-pan) center;
+  background-repeat: no-repeat;
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  opacity: 0.58;
+  mask-image: radial-gradient(ellipse 66% 92% at 52% 52%, #000 0 57%, rgba(0, 0, 0, 0.72) 68%, transparent 82%);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-base-layer {
+  opacity: 0.98;
+  filter:
+    brightness(0.9)
+    saturate(0.9)
+    contrast(1.02)
+    drop-shadow(0 24px 36px rgba(6, 34, 31, 0.18));
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-highlight-layer {
+  filter:
+    brightness(1.07)
+    saturate(1.04)
+    contrast(1.025)
+    drop-shadow(0 18px 32px rgba(205, 237, 224, 0.12));
+}
+
+.flower-experience .detail-focus.is-costume-view.costume-mode-pieces::before {
+  background:
+    radial-gradient(ellipse at 46% 108%, rgba(184, 222, 208, 0.2), transparent 34%),
+    radial-gradient(ellipse 58% 86% at 47% 52%,
+      rgba(6, 35, 32, 0.98) 0%,
+      rgba(11, 52, 46, 0.93) 44%,
+      rgba(41, 94, 81, 0.54) 62%,
+      transparent 83%);
+}
+
+.flower-experience .costume-mode-switch {
+  border-color: rgba(23, 65, 59, 0.16);
+  color: #173f3a;
+  background: rgba(247, 246, 240, 0.78);
+  box-shadow: 0 16px 44px rgba(22, 60, 55, 0.1);
+  backdrop-filter: blur(18px) saturate(0.8);
+}
+
+.flower-experience .costume-mode-switch button {
+  color: rgba(23, 63, 58, 0.6);
+}
+
+.flower-experience .costume-mode-switch button.is-active {
+  color: #f2f5f0;
+  background: #234f48;
+  box-shadow: 0 8px 22px rgba(17, 56, 50, 0.17);
+}
+
+.flower-experience .costume-mode-switch button:is(:hover, :focus-visible):not(.is-active) {
+  color: #153f39;
+  background: rgba(30, 78, 70, 0.075);
+}
+
+.flower-experience .costume-mode-switch button:focus-visible,
+.flower-experience .costume-piece-rail button:focus-visible {
+  outline-color: rgba(24, 69, 62, 0.68);
+}
+
+.flower-experience .costume-piece-rail {
+  right: 8px;
+  width: 150px;
+  border: 1px solid rgba(31, 74, 67, 0.13);
+  border-right: 0;
+  background: rgba(246, 246, 240, 0.7);
+  box-shadow: -16px 20px 44px rgba(14, 53, 47, 0.08);
+  backdrop-filter: blur(18px) saturate(0.76);
+}
+
+.flower-experience .costume-piece-rail button {
+  border-bottom-color: rgba(25, 67, 61, 0.1);
+  color: rgba(22, 63, 57, 0.52);
+}
+
+.flower-experience .costume-piece-rail button::before {
+  background: #1d5b51;
+}
+
+.flower-experience .costume-piece-rail button.is-active {
+  color: #173f3a;
+  background: linear-gradient(90deg, rgba(31, 91, 80, 0.1), rgba(255, 255, 255, 0.18));
+}
+
+.flower-experience .costume-piece-rail button:is(:hover, :focus-visible) {
+  color: #123e37;
+  background: rgba(31, 91, 80, 0.07);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-view-index {
+  top: 18px;
+  padding: 7px 10px;
+  border-left: 2px solid rgba(33, 82, 74, 0.52);
+  color: rgba(20, 61, 55, 0.72);
+  background: rgba(247, 246, 240, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-view-index::after {
+  color: rgba(20, 61, 55, 0.4);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls {
+  border-color: rgba(26, 70, 63, 0.15);
+  color: #1c4c45;
+  background: rgba(247, 246, 240, 0.8);
+  box-shadow: 0 18px 46px rgba(15, 54, 48, 0.12);
+  backdrop-filter: blur(18px) saturate(0.76);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls button {
+  border-color: rgba(27, 75, 68, 0.22);
+  color: #1b4e46;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls button:hover,
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls button:focus-visible {
+  border-color: rgba(25, 76, 67, 0.5);
+  background: rgba(33, 92, 81, 0.09);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls label > span {
+  color: rgba(24, 68, 61, 0.66);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(27, 73, 66, 0.28);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls input[type="range"]::-webkit-slider-thumb {
+  border-color: #2f665d;
+  background: #f5f4ee;
+  box-shadow: 0 0 0 3px rgba(31, 91, 80, 0.11);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls input[type="range"]::-moz-range-track {
+  background: rgba(27, 73, 66, 0.28);
+}
+
+.flower-experience .detail-focus.is-costume-view .costume-pan-controls input[type="range"]::-moz-range-thumb {
+  border-color: #2f665d;
+  background: #f5f4ee;
+  box-shadow: 0 0 0 3px rgba(31, 91, 80, 0.11);
+}
+
+.flower-experience .detail-focus.is-costume-view.costume-mode-pieces .detail-image-window::after {
+  color: rgba(21, 65, 58, 0.42);
+}
+
+@media (max-width: 700px) {
+  .flower-experience .chapter-details {
+    background:
+      radial-gradient(circle at 72% 33%, rgba(170, 205, 193, 0.16), transparent 34%),
+      linear-gradient(150deg, #f7f5ef, #eef3ee 58%, #f8f6f1);
+  }
+
+  .flower-experience .detail-focus.is-costume-view::before {
+    inset: 2% -12% 0;
+    border-radius: 48%;
+    background: radial-gradient(ellipse 69% 89% at 50% 54%, rgba(7, 39, 35, 0.96), rgba(15, 61, 53, 0.82) 55%, transparent 80%);
+    filter: blur(11px);
+  }
+
+  .flower-experience .costume-mode-switch {
+    background: rgba(247, 246, 240, 0.86);
+  }
+
+  .flower-experience .costume-piece-rail {
+    border-color: rgba(28, 72, 65, 0.14);
+    background: rgba(247, 246, 240, 0.86);
+  }
+
+  .flower-experience .detail-focus.is-costume-view .costume-pan-controls {
+    background: rgba(247, 246, 240, 0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-experience .detail-focus.is-costume-view::after {
+    transition: none;
+  }
+}
