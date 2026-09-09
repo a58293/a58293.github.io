@@ -4,6 +4,7 @@ import {requiredImage} from './media-library';
 import SiteSearch from './SiteSearch';
 import "./verify-page.css";
 import './soft-ui.css';
+import './mobile-ux-redesign.css';
 import { verificationApiUrl, verifyAuthenticity, type VerificationResponse } from './verification';
 
 const officialLogo = requiredImage('brandLogo');

@@ -13,6 +13,7 @@ import "./home-chapter-experience.css";
 import "./home-verification-card.css";
 import "./home-featured-hero.css";
 import './soft-ui.css';
+import './mobile-ux-redesign.css';
 
 const officialLogo = requiredImage('brandLogo');
 
@@ -66,6 +67,7 @@ function Hero({ onExplore, onOpenFeatured, active }: { onExplore: () => void; on
   const featured = currentFeaturedProduct;
   const isPhysical = displayMode === 'physical';
   const animatePhysical = active && isPhysical && !particlePlayed;
+  const lightweightArtwork = window.matchMedia('(max-width: 700px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
   const markParticlePlayed = useCallback(() => setParticlePlayed(true), []);
   return (
     <section className="hero home-featured-hero" id="top" data-display-mode={displayMode}>
@@ -82,7 +84,7 @@ function Hero({ onExplore, onOpenFeatured, active }: { onExplore: () => void; on
           <a className="home-explore-entry" href="#series" onClick={(event) => { if (!isPlainNavigation(event)) return; event.preventDefault(); onExplore(); }}>探索系列 <span aria-hidden="true">↗</span></a>
           <a className="home-verify-button" href="/verify">
             <span>防伪验证</span>
-            <small>当前为演示预览</small>
+            <small>官方核验通道</small>
             <b aria-hidden="true">↗</b>
           </a>
           {commerce.featuredProductUrl || commerce.shopUrl
@@ -92,7 +94,7 @@ function Hero({ onExplore, onOpenFeatured, active }: { onExplore: () => void; on
       </div>
       <div className="hero-figure reveal">
         <div className="home-featured-art" id="home-featured-art" role="region" aria-label={`${featured.name}形象展示`}>
-          {isPhysical && animatePhysical
+          {isPhysical && animatePhysical && !lightweightArtwork
             ? <CinematicParticlePortrait active src={requiredImage(featured.physicalMedia)} alt={`${featured.flower}${featured.name} · 实体展示`} onComplete={markParticlePlayed} />
             : <img key={displayMode} src={requiredImage(isPhysical ? featured.physicalMedia : featured.conceptMedia)} alt={`${featured.flower}${featured.name} · ${isPhysical ? '实体展示' : '2D 原画'}`} decoding="async" fetchPriority="high" />}
         </div>
@@ -138,8 +140,8 @@ function VerifyPreview() {
       <div className="verify-lotus" aria-hidden="true"><span className="petal petal-one" /><span className="petal petal-two" /><span className="petal petal-three" /><span className="petal petal-four" /><span className="petal petal-five" /></div>
       <div className="verify-copy reveal">
         <p className="eyebrow">CERTIFICATE OF AUTHENTICITY</p><h2><SplitColorText text="让每一份相遇，都有迹可循" /></h2>
-        <p>正式核验暂未开放。目前仅提供虚构样例的界面演示，请勿填写真实娃证或订单信息。</p>
-        <a className="light-button home-verify-primary" href="/verify" aria-label="进入防伪核验，当前为演示预览">
+        <p>输入娃证编号与淘宝订单号，连接绘屿造物官方档案，查看作品身份与首次核验记录。</p>
+        <a className="light-button home-verify-primary" href="/verify" aria-label="进入绘屿造物官方防伪核验">
           <div className="lookup-card-heading">
             <img src={officialLogo} alt="" width="42" height="49" />
             <span>核验前，请准备<small>BEFORE YOUR LOOKUP</small></span>
@@ -152,7 +154,7 @@ function VerifyPreview() {
             <span>进入防伪核验<small>OFFICIAL LOOKUP</small></span>
             <span className="lookup-card-arrow" aria-hidden="true">↗</span>
           </div>
-          <span className="lookup-card-note">当前为演示预览，请勿填写真实订单</span>
+          <span className="lookup-card-note">加密比对 · 浏览器不保存订单信息</span>
         </a>
       </div>
     </section>
@@ -176,6 +178,8 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
   const wheelResetRef = useRef(0);
   const lastWheelAtRef = useRef(0);
   const touchStartYRef = useRef<number | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchBlockedRef = useRef(false);
   const homeRef = useRef<HTMLDivElement>(null);
 
   const goToChapter = useCallback((index: number) => {
@@ -230,15 +234,22 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
     };
 
     const handleTouchStart = (event: TouchEvent) => {
-      touchStartYRef.current = event.touches[0]?.clientY ?? null;
+      const touch = event.touches[0];
+      touchStartYRef.current = event.touches.length === 1 ? touch?.clientY ?? null : null;
+      touchStartXRef.current = event.touches.length === 1 ? touch?.clientX ?? null : null;
+      touchBlockedRef.current = event.touches.length !== 1 || !!scrollSurface(event.target)
+        || (event.target instanceof Element && !!event.target.closest('a, button, input, [role="tablist"], [data-no-chapter-swipe]'));
     };
 
     const handleTouchEnd = (event: TouchEvent) => {
-      if (touchStartYRef.current === null) return;
-      const delta = touchStartYRef.current - (event.changedTouches[0]?.clientY ?? touchStartYRef.current);
+      if (touchStartYRef.current === null || touchStartXRef.current === null) return;
+      const touch = event.changedTouches[0];
+      const delta = touchStartYRef.current - (touch?.clientY ?? touchStartYRef.current);
+      const deltaX = touchStartXRef.current - (touch?.clientX ?? touchStartXRef.current);
       touchStartYRef.current = null;
-      if (scrollSurface(event.target)?.scrollHeight > scrollSurface(event.target)?.clientHeight + 2) return;
-      if (Math.abs(delta) > 44) goToChapter(activeChapterRef.current + (delta > 0 ? 1 : -1));
+      touchStartXRef.current = null;
+      if (touchBlockedRef.current || (window.visualViewport?.scale ?? 1) > 1.03) return;
+      if (Math.abs(delta) > 84 && Math.abs(delta) > Math.abs(deltaX) * 1.35) goToChapter(activeChapterRef.current + (delta > 0 ? 1 : -1));
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -273,10 +284,10 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
       <div className="site-shell">
         <Header activeChapter={activeChapter} onNavigate={goToChapter} onOpenFeatured={onOpenFeatured} />
         <main className="home-stage">
-          <div className="home-chapter" data-state={chapterState(0)} aria-hidden={activeChapter !== 0}><Hero active={activeChapter === 0} onExplore={() => goToChapter(1)} onOpenFeatured={onOpenFeatured} /></div>
-          <div className="home-chapter" data-state={chapterState(1)} aria-hidden={activeChapter !== 1}><SeriesScrolls onOpenFlowerGods={onOpenFlowerGods} /></div>
-          <div className="home-chapter" data-state={chapterState(2)} aria-hidden={activeChapter !== 2}><CollectorPreview /></div>
-          <div className="home-chapter home-chapter-final" data-state={chapterState(3)} aria-hidden={activeChapter !== 3}><VerifyPreview /><Footer /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(0)} aria-hidden={activeChapter !== 0}><Hero active={activeChapter === 0} onExplore={() => goToChapter(1)} onOpenFeatured={onOpenFeatured} /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(1)} aria-hidden={activeChapter !== 1}><SeriesScrolls onOpenFlowerGods={onOpenFlowerGods} /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(2)} aria-hidden={activeChapter !== 2}><CollectorPreview /></div>
+          <div className="home-chapter home-chapter-final" data-home-scroll data-state={chapterState(3)} aria-hidden={activeChapter !== 3}><VerifyPreview /><Footer /></div>
         </main>
 
         <nav className="home-pagination" aria-label="首页章节">

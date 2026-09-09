@@ -1,0 +1,326 @@
+/* Mobile-first usability layer. Loaded last by the three immersive entry points. */
+@media (max-width: 700px) {
+  html,
+  body { overscroll-behavior: none; }
+
+  /* Shared: give the document its own quiet, compact top rail. */
+  .home-experience .site-header,
+  .flower-experience .experience-header,
+  .verify-world .verify-header {
+    min-height: 68px;
+    padding: 10px 14px;
+    background: color-mix(in srgb, var(--chapter-background, #082d2b) 88%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 13%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(1.12);
+    backdrop-filter: blur(18px) saturate(1.12);
+  }
+
+  /* Homepage: readable editorial flow instead of a poster squeezed into a phone. */
+  .home-experience .home-stage,
+  .home-experience .home-chapter { height: 100svh; min-height: 0; }
+  .home-experience .home-chapter {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .home-experience .home-chapter::-webkit-scrollbar { display: none; }
+  .home-experience .site-header .brand-mark { width: 40px; height: 40px; }
+  .home-experience .site-header .brand strong { font-size: 9px; letter-spacing: .21em; }
+  .home-experience .site-header .brand small { margin-top: 3px; font-size: 8px; }
+  .home-experience .site-header nav { gap: 7px; }
+  .home-experience .site-header .site-search-trigger { width: 42px; min-width: 42px; height: 42px; padding: 0; }
+  .home-experience .site-header .nav-verify { min-height: 42px; padding: 0 14px; border-radius: 14px; font-size: 10px; }
+
+  .home-experience .site-shell .hero.home-featured-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: auto;
+    min-height: 100svh;
+    padding: 92px 18px 98px;
+  }
+  .home-experience .home-featured-hero .hero-copy { width: 100%; margin: 0; }
+  .home-experience .home-featured-hero .home-current-up { margin: 0 0 10px; font-size: 10px; letter-spacing: .19em; }
+  .home-experience .home-featured-hero h1 { max-width: 8em; margin: 0; font-size: clamp(39px, 11.5vw, 54px); line-height: 1.02; letter-spacing: .03em; }
+  .home-experience .home-featured-hero .hero-intro { max-width: 28em; margin: 13px 0 0; font-size: 12px; line-height: 1.65; opacity: .82; }
+  .home-experience .home-featured-hero .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 17px;
+  }
+  .home-experience .home-featured-entry { grid-column: 1 / -1; min-height: 66px; border-radius: 18px; }
+  .home-experience .home-explore-entry,
+  .home-experience .home-verify-button { min-height: 54px; padding: 10px 13px; border-radius: 16px; }
+  .home-experience .home-verify-button small { display: none; }
+  .home-experience .home-shop-button.is-pending { display: none; }
+  .home-experience .home-featured-hero .hero-figure {
+    position: relative;
+    flex: 1 0 390px;
+    width: 100%;
+    min-height: 390px;
+    margin: 0;
+  }
+  .home-experience .home-featured-art { inset: 0 0 52px; }
+  .home-experience .home-featured-art-art > img,
+  .home-experience .home-featured-art > img { object-fit: contain; object-position: 50% 50%; }
+  .home-experience .home-featured-toolbar { position: absolute; inset: auto 0 0; min-height: 48px; }
+  .home-experience .home-featured-caption { font-size: 15px; }
+  .home-experience .home-display-switch button { min-width: 58px; min-height: 40px; padding: 7px 9px; font-size: 10px; }
+
+  .home-experience .verify-section {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100svh;
+    height: auto;
+    padding: 106px 18px 104px;
+  }
+  .home-experience .verify-copy { width: 100%; max-width: none; margin: 0; }
+  .home-experience .verify-copy > .eyebrow { margin-bottom: 16px; font-size: 9px; letter-spacing: .28em; }
+  .home-experience .verify-copy > h2 { max-width: 8em; margin: 0; font-size: clamp(38px, 11vw, 52px); line-height: 1.12; }
+  .home-experience .verify-copy > p { max-width: 31em; margin: 18px 0 24px; font-size: 12px; line-height: 1.75; }
+  .home-experience .home-verify-primary { width: 100%; min-height: 0; padding: 22px 20px; border-radius: 22px; }
+  .home-experience .lookup-card-heading { gap: 13px; }
+  .home-experience .lookup-card-heading img { width: 34px; height: auto; }
+  .home-experience .lookup-card-heading span { font-size: 18px; }
+  .home-experience .lookup-card-credentials { grid-template-columns: 1fr; gap: 0; margin-top: 20px; }
+  .home-experience .lookup-card-credentials > span { padding: 15px 0; }
+  .home-experience .lookup-card-credentials > span + span { border-top: 1px solid currentColor; }
+  .home-experience .lookup-card-action { margin-top: 4px; padding-top: 18px; }
+  .home-experience .lookup-card-note { margin-top: 13px; font-size: 9px; }
+
+  .home-experience .home-pagination {
+    left: 14px;
+    right: 14px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: auto;
+    height: 54px;
+    padding: 6px;
+    border: 1px solid rgba(216, 234, 226, .16);
+    border-radius: 18px;
+    background: rgba(5, 37, 36, .82);
+    box-shadow: 0 14px 36px rgba(0, 20, 19, .24);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  .home-experience .home-pagination-line { display: none; }
+  .home-experience .home-pagination button { min-height: 40px; border-radius: 12px; }
+  .home-experience .home-pagination button::after { display: none; }
+  .home-experience .home-pagination button.is-active { background: rgba(220, 238, 230, .16); }
+  .home-experience .home-pagination button > span { font-size: 9px; transform: none; }
+
+  /* Flower experience: normal reading order, no controls over the doll's face. */
+  .flower-experience .experience-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    height: auto;
+  }
+  .flower-experience .experience-brand { min-width: 0; }
+  .flower-experience .experience-brand-mark { width: 40px; height: 40px; }
+  .flower-experience .experience-brand strong { font-size: 8px; letter-spacing: .2em; }
+  .flower-experience .experience-brand small { max-width: 25ch; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 8px; }
+  .flower-experience .experience-chapter-title { justify-self: end; font-size: 8px; letter-spacing: .12em; }
+  .flower-experience .experience-header-actions { grid-column: 1 / -1; display: grid; grid-template-columns: 42px 1fr 1fr; gap: 7px; width: 100%; }
+  .flower-experience .experience-header-actions :is(button, a) { display: flex; align-items: center; justify-content: space-between; min-width: 0; min-height: 40px; padding: 0 12px; border-radius: 13px; font-size: 10px; }
+  .flower-experience .experience-header-actions :is(button, a) { white-space: nowrap; }
+  .flower-experience .experience-header-actions .site-search-trigger { width: 42px; padding: 0; justify-content: center; }
+
+  .flower-experience .experience-scroll { overflow: hidden; }
+  .flower-experience .experience-chapter {
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .flower-experience .experience-chapter::-webkit-scrollbar { display: none; }
+  .flower-experience .experience-chapter[data-state="active"] > * { translate: none; scale: none; }
+
+  .flower-experience .chapter-prologue {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px auto minmax(460px, 58vh);
+    gap: 15px;
+    padding: 132px 18px 92px;
+  }
+  .flower-experience .chapter-prologue .prologue-title-backdrop,
+  .flower-experience .chapter-prologue .prologue-copy,
+  .flower-experience .chapter-prologue .prologue-particle {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    transform: none;
+  }
+  .flower-experience .chapter-prologue .prologue-title-backdrop { z-index: 3; display: flex; align-items: end; align-self: start; gap: 12px; min-height: 0 !important; max-height: 70px; padding: 0 !important; }
+  .flower-experience .chapter-prologue .prologue-title-index { position: static; margin: 0 0 7px; writing-mode: horizontal-tb; font-size: 8px; }
+  .flower-experience .chapter-prologue .prologue-title-kicker { display: none; }
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 { margin: 0; font-size: 52px; line-height: .9; writing-mode: horizontal-tb; }
+  .flower-experience .chapter-prologue .prologue-copy { z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-height: 0 !important; padding: 0 !important; }
+  .flower-experience .chapter-prologue .prologue-copy::before,
+  .flower-experience .chapter-prologue .prologue-lead { display: none; }
+  .flower-experience .portrait-mode-switch { grid-column: 1 / -1; position: static; width: 100%; min-height: 52px; border-radius: 16px; overflow: hidden; }
+  .flower-experience .portrait-mode-switch button { min-height: 52px; padding: 8px 12px; }
+  .flower-experience .chapter-next,
+  .flower-experience .prologue-verify { position: static; min-height: 48px; padding: 0 13px; border-radius: 15px; font-size: 11px; white-space: nowrap; }
+  .flower-experience .chapter-prologue .prologue-particle { z-index: 2; min-height: 460px; overflow: hidden; }
+  .flower-experience .prologue-mobile-portrait,
+  .flower-experience .prologue-original-art { width: 100%; height: 100%; object-fit: contain; object-position: 50% 50%; }
+  .flower-experience .portrait-environment,
+  .flower-experience .portrait-foreground-haze,
+  .flower-experience .prologue-side-note { display: none; }
+
+  .flower-experience .chapter-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "intro" "focus" "tabs" "reading";
+    gap: 14px;
+    align-content: start;
+    padding: 136px 16px 106px;
+  }
+  .flower-experience .detail-intro { grid-area: intro; position: static; width: 100%; margin: 0; }
+  .flower-experience .detail-intro h2 { margin: 4px 0; font-size: 40px; line-height: 1.05; }
+  .flower-experience .detail-intro > span { margin: 0; font-size: 12px; }
+  .flower-experience .detail-focus {
+    grid-area: focus;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: min(72vh, 620px);
+    min-height: 480px;
+    margin: 0;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+    border-radius: 22px;
+    overflow: hidden;
+    cursor: default;
+    touch-action: pan-x pan-y pinch-zoom;
+    contain: layout paint;
+  }
+  .flower-experience .detail-focus .detail-image-window { inset: 0; width: 100%; height: 100%; }
+  .flower-experience .detail-focus .detail-image-window > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: 50% 24%;
+    transform: translateY(-16%) scale(1.32) !important;
+    transform-origin: 50% 24% !important;
+  }
+  .flower-experience .detail-hover-lens,
+  .flower-experience .detail-hover-marker,
+  .flower-experience .detail-magnification-control { display: none !important; }
+  .flower-experience .detail-tabs {
+    grid-area: tabs;
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    min-height: 62px;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 17%, transparent);
+    border-radius: 17px;
+  }
+  .flower-experience .detail-tabs button { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 50px; padding: 6px 3px; border: 0; border-radius: 12px; }
+  .flower-experience .detail-tabs button::before { display: none; }
+  .flower-experience .detail-tabs button > span,
+  .flower-experience .detail-tabs button > b { position: static; display: block; grid-row: auto; }
+  .flower-experience .detail-tabs button > span { margin-right: 5px; font-size: 8px; }
+  .flower-experience .detail-tabs button > b { font-size: 11px; white-space: nowrap; }
+  .flower-experience .detail-tabs button.is-active { background: color-mix(in srgb, var(--chapter-ink) 10%, transparent); }
+  .flower-experience .detail-tabs button small { display: none; }
+  .flower-experience .detail-reading { grid-area: reading; position: static; width: 100%; margin: 0; padding: 4px 2px 0; }
+  .flower-experience .detail-reading > span { font-size: 9px; }
+  .flower-experience .detail-reading h3 { margin: 7px 0; font-size: 22px; }
+  .flower-experience .detail-reading p { margin: 0; font-size: 12px; line-height: 1.7; }
+  .flower-experience .costume-mode-switch { position: absolute; z-index: 8; inset: 10px 10px auto; border-radius: 13px; overflow: hidden; }
+  .flower-experience .costume-piece-rail { max-width: calc(100% - 20px); overflow-x: auto; }
+
+  .flower-experience .experience-pagination {
+    position: fixed;
+    z-index: 90;
+    left: 14px;
+    right: 14px;
+    top: auto;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2px;
+    width: auto;
+    height: 54px;
+    padding: 6px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 14%, transparent);
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--chapter-background) 88%, transparent);
+    box-shadow: 0 14px 36px color-mix(in srgb, var(--chapter-ink) 18%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  .flower-experience .experience-progress { display: none; }
+  .flower-experience .experience-pagination button { display: flex; justify-content: center; min-width: 0; min-height: 40px; padding: 0; border-radius: 12px; opacity: .58; }
+  .flower-experience .experience-pagination button::after { display: none; }
+  .flower-experience .experience-pagination button.is-active { background: color-mix(in srgb, var(--chapter-ink) 10%, transparent); opacity: 1; }
+  .flower-experience .experience-pagination button span { font-size: 9px; transform: none; }
+  .flower-experience .experience-pagination button b { display: none !important; }
+
+  .flower-experience .chapter-verification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    padding: 132px 18px 98px;
+  }
+  .flower-experience .chapter-verification .verification-copy {
+    position: relative;
+    inset: auto;
+    z-index: 5;
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    margin: 0;
+    padding: 28px 23px;
+    border: 1px solid color-mix(in srgb, var(--chapter-ink) 16%, transparent);
+    border-radius: 26px;
+    background: color-mix(in srgb, var(--chapter-background) 78%, white 22%);
+    box-shadow: 0 30px 80px color-mix(in srgb, var(--chapter-ink) 12%, transparent);
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+  }
+  .flower-experience .verification-copy h2 { margin: 11px 0 17px; font-size: 42px; line-height: 1.03; }
+  .flower-experience .verification-copy > p { max-width: 30em; font-size: 12px; line-height: 1.75; }
+  .flower-experience .verification-formula { margin: 22px 0; padding: 15px 0; }
+  .flower-experience .verification-copy > a { display: flex; justify-content: space-between; min-height: 56px; padding: 0 18px; border-radius: 17px; }
+  .flower-experience .lotus-relief-verification { opacity: .12; }
+
+  /* Direct official lookup page: never leave the live form below an artificial viewport. */
+  .verify-world { min-height: 100svh; overflow-x: hidden; overflow-y: auto; }
+  .verify-world .verify-header { grid-template-columns: 1fr auto; gap: 8px; }
+  .verify-world .verify-header-actions { gap: 6px; }
+  .verify-world .verify-header-actions .site-search-trigger { width: 40px; min-width: 40px; height: 40px; padding: 0; }
+  .verify-world .verify-back { min-height: 40px; padding: 0 10px; border: 1px solid var(--verify-line); border-radius: 13px; font-size: 8px; }
+  .verify-world .verify-main { display: grid; width: calc(100% - 28px); gap: 30px; padding: 94px 0 44px; }
+  .verify-world .verify-intro h1 { max-width: 8em; font-size: clamp(39px, 12vw, 56px); line-height: 1.05; }
+  .verify-world .verify-lead { font-size: 12px; line-height: 1.75; }
+  .verify-world .verify-steps { margin-top: 26px; }
+  .verify-world .verify-console { min-height: 0; padding: 24px 17px 28px; border-radius: 22px; }
+  .verify-world .verify-console-head { gap: 8px; }
+  .verify-world .verify-console form { margin-top: 24px; }
+  .verify-world .verify-page-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .home-experience .home-chapter,
+  .flower-experience .experience-chapter,
+  .flower-experience :is(.prologue-particle, .detail-focus) { will-change: auto !important; }
+}

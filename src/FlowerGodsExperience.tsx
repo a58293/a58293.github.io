@@ -24,6 +24,7 @@ import "./detail-hover-lens.css";
 import "./detail-proportion-rebalance.css";
 import "./flower-gods-content-restructure.css";
 import './soft-ui.css';
+import './mobile-ux-redesign.css';
 const goddessImage = requiredImage('jingxinPortrait');
 const originalArtwork = requiredImage('jingxinConcept');
 const officialLogo = requiredImage('brandLogo');
@@ -82,7 +83,10 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
   const transitionTimersRef = useRef<number[]>([]);
   const wheelDeltaRef = useRef(0);
   const touchStartYRef = useRef<number | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchBlockedRef = useRef(false);
   const theme = chapters[activeChapter];
+  const lightweightArtwork = window.matchMedia('(max-width: 700px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
 
   const goToChapter = useCallback((index: number) => {
     const targetIndex = Math.max(0, Math.min(chapters.length - 1, index));
@@ -137,6 +141,10 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
   }, []);
 
   const updateDetailZoomFromPointer = (event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType === 'touch') {
+      setDetailLensActive(false);
+      return;
+    }
     const eventTarget = event.target as HTMLElement;
     if (eventTarget.closest("button, input, .costume-mode-switch, .costume-piece-rail")) {
       setDetailLensActive(false);
@@ -205,9 +213,14 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
     const root = scrollRef.current;
     if (!root) return;
     let wheelResetTimer = 0;
+    const scrollSurface = (target: EventTarget | null) => target instanceof Element ? target.closest<HTMLElement>('[data-chapter-scroll]') : null;
+    const canScroll = (surface: HTMLElement | null, delta: number) => !!surface && (
+      delta > 0 ? surface.scrollTop + surface.clientHeight < surface.scrollHeight - 2 : surface.scrollTop > 2
+    );
 
     const handleWheel = (event: WheelEvent) => {
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+      if (event.ctrlKey || canScroll(scrollSurface(event.target), event.deltaY)) return;
       event.preventDefault();
       wheelDeltaRef.current += event.deltaY;
       window.clearTimeout(wheelResetTimer);
@@ -219,15 +232,21 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
     };
 
     const handleTouchStart = (event: TouchEvent) => {
-      if (event.touches.length !== 1) return;
-      touchStartYRef.current = event.touches[0].clientY;
+      const touch = event.touches[0];
+      touchStartYRef.current = event.touches.length === 1 ? touch?.clientY ?? null : null;
+      touchStartXRef.current = event.touches.length === 1 ? touch?.clientX ?? null : null;
+      touchBlockedRef.current = event.touches.length !== 1 || !!scrollSurface(event.target)
+        || (event.target instanceof Element && !!event.target.closest('.detail-focus, a, button, input, [role="tablist"], [data-no-chapter-swipe]'));
     };
 
     const handleTouchEnd = (event: TouchEvent) => {
-      if (touchStartYRef.current === null || event.changedTouches.length !== 1) return;
+      if (touchStartYRef.current === null || touchStartXRef.current === null || event.changedTouches.length !== 1) return;
       const deltaY = touchStartYRef.current - event.changedTouches[0].clientY;
+      const deltaX = touchStartXRef.current - event.changedTouches[0].clientX;
       touchStartYRef.current = null;
-      if (Math.abs(deltaY) > 46) {
+      touchStartXRef.current = null;
+      if (touchBlockedRef.current || (window.visualViewport?.scale ?? 1) > 1.03) return;
+      if (Math.abs(deltaY) > 84 && Math.abs(deltaY) > Math.abs(deltaX) * 1.35) {
         goToChapter(targetChapterRef.current + (deltaY > 0 ? 1 : -1));
       }
     };
@@ -316,7 +335,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           <span><strong><SplitColorText text="LUMEN AURALIS" /></strong><small>← 返回花神卷 · 选择花神</small></span>
         </a>
         <div className="experience-chapter-title" aria-live="polite"><span>0{activeChapter + 1}</span>{theme.label} · {theme.en}</div>
-        <div className="experience-header-actions"><SiteSearch tone="dark" /><button className="product-info-trigger" type="button" onClick={() => setProductInfoOpen(true)}>产品信息 <span>＋</span></button><button type="button" onClick={() => goToChapter(3)}>防伪核验 <span>↗</span></button></div>
+        <div className="experience-header-actions"><SiteSearch tone="dark" /><button className="product-info-trigger" type="button" onClick={() => setProductInfoOpen(true)}>产品信息 <span>＋</span></button><a className="experience-verify-link" href="/verify">防伪核验 <span>↗</span></a></div>
       </header>
 
       {productInfoOpen && <div className="product-info-overlay" onMouseDown={event => {
@@ -366,6 +385,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           id="prologue"
           ref={(node) => { chapterRefs.current[0] = node; }}
           className="experience-chapter chapter-prologue"
+          data-chapter-scroll
           data-chapter-index="0"
           data-state={chapterState(0)}
         >
@@ -399,9 +419,11 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
 
           <div className="prologue-particle chapter-reveal" data-portrait-mode={portraitMode}>
             <span className="portrait-environment" aria-hidden="true" />
-            {portraitMode === "physical" ? (
-              <CinematicParticlePortrait active={activeChapter === 0} src={goddessImage} alt="由微光星图缓慢凝聚而成的荷花女神镜昕实体预览" />
+            {portraitMode === "physical" ? (lightweightArtwork ? (
+              <img className="prologue-mobile-portrait" src={goddessImage} alt="荷花女神镜昕实体预览" decoding="async" />
             ) : (
+              <CinematicParticlePortrait active={activeChapter === 0} src={goddessImage} alt="由微光星图缓慢凝聚而成的荷花女神镜昕实体预览" />
+            )) : (
               <img className="prologue-original-art" src={originalArtwork} alt="荷花女神镜昕角色原画" />
             )}
             <span className="portrait-foreground-haze" aria-hidden="true" />
@@ -416,6 +438,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           id="details"
           ref={(node) => { chapterRefs.current[1] = node; }}
           className="experience-chapter chapter-details"
+          data-chapter-scroll
           data-chapter-index="1"
           data-state={chapterState(1)}
         >
@@ -560,6 +583,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           id="becoming"
           ref={(node) => { chapterRefs.current[2] = node; }}
           className="experience-chapter chapter-becoming official-gallery-chapter"
+          data-chapter-scroll
           data-chapter-index="2"
           data-state={chapterState(2)}
         >
@@ -592,6 +616,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           id="verification"
           ref={(node) => { chapterRefs.current[3] = node; }}
           className="experience-chapter chapter-verification"
+          data-chapter-scroll
           data-chapter-index="3"
           data-state={chapterState(3)}
         >
@@ -599,7 +624,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           <div className="verification-copy chapter-reveal">
             <p className="experience-eyebrow">OFFICIAL IDENTITY · PRIVATE LOOKUP</p>
             <h2><span>官方身份</span><span><SplitColorText text="防伪核验" /></span></h2>
-            <p>正式核验暂未开放。目前仅提供虚构样例的界面演示，请勿填写真实娃证或订单信息。</p>
+            <p>输入娃证编号与淘宝订单号，连接绘屿造物官方档案，查看作品身份与首次核验记录。</p>
             <div className="verification-formula"><span>娃证编号</span><i>＋</i><span>淘宝订单号</span></div>
             <a href="/verify">进入防伪验证 <b>↗</b></a>
           </div>

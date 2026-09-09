@@ -22,14 +22,14 @@ export default function BrandLoadingScreen({ onComplete, tracker }: BrandLoading
     exitingRef.current = true;
     setExiting(true);
     window.clearTimeout(finishTimerRef.current);
-    finishTimerRef.current = window.setTimeout(onComplete, 560);
+    finishTimerRef.current = window.setTimeout(onComplete, 420);
   }, [onComplete]);
 
   useEffect(() => {
     document.body.classList.add("brand-loader-active");
-    const minimumTimer = window.setTimeout(() => setMinimumElapsed(true), 1150);
+    const minimumTimer = window.setTimeout(() => setMinimumElapsed(true), 680);
     // Emergency fail-open only: an unavailable asset must not trap the visitor.
-    const fallbackTimer = window.setTimeout(() => finish(), 20000);
+    const fallbackTimer = window.setTimeout(() => finish(), 8000);
     return () => {
       document.body.classList.remove("brand-loader-active");
       window.clearTimeout(minimumTimer);
@@ -48,7 +48,7 @@ export default function BrandLoadingScreen({ onComplete, tracker }: BrandLoading
 
   useEffect(() => {
     if (!imageReady || !pageReady || !minimumElapsed || exiting) return;
-    const settleTimer = window.setTimeout(finish, 120);
+    const settleTimer = window.setTimeout(finish, 80);
     return () => window.clearTimeout(settleTimer);
   }, [exiting, finish, imageReady, pageReady, minimumElapsed]);
 
