@@ -1,5 +1,13 @@
 /* One continuous timeline owns the image and canvas; older phase overrides
    must not snap opacity or switch blend modes at the hand-off. */
+.cinematic-particle-portrait.constellation-arrival > :is(.particle-portrait-base, .particle-portrait-reveal) {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: 50% 50% !important;
+}
 :is(.flower-experience .chapter-prologue, .home-featured-art) .cinematic-particle-portrait.constellation-arrival {
   --arrival-underlay: 0;
   --arrival-front: 0;

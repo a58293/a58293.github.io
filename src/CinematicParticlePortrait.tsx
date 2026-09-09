@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { PageRevealContext } from "./page-reveal-context";
+import {requiredImage} from './media-library';
 import "./particle-portrait.css";
 import "./constellation-arrival.css";
 
@@ -87,7 +88,12 @@ export function CinematicParticlePortrait({
     const build = () => {
       if (disposed || finished || !image.complete || !image.naturalWidth) return;
       if (motion.matches) { finish(); return; }
-      const { width, height, left, top } = wrapper.getBoundingClientRect();
+      // Layout coordinates, not transformed viewport bounds: image and stars
+      // inherit every ancestor translation/scale together.
+      const width = wrapper.clientWidth;
+      const height = wrapper.clientHeight;
+      const left = width * .5;
+      const top = height * .5;
       if (width < 2 || height < 2) return;
       if (Math.abs(width - lastWidth) < 6 && Math.abs(height - lastHeight) < 6
         && lastScreenWidth === window.innerWidth && lastScreenHeight === window.innerHeight) return;
@@ -98,10 +104,9 @@ export function CinematicParticlePortrait({
       cancelAnimationFrame(frame);
       const narrowScreen = window.innerWidth < 700;
       const dpr = Math.min(window.devicePixelRatio || 1, narrowScreen ? 1.2 : 1.5);
-      // The drawing surface spans the viewport, so a star entering the screen
-      // isn't first clipped at the smaller portrait box.
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
+      // Overscan stays attached to the portrait while accommodating incoming stars.
+      const screenWidth = width * 2;
+      const screenHeight = height * 2;
       canvas.style.left = `${-left}px`;
       canvas.style.top = `${-top}px`;
       canvas.style.width = `${screenWidth}px`;
@@ -170,12 +175,21 @@ export function CinematicParticlePortrait({
       } catch {
         // Same-origin media should be readable; keep centred geometry as a safe fallback.
       }
+      const calibratedPortrait = src === requiredImage('jingxinPortrait');
+      // Landmarks normalized to the source image. Veil/transparent margins must
+      // never influence the face axis of the published Jingxin portrait.
+      if (calibratedPortrait) {
+        figureLeft = .06; figureRight = .95;
+        figureTop = .026; figureBottom = .936; figureAxisX = .51;
+      }
       const figureTarget = (x: number, y: number) => ({
         x: ox + pw * (x <= .5
           ? figureLeft + (figureAxisX - figureLeft) * x * 2
           : figureAxisX + (figureRight - figureAxisX) * (x - .5) * 2),
         y: oy + ph * (figureTop + (figureBottom - figureTop) * y),
       });
+      const head = figureTarget(.5, .12);
+      wrapper.dataset.headAnchor = `${head.x},${head.y}`;
       // Four asymmetric currents cross the whole stage. Every point travels on its
       // own curve, so no recognisable sleeve, crown or hem flies in as a rigid piece.
       const streams = [

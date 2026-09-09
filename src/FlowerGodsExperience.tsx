@@ -217,7 +217,8 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
     if (!root) return;
     let wheelResetTimer = 0;
     const scrollSurface = (target: EventTarget | null) => target instanceof Element ? target.closest<HTMLElement>('[data-chapter-scroll]') : null;
-    const canScroll = (surface: HTMLElement | null, delta: number) => !!surface && (
+    const canScroll = (surface: HTMLElement | null, delta: number) => !!surface
+      && /^(auto|scroll)$/.test(getComputedStyle(surface).overflowY) && (
       delta > 0 ? surface.scrollTop + surface.clientHeight < surface.scrollHeight - 2 : surface.scrollTop > 2
     );
 
@@ -225,6 +226,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
       if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
       if (event.ctrlKey || canScroll(scrollSurface(event.target), event.deltaY)) return;
       event.preventDefault();
+      if (transitionInProgressRef.current) return;
       wheelDeltaRef.current += event.deltaY;
       window.clearTimeout(wheelResetTimer);
       wheelResetTimer = window.setTimeout(() => { wheelDeltaRef.current = 0; }, 150);

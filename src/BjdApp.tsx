@@ -6,6 +6,7 @@ import { currentFeaturedProduct, currentProductTheme, currentProductThemeStyle }
 import { requiredImage, siteMedia, collectorPhotos } from "./media-library";
 import SeriesScrolls from "./SeriesScrolls";
 import SiteSearch from './SiteSearch';
+import MobileHome from './MobileHome';
 import { commerce } from './commerce';
 import "./bjd.css";
 import "./brand-home-redesign.css";
@@ -229,7 +230,8 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
     }
 
     const scrollSurface = (target: EventTarget | null) => target instanceof Element ? target.closest<HTMLElement>('[data-home-scroll]') : null;
-    const canScroll = (surface: HTMLElement | null, delta: number) => !!surface && (
+    const canScroll = (surface: HTMLElement | null, delta: number) => !!surface
+      && /^(auto|scroll)$/.test(getComputedStyle(surface).overflowY) && (
       delta > 0 ? surface.scrollTop + surface.clientHeight < surface.scrollHeight - 2 : surface.scrollTop > 2
     );
 
@@ -295,6 +297,8 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
   }, [goToChapter]);
 
   const chapterState = (index: number) => window.matchMedia('(max-width: 700px)').matches ? 'active' : index === activeChapter ? "active" : index < activeChapter ? "past" : "future";
+
+  if (window.matchMedia('(max-width: 700px)').matches) return <MobileHome onOpenFlowerGods={onOpenFlowerGods} onOpenFeatured={onOpenFeatured} />;
 
   return (
     <div className="home-experience" ref={homeRef} data-home-chapter={homeChapters[activeChapter].id} data-product-theme={currentProductTheme.product} style={currentProductThemeStyle}>
