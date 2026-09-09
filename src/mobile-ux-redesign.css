@@ -270,7 +270,7 @@
   .flower-experience .experience-pagination button::after { display: none; }
   .flower-experience .experience-pagination button.is-active { background: color-mix(in srgb, var(--chapter-ink) 10%, transparent); opacity: 1; }
   .flower-experience .experience-pagination button span { font-size: 9px; transform: none; }
-  .flower-experience .experience-pagination button b { display: none !important; }
+  .flower-experience .experience-pagination button b { display: block !important; font-size: 12px; font-weight: 500; margin-left: 5px; }
 
   .flower-experience .chapter-verification {
     display: flex;
@@ -317,6 +317,45 @@
   .verify-world .verify-console-head { gap: 8px; }
   .verify-world .verify-console form { margin-top: 24px; }
   .verify-world .verify-page-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+}
+
+/* Touch surfaces must permit vertical native scrolling through every ancestor. */
+@media (max-width: 700px) {
+  .home-experience, .home-stage, .home-chapter,
+  .flower-experience, .experience-scroll, .experience-chapter {
+    touch-action: pan-y pinch-zoom;
+  }
+  .home-experience .site-shell .hero.home-featured-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 88px 22px 92px;
+  }
+  .home-experience .home-featured-hero .hero-copy { display: contents; }
+  .home-experience .home-featured-hero .home-current-up { order: 0; font-size: 11px; }
+  .home-experience .home-featured-hero h1 { order: 1; font-size: 38px; line-height: 1.15; }
+  .home-experience .home-featured-hero .hero-intro { order: 2; font-size: 14px; line-height: 1.7; margin: 0; }
+  .home-experience .home-featured-hero .hero-figure { order: 3; min-height: 330px; height: 44svh; }
+  .home-experience .home-featured-hero .hero-actions { order: 4; margin: 0; }
+  .home-experience .home-featured-entry { min-height: 58px; border-radius: 10px; }
+  .home-experience .home-explore-entry,
+  .home-experience .home-verify-button { border-radius: 10px; font-size: 14px; }
+  .flower-experience .chapter-prologue { grid-template-rows: auto auto minmax(340px, 48svh); padding-top: 130px; }
+  .flower-experience .chapter-prologue .prologue-particle { min-height: 340px; }
+  .flower-experience .chapter-prologue .prologue-title-backdrop h1 { font-size: 44px; }
+  .flower-experience .experience-chapter-title { display: none; }
+  .flower-experience .experience-header-actions :is(button, a) { font-size: 12px; border-radius: 9px; }
+  .flower-experience .detail-focus { min-height: 320px; height: 52svh; border-radius: 12px; touch-action: pan-x pan-y pinch-zoom; }
+  .flower-experience .detail-intro h2 { font-size: 32px; }
+  .flower-experience .detail-reading p,
+  .flower-experience .verification-copy > p,
+  .home-experience .verify-copy > p { font-size: 14px; line-height: 1.8; }
+  .flower-experience .verification-copy h2,
+  .home-experience .verify-copy > h2 { font-size: 34px; line-height: 1.2; }
+  .home-experience .site-header,
+  .flower-experience .experience-header,
+  .home-experience .home-pagination,
+  .flower-experience .experience-pagination { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 
 @media (prefers-reduced-motion: reduce), (pointer: coarse) {

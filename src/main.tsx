@@ -24,7 +24,11 @@ const VerifyPage = lazy(() => import('./VerifyPage.tsx'));
 const NotFoundPage = lazy(() => import('./NotFoundPage.tsx'));
 const LegalPage = lazy(() => import('./LegalPage.tsx'));
 const legalPage = pathname.match(/^\/legal\/(terms|authenticity)$/)?.[1] as 'terms' | 'authenticity' | undefined;
-const initialAssets = trackInitialAssets(pathname);
+const pageCode = pathname === '/' ? import('./BjdApp')
+  : pathname === '/series/flower-gods/jingxin' ? import('./FlowerGodsExperience')
+  : pathname === '/series/flower-gods' ? import('./FlowerGodsCollection')
+  : pathname === '/verify' ? import('./VerifyPage') : Promise.resolve();
+const initialAssets = trackInitialAssets(pathname, pageCode);
 // Let the visible imagery win the network race; typography swaps in directly
 // afterwards and remains cached for the rest of the visit.
 void initialAssets.ready.then(() => applyCustomFonts());
@@ -32,8 +36,7 @@ const loaderSessionKey = 'lumen-intro-seen-v1';
 
 function SiteRoot() {
   const [showLoader, setShowLoader] = useState(() => {
-    try { return window.sessionStorage.getItem(loaderSessionKey) !== 'yes'; }
-    catch { return true; }
+    return true;
   });
   const finishLoader = () => {
     try { window.sessionStorage.setItem(loaderSessionKey, 'yes'); } catch { /* storage may be unavailable */ }

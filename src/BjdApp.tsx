@@ -180,6 +180,7 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
   const touchStartYRef = useRef<number | null>(null);
   const touchStartXRef = useRef<number | null>(null);
   const touchBlockedRef = useRef(false);
+  const touchBoundaryRef = useRef({up: false, down: false});
   const homeRef = useRef<HTMLDivElement>(null);
 
   const goToChapter = useCallback((index: number) => {
@@ -237,7 +238,9 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
       const touch = event.touches[0];
       touchStartYRef.current = event.touches.length === 1 ? touch?.clientY ?? null : null;
       touchStartXRef.current = event.touches.length === 1 ? touch?.clientX ?? null : null;
-      touchBlockedRef.current = event.touches.length !== 1 || !!scrollSurface(event.target)
+      const surface = scrollSurface(event.target);
+      touchBoundaryRef.current = {up: canScroll(surface, -1), down: canScroll(surface, 1)};
+      touchBlockedRef.current = event.touches.length !== 1
         || (event.target instanceof Element && !!event.target.closest('a, button, input, [role="tablist"], [data-no-chapter-swipe]'));
     };
 
@@ -249,6 +252,7 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
       touchStartYRef.current = null;
       touchStartXRef.current = null;
       if (touchBlockedRef.current || (window.visualViewport?.scale ?? 1) > 1.03) return;
+      if (delta > 0 ? touchBoundaryRef.current.down : touchBoundaryRef.current.up) return;
       if (Math.abs(delta) > 84 && Math.abs(delta) > Math.abs(deltaX) * 1.35) goToChapter(activeChapterRef.current + (delta > 0 ? 1 : -1));
     };
 

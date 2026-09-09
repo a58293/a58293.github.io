@@ -85,6 +85,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
   const touchStartYRef = useRef<number | null>(null);
   const touchStartXRef = useRef<number | null>(null);
   const touchBlockedRef = useRef(false);
+  const touchBoundaryRef = useRef({up: false, down: false});
   const theme = chapters[activeChapter];
   const lightweightArtwork = window.matchMedia('(max-width: 700px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
 
@@ -235,7 +236,9 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
       const touch = event.touches[0];
       touchStartYRef.current = event.touches.length === 1 ? touch?.clientY ?? null : null;
       touchStartXRef.current = event.touches.length === 1 ? touch?.clientX ?? null : null;
-      touchBlockedRef.current = event.touches.length !== 1 || !!scrollSurface(event.target)
+      const surface = scrollSurface(event.target);
+      touchBoundaryRef.current = {up: canScroll(surface, -1), down: canScroll(surface, 1)};
+      touchBlockedRef.current = event.touches.length !== 1
         || (event.target instanceof Element && !!event.target.closest('.detail-focus, a, button, input, [role="tablist"], [data-no-chapter-swipe]'));
     };
 
@@ -246,6 +249,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
       touchStartYRef.current = null;
       touchStartXRef.current = null;
       if (touchBlockedRef.current || (window.visualViewport?.scale ?? 1) > 1.03) return;
+      if (deltaY > 0 ? touchBoundaryRef.current.down : touchBoundaryRef.current.up) return;
       if (Math.abs(deltaY) > 84 && Math.abs(deltaY) > Math.abs(deltaX) * 1.35) {
         goToChapter(targetChapterRef.current + (deltaY > 0 ? 1 : -1));
       }

@@ -1,4 +1,5 @@
 import {requiredImage} from './media-library';
+import {currentFeaturedProduct} from './current-product-theme';
 
 export type InitialAssetTracker = {
   ready: Promise<void>;
@@ -12,7 +13,7 @@ function firstScreenImages(pathname: string) {
     requiredImage('loaderArt'),
     requiredImage('loaderStar'),
   ];
-  if (pathname === "/") paths.push(requiredImage('homeHero'));
+  if (pathname === "/") paths.push(requiredImage(currentFeaturedProduct.physicalMedia));
   if (pathname === "/series/flower-gods") {
     paths.push(requiredImage('jingxinChoice'));
     paths.push(requiredImage('flowerCloudSea'), requiredImage('flowerColumns'), requiredImage('jingxinForeground'));
@@ -24,7 +25,7 @@ function firstScreenImages(pathname: string) {
 
 // Track only visible first-screen images. The large custom font loads in the
 // background with font-display: swap, so typography never blocks the visitor.
-export function trackInitialAssets(pathname: string): InitialAssetTracker {
+export function trackInitialAssets(pathname: string, pageCode: Promise<unknown> = Promise.resolve()): InitialAssetTracker {
   const paths = firstScreenImages(pathname);
   const listeners = new Set<(progress: number) => void>();
   let completed = 0;
@@ -47,7 +48,7 @@ export function trackInitialAssets(pathname: string): InitialAssetTracker {
     image.src = src;
   });
 
-  const ready = Promise.allSettled(paths.map(load)).then(() => undefined);
+  const ready = Promise.allSettled([...paths.map(load), pageCode]).then(() => undefined);
   return {
     ready,
     getProgress,

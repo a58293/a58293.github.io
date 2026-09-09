@@ -27,9 +27,9 @@ export default function BrandLoadingScreen({ onComplete, tracker }: BrandLoading
 
   useEffect(() => {
     document.body.classList.add("brand-loader-active");
-    const minimumTimer = window.setTimeout(() => setMinimumElapsed(true), 680);
+    const minimumTimer = window.setTimeout(() => setMinimumElapsed(true), 1400);
     // Emergency fail-open only: an unavailable asset must not trap the visitor.
-    const fallbackTimer = window.setTimeout(() => finish(), 8000);
+    const fallbackTimer = window.setTimeout(() => finish(), 30000);
     return () => {
       document.body.classList.remove("brand-loader-active");
       window.clearTimeout(minimumTimer);
