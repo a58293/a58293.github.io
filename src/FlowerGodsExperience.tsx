@@ -7,6 +7,7 @@ import { TransparentGoddess } from "./TransparentGoddess";
 import { FLOWER_GODS_PATH, isPlainNavigation } from "./flower-gods-catalog";
 import { requiredImage, detailImage, siteMedia, officialPhotos, type MediaId } from './media-library';
 import { commerce } from './commerce';
+import MobileFlower from './MobileFlower';
 import "./flower-gods-experience.css";
 import "./flower-gods-refined.css";
 import "./cinematic-particle.css";
@@ -200,6 +201,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
 
 
   useEffect(() => {
+    if (window.matchMedia('(max-width: 700px)').matches) return;
     document.body.classList.add("flower-experience-active");
     return () => {
       document.body.classList.remove("flower-experience-active");
@@ -269,6 +271,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (window.matchMedia('(max-width: 700px)').matches) return;
       if (productInfoOpen) {
         if (event.key === "Escape") setProductInfoOpen(false);
         return;
@@ -318,6 +321,10 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
   const detailScale = selectedImage.scale;
   const DetailImage = selectedImage.own ? 'img' : TransparentGoddess;
   const publishedPhotos = officialPhotos.filter(id=>siteMedia[id].src).length;
+
+  if (window.matchMedia('(max-width: 700px)').matches) {
+    return <MobileFlower details={detailItems} pieces={garmentPieces} onBack={onBackCollection} />;
+  }
 
   return (
     <div className="flower-experience" style={experienceStyle} data-transition={transitionPhase} data-direction={transitionDirection} data-chapter={chapters[activeChapter].id}>

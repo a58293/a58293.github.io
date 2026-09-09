@@ -149,6 +149,10 @@ function LiveConsole() {
   </section>;
 }
 
+export function VerificationConsole() {
+  return verificationApiUrl ? <LiveConsole /> : <DemoConsole />;
+}
+
 export default function VerifyPage() {
   const live = Boolean(verificationApiUrl);
   useEffect(() => {

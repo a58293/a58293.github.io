@@ -185,6 +185,9 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
 
   const goToChapter = useCallback((index: number) => {
     const target = Math.max(0, Math.min(homeChapters.length - 1, index));
+    if (window.matchMedia('(max-width: 700px)').matches) {
+      homeRef.current?.querySelectorAll<HTMLElement>('.home-chapter')[target]?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
     if (target === activeChapterRef.current) return;
     activeChapterRef.current = target;
     setActiveChapter(target);
@@ -214,6 +217,16 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
   useEffect(() => {
     const root = homeRef.current;
     if (!root) return;
+    if (window.matchMedia('(max-width: 700px)').matches) {
+      const observer = new IntersectionObserver(entries => {
+        for (const entry of entries) if (entry.isIntersecting) {
+          const index = Array.from(root.querySelectorAll('.home-chapter')).indexOf(entry.target);
+          activeChapterRef.current = index; setActiveChapter(index);
+        }
+      }, {rootMargin:'-10% 0px -70% 0px'});
+      root.querySelectorAll('.home-chapter').forEach(node => observer.observe(node));
+      return () => observer.disconnect();
+    }
 
     const scrollSurface = (target: EventTarget | null) => target instanceof Element ? target.closest<HTMLElement>('[data-home-scroll]') : null;
     const canScroll = (surface: HTMLElement | null, delta: number) => !!surface && (
@@ -281,17 +294,17 @@ export default function BjdApp({ onOpenFlowerGods, onOpenFeatured }: BjdAppProps
     };
   }, [goToChapter]);
 
-  const chapterState = (index: number) => index === activeChapter ? "active" : index < activeChapter ? "past" : "future";
+  const chapterState = (index: number) => window.matchMedia('(max-width: 700px)').matches ? 'active' : index === activeChapter ? "active" : index < activeChapter ? "past" : "future";
 
   return (
     <div className="home-experience" ref={homeRef} data-home-chapter={homeChapters[activeChapter].id} data-product-theme={currentProductTheme.product} style={currentProductThemeStyle}>
       <div className="site-shell">
         <Header activeChapter={activeChapter} onNavigate={goToChapter} onOpenFeatured={onOpenFeatured} />
         <main className="home-stage">
-          <div className="home-chapter" data-home-scroll data-state={chapterState(0)} aria-hidden={activeChapter !== 0}><Hero active={activeChapter === 0} onExplore={() => goToChapter(1)} onOpenFeatured={onOpenFeatured} /></div>
-          <div className="home-chapter" data-home-scroll data-state={chapterState(1)} aria-hidden={activeChapter !== 1}><SeriesScrolls onOpenFlowerGods={onOpenFlowerGods} /></div>
-          <div className="home-chapter" data-home-scroll data-state={chapterState(2)} aria-hidden={activeChapter !== 2}><CollectorPreview /></div>
-          <div className="home-chapter home-chapter-final" data-home-scroll data-state={chapterState(3)} aria-hidden={activeChapter !== 3}><VerifyPreview /><Footer /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(0)} aria-hidden={chapterState(0) !== 'active'}><Hero active={activeChapter === 0} onExplore={() => goToChapter(1)} onOpenFeatured={onOpenFeatured} /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(1)} aria-hidden={chapterState(1) !== 'active'}><SeriesScrolls onOpenFlowerGods={onOpenFlowerGods} /></div>
+          <div className="home-chapter" data-home-scroll data-state={chapterState(2)} aria-hidden={chapterState(2) !== 'active'}><CollectorPreview /></div>
+          <div className="home-chapter home-chapter-final" data-home-scroll data-state={chapterState(3)} aria-hidden={chapterState(3) !== 'active'}><VerifyPreview /><Footer /></div>
         </main>
 
         <nav className="home-pagination" aria-label="首页章节">
