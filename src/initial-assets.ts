@@ -16,7 +16,7 @@ function firstScreenImages(pathname: string) {
   if (pathname === "/") paths.push(requiredImage(currentFeaturedProduct.physicalMedia));
   if (pathname === "/series/flower-gods") {
     paths.push(requiredImage('jingxinChoice'));
-    paths.push(requiredImage('flowerCloudSea'), requiredImage('flowerColumns'), requiredImage('jingxinForeground'));
+    paths.push(requiredImage('flowerCloudSea'), requiredImage('flowerColumns'), requiredImage('jingxinForeground'), requiredImage('flowerPendingScene'));
   }
   if (pathname === "/series/flower-gods/jingxin") paths.push(requiredImage('jingxinPortrait'));
 

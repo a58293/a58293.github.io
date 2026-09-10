@@ -3,6 +3,7 @@ import { PageRevealContext } from './page-reveal-context';
 import { FLOWER_GODS_PATH, resolveSiteRoute, transitionCopy } from "./flower-gods-catalog";
 import { currentFeaturedProduct } from './current-product-theme';
 import { applySiteMetadata } from './site-metadata';
+import {trackInitialAssets} from './initial-assets';
 import "./unified-site-transition.css";
 
 const BjdApp = lazy(() => import('./BjdApp'));
@@ -49,19 +50,25 @@ export default function UnifiedBjdSite() {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const swapTimer = window.setTimeout(() => {
+    // A route transition must wait for its own images, not just the first visit.
+    const pageCode = nextRoute.view === 'collection' ? import('./FlowerGodsCollection')
+      : nextRoute.view === 'character' ? import('./FlowerGodsExperience') : import('./BjdApp');
+    const assets = trackInitialAssets(destination.pathname.replace(/\/+$/, '') || '/', pageCode);
+    const swapTimer = window.setTimeout(async () => {
+      await assets.ready;
+      if (!transitionLockRef.current) return;
       window.history.pushState({ view: nextRoute.view }, "", destination.pathname + destination.search + destination.hash);
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       setRoute(nextRoute);
       setTransitionState("revealing");
+      const finishTimer = window.setTimeout(() => {
+        setTransitionState("idle");
+        transitionLockRef.current = false;
+        contentRef.current?.focus({ preventScroll: true });
+      }, reducedMotion ? 30 : withinFlowerVolume ? 260 : 760);
+      timersRef.current.push(finishTimer);
     }, reducedMotion ? 0 : withinFlowerVolume ? 160 : 560);
-
-    const finishTimer = window.setTimeout(() => {
-      setTransitionState("idle");
-      transitionLockRef.current = false;
-      contentRef.current?.focus({ preventScroll: true });
-    }, reducedMotion ? 30 : withinFlowerVolume ? 420 : 1320);
-    timersRef.current.push(swapTimer, finishTimer);
+    timersRef.current.push(swapTimer);
   }, []);
 
   useEffect(() => {

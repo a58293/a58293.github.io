@@ -9,6 +9,7 @@ import { requiredImage, detailImage, siteMedia, officialPhotos, type MediaId } f
 import { commerce } from './commerce';
 import MobileFlower from './MobileFlower';
 import PurchaseMenu from './PurchaseMenu';
+import {jingxinProductInfo} from './jingxin-product-info';
 import "./flower-gods-experience.css";
 import "./flower-gods-refined.css";
 import "./cinematic-particle.css";
@@ -361,14 +362,7 @@ export default function FlowerGodsExperience({ onBackCollection }: FlowerGodsExp
           <h2 id="product-info-title">镜昕产品信息</h2>
           <p className="product-info-intro">配置、制作周期与服务说明将在这里集中更新，不影响造型细节的纯粹观看。</p>
           <dl className="product-info-grid">
-            <div><dt>尺寸规格</dt><dd>70 · 3分</dd></div>
-            <div><dt>材质</dt><dd>环保三抗树脂</dd></div>
-            <div><dt>肤色</dt><dd>mia白 · mia粉 · 普肌</dd></div>
-            <div><dt>眼珠</dt><dd>图片待补充</dd></div>
-            <div><dt>服装配件</dt><dd>头纱、战国袍、挂饰；披帛（大全套不含）</dd></div>
-            <div><dt>制作周期</dt><dd>约 90 个工作日</dd></div>
-            <div><dt>保养说明</dt><dd>文案确认后公布</dd></div>
-            <div><dt>售后与退换</dt><dd>文案确认后公布</dd></div>
+            {jingxinProductInfo.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
           </dl>
           <div className="product-info-contact"><span>客服 19988424290</span><span>工作日 10:00—17:00</span></div>
           {commerce.featuredProductUrl || commerce.shopUrl

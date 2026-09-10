@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom';
 import {requiredImage, detailImage, type MediaId} from './media-library';
 import {VerificationConsole} from './VerifyPage';
 import {MobileActions} from './PurchaseMenu';
+import {jingxinProductInfo} from './jingxin-product-info';
 import './mobile-flower.css';
 
 type Item = {key: string; title: string; position: string; scale: number; description: string};
@@ -75,7 +76,7 @@ export default function MobileFlower({details, pieces, onBack}:Props) {
       <button className="mf-detail-image" aria-label={'放大查看'+item.title} onClick={()=>setViewer(true)}><img src={media.src} alt={item.title} style={{transform:`scale(${media.scale})`,transformOrigin:media.position}}/><span>放大查看 ＋</span></button>
       <h3>{item.title}</h3><p>{item.description}</p>
     </section>
-    <section id="info"><p className="mf-kicker">PRODUCT NOTES</p><h2>产品信息</h2><dl><div><dt>尺寸规格</dt><dd>70 · 3分</dd></div><div><dt>制作周期</dt><dd>约 90 个工作日</dd></div><div><dt>保养与售后</dt><dd>详细说明待公布，可先咨询客服</dd></div></dl><p>客服 19988424290<br/>工作日 10:00—17:00</p></section>
+    <section id="info"><p className="mf-kicker">PRODUCT NOTES</p><h2>产品信息</h2><dl>{jingxinProductInfo.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><p>客服 19988424290<br/>工作日 10:00—17:00</p></section>
     <section id="auth" className="mf-auth"><p className="mf-kicker">OFFICIAL VERIFICATION</p><h2>防伪核验</h2><p>请准备娃证编号与购买时的淘宝订单号。</p><VerificationConsole /></section>
     <footer className="mf-footer">绘屿造物 · LUMEN AURALIS</footer>
     {viewer&&<ImageViewer src={media.src} onClose={()=>setViewer(false)} />}

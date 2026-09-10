@@ -62,7 +62,7 @@ export function MobileActions({currentSlug}:{currentSlug?:string}) {
     actions.current?.querySelector<HTMLButtonElement>(selector)?.click();
   };
   return <><div ref={actions} className="mobile-actions"><SiteSearch tone="dark"/><a href="/verify">防伪</a><PurchaseMenu currentSlug={currentSlug}/></div>
-    {floating&&createPortal(<div className="mobile-quick-tools" data-open={expanded} data-left={position?position.x<innerWidth/2:false} data-up={position?position.y>innerHeight-250:false} style={position?{left:position.x,top:position.y,right:'auto'}:undefined}>
+    {floating&&createPortal(<div className="mobile-quick-tools" data-open={expanded} data-left={position?position.x<innerWidth/2:true} data-up={position?position.y>innerHeight-250:false} style={position?{left:position.x,top:position.y,right:'auto'}:undefined}>
       {expanded&&<button className="quick-dismiss" aria-label="收起快捷操作" onClick={()=>setExpanded(false)}/>}<div className="quick-panel" role="group" aria-label="快捷操作" inert={!expanded} aria-hidden={!expanded}>
         <button type="button" onClick={()=>activate('.site-search-trigger')}>搜索</button>
         <a href="/verify">防伪核验</a>
