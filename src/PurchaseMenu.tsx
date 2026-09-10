@@ -36,6 +36,14 @@ export function MobileActions({currentSlug}:{currentSlug?:string}) {
   const actions=useRef<HTMLDivElement>(null);
   const [floating,setFloating]=useState(false);
   const [expanded,setExpanded]=useState(false);
+  const [position,setPosition]=useState<{x:number;y:number}|null>(null);
+  const drag=useRef<{x:number;y:number;left:number;top:number;moved:boolean}|null>(null);
+  const suppressClick=useRef(false);
+  useEffect(()=>{
+    const resize=()=>setPosition(p=>p?{x:Math.max(12,Math.min(p.x,innerWidth-62)),y:Math.max(64,Math.min(p.y,innerHeight-70))}:null);
+    window.addEventListener('resize',resize);
+    return()=>window.removeEventListener('resize',resize);
+  },[]);
   useEffect(()=>{
     const header=actions.current?.closest('header') ?? actions.current;
     if(!header)return;
@@ -54,13 +62,18 @@ export function MobileActions({currentSlug}:{currentSlug?:string}) {
     actions.current?.querySelector<HTMLButtonElement>(selector)?.click();
   };
   return <><div ref={actions} className="mobile-actions"><SiteSearch tone="dark"/><a href="/verify">防伪</a><PurchaseMenu currentSlug={currentSlug}/></div>
-    {floating&&createPortal(<div className="mobile-quick-tools">
-      {expanded&&<><button className="quick-dismiss" aria-label="收起快捷操作" onClick={()=>setExpanded(false)}/><div className="quick-panel" role="group" aria-label="快捷操作">
+    {floating&&createPortal(<div className="mobile-quick-tools" data-open={expanded} data-left={position?position.x<innerWidth/2:false} data-up={position?position.y>innerHeight-250:false} style={position?{left:position.x,top:position.y,right:'auto'}:undefined}>
+      {expanded&&<button className="quick-dismiss" aria-label="收起快捷操作" onClick={()=>setExpanded(false)}/>}<div className="quick-panel" role="group" aria-label="快捷操作" inert={!expanded} aria-hidden={!expanded}>
         <button type="button" onClick={()=>activate('.site-search-trigger')}>搜索</button>
-        <button type="button" onClick={()=>activate('.purchase-trigger')}>购买</button>
-        <a href="/verify">防伪</a>
-      </div></>}
-      <button type="button" className="quick-orb" aria-label={expanded?'收起快捷操作':'打开快捷操作'} aria-expanded={expanded} onClick={()=>setExpanded(value=>!value)}><span aria-hidden="true">{expanded?'×':'✦'}</span></button>
+        <a href="/verify">防伪核验</a>
+        <button type="button" onClick={()=>activate('.purchase-trigger')}>购买连接</button>
+      </div>
+      <button type="button" className="quick-orb" aria-label={expanded?'收起快捷操作':'打开快捷操作'} aria-expanded={expanded}
+        onPointerDown={event=>{if(event.button!==0)return;const rect=event.currentTarget.getBoundingClientRect();drag.current={x:event.clientX,y:event.clientY,left:rect.left,top:rect.top,moved:false};suppressClick.current=false;event.currentTarget.setPointerCapture(event.pointerId);}}
+        onPointerMove={event=>{const start=drag.current;if(!start)return;const dx=event.clientX-start.x,dy=event.clientY-start.y;if(Math.hypot(dx,dy)>6)start.moved=true;if(start.moved){setExpanded(false);setPosition({x:Math.max(12,Math.min(innerWidth-62,start.left+dx)),y:Math.max(64,Math.min(innerHeight-70,start.top+dy))});}}}
+        onPointerUp={()=>{suppressClick.current=!!drag.current?.moved;drag.current=null;}}
+        onPointerCancel={()=>{suppressClick.current=true;drag.current=null;}}
+        onClick={()=>{if(suppressClick.current){suppressClick.current=false;return;}setExpanded(value=>!value);}}><span aria-hidden="true">{expanded?'×':'✦'}</span></button>
     </div>,document.body)}
   </>;
 }

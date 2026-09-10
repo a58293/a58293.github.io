@@ -74,3 +74,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, a {
 @utility perspective-1500 {
   perspective: 1500px;
 }
+
+/* One readable text family across navigation, forms, dialogs and body copy.
+   Display headings and brand wordmarks retain their editorial serif family. */
+html body :is(button,input,textarea,select,label,p,li,dt,dd,footer,nav),
+html body :is(button,label,nav) :is(span,b,strong,small,a),
+html body :is(.site-search-layer,.purchase-dialog) * {
+  font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif !important;
+}
