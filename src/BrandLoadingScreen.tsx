@@ -6,9 +6,10 @@ import "./brand-loading-screen.css";
 type BrandLoadingScreenProps = {
   onComplete: () => void;
   tracker: InitialAssetTracker;
+  onTimeout?: () => void;
 };
 
-export default function BrandLoadingScreen({ onComplete, tracker }: BrandLoadingScreenProps) {
+export default function BrandLoadingScreen({ onComplete, tracker, onTimeout }: BrandLoadingScreenProps) {
   const [imageReady, setImageReady] = useState(false);
   const [pageReady, setPageReady] = useState(false);
   const [progress, setProgress] = useState(tracker.getProgress());
@@ -29,14 +30,14 @@ export default function BrandLoadingScreen({ onComplete, tracker }: BrandLoading
     document.body.classList.add("brand-loader-active");
     const minimumTimer = window.setTimeout(() => setMinimumElapsed(true), 1400);
     // Emergency fail-open only: an unavailable asset must not trap the visitor.
-    const fallbackTimer = window.setTimeout(() => finish(), 30000);
+    const fallbackTimer = window.setTimeout(() => onTimeout ? onTimeout() : finish(), 30000);
     return () => {
       document.body.classList.remove("brand-loader-active");
       window.clearTimeout(minimumTimer);
       window.clearTimeout(fallbackTimer);
       window.clearTimeout(finishTimerRef.current);
     };
-  }, [finish]);
+  }, [finish, onTimeout]);
 
   useEffect(() => {
     let cancelled = false;
