@@ -1,4 +1,5 @@
 import {requiredImage} from './media-library';
+import jingxinAvatar from './assets/jingxin-avatar.png';
 export const FLOWER_GODS_PATH = '/series/flower-gods';
 
 export type FlowerGod = {
@@ -9,6 +10,7 @@ export type FlowerGod = {
   englishName: string;
   description: string;
   image: string;
+  avatar: string;
   // Character-specific foreground flowers; unpublished seats have no invented flower.
   foreground?: string;
   // Register a matching detail renderer before publishing another character.
@@ -21,6 +23,7 @@ export const flowerGods: readonly FlowerGod[] = [
     englishName: 'LOTUS DEITY',
     description: '花瓣、薄纱与水光，凝成新生与守护的形貌。',
     image: requiredImage('jingxinChoice'),
+    avatar: jingxinAvatar,
     foreground: requiredImage('jingxinForeground'),
     experience: 'jingxin',
   },
