@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { SplitColorText } from "./components/HoverColorText";
 import {requiredImage} from './media-library';
 import SiteSearch from './SiteSearch';
+import {MobileActions} from './PurchaseMenu';
 import "./verify-page.css";
 import './soft-ui.css';
 import './mobile-ux-redesign.css';
@@ -160,6 +161,7 @@ export default function VerifyPage() {
     return () => document.body.classList.remove("verify-page-active");
   }, []);
   return <div className="verify-world">
+    <header className="mobile-verify-header"><a href="/series/flower-gods">← 花神卷</a><MobileActions/></header>
     <div className="verify-atmosphere" aria-hidden="true"><span /><span /><i /></div>
     <header className="verify-header"><a className="verify-brand" href="/" aria-label="返回绘屿造物首页"><span className="verify-brand-mark"><img className="brand-logo-image" src={officialLogo} alt="" /></span><span><strong>LUMEN AURALIS</strong><small>绘屿造物</small></span></a><p>AUTHENTICITY · {live ? "VERIFICATION" : "DEMONSTRATION"}</p><div className="verify-header-actions"><SiteSearch /><a className="verify-back" href="/series/flower-gods">返回花神卷 <span>↗</span></a></div></header>
     <main className="verify-main"><section className="verify-intro" aria-labelledby="verify-title"><div className="verify-index"><span>01</span><i /><span>{live ? "OFFICIAL VERIFICATION" : "INTERFACE PREVIEW"}</span></div><p className="verify-kicker">绘屿造物 · 身份核验</p><h1 id="verify-title"><span>为真形，</span><SplitColorText text="留下唯一凭证。" /></h1><p className="verify-lead">{live ? "输入娃证编号与购买订单号，查询作品的官方出品记录。首次核验时间会被记录，用于帮助识别异常重复查询。" : "正式核验暂未开放。这里仅展示未来的核验流程，不连接真实档案，也不接收真实娃证或淘宝订单。"}</p><ol className="verify-steps" aria-label="核验流程"><li><span>01</span><div><b>{live ? "输入双重凭证" : "选择虚构样例"}</b><small>{live ? "娃证编号与购买订单同时匹配" : "无需提供任何个人信息"}</small></div></li><li><span>02</span><div><b>{live ? "连接官方档案" : "预览界面状态"}</b><small>{live ? "加密比对，不在浏览器保存" : "匹配、未匹配与访问暂缓"}</small></div></li><li><span>03</span><div><b>{live ? "查看核验记录" : "等待正式开放"}</b><small>{live ? "留意首次时间与重复查询次数" : "服务端档案与安全机制尚待接入"}</small></div></li></ol><div className="verify-trust-note"><i aria-hidden="true">◌</i><p><b>{live ? "安全提示" : "请勿提交真实订单"}</b><span>{live ? "请仅从绘屿造物官网进入核验；核验通过不替代交易平台订单与售后凭证。" : "本页只使用固定虚构样例；不上传、不存储客户订单。演示结果不构成真伪或所有权证明。"}</span></p></div></section>{live ? <LiveConsole /> : <DemoConsole />}</main>

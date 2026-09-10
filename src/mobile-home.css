@@ -26,7 +26,7 @@ html body .mh-page,html body .mh-page :is(p,span,a,button,small,strong,b,i) { fo
 .mh-volume .mh-section-heading>span { color:#bdc8ad; }
 .mh-section-heading p { font-size:13px; color:#c1cdbb; margin:0 0 24px; }
 .mh-series-card { display:block; }
-.mh-series-card>img { width:100%; height:240px; object-fit:cover; display:block; }
+.mh-series-card>img { width:100%; height:auto; aspect-ratio:2 / 3; object-fit:contain; display:block; padding:16px; background:#e3eee6; }
 .mh-series-card>span { display:grid; grid-template-columns:1fr auto; padding:18px 0; border-bottom:1px solid #ffffff33; }
 .mh-series-card b { font-size:20px; font-weight:400; }
 .mh-series-card small { grid-row:2; font-size:11px; color:#c1cdbb; }

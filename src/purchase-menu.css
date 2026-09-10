@@ -1,0 +1,49 @@
+html body :is(.mobile-actions,.purchase-dialog,.deity-roster) * { font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif !important; }
+.mobile-actions { display:flex; align-items:center; gap:5px; }
+.mobile-actions :is(button,a), .purchase-trigger { font:13px/1.4 system-ui; color:inherit; background:transparent; border:0; cursor:pointer; min-height:44px; padding:10px 8px; text-decoration:none; }
+.mobile-actions .site-search-trigger { display:flex; align-items:center; justify-content:center; gap:0; width:auto; min-width:44px; height:44px; border:0; border-radius:0; background:transparent; padding:10px 8px; color:inherit; }
+.mobile-actions .site-search-trigger>span { display:none; }
+.mobile-actions .site-search-trigger>b { display:block; font-size:13px; font-weight:400; }
+.mobile-actions .purchase-trigger { border:1px solid currentColor; border-radius:5px; }
+.purchase-dialog { padding:0; border:0; background:#eff2e9; color:#173d32; width:min(540px,calc(100% - 24px)); max-height:85dvh; margin:auto; border-radius:14px; overflow:auto; box-shadow:0 20px 90px #001c2470; }
+.purchase-dialog::backdrop { background:#021e22aa; }
+.purchase-sheet { padding:24px; }
+.purchase-sheet header { display:flex; align-items:center; justify-content:space-between; }
+.purchase-sheet header small { font-size:10px; letter-spacing:2px; }
+.purchase-sheet h2 { font-size:26px; margin:8px 0; }
+.purchase-sheet header button { background:transparent; border:0; font-size:28px; color:inherit; min-width:44px; min-height:44px; }
+.purchase-sheet>p,.purchase-sheet footer { font-size:12px; line-height:1.8; color:#52695d; }
+.purchase-sheet ul { list-style:none; margin:22px 0; padding:0; }
+.purchase-sheet li { display:grid; grid-template-columns:56px 1fr; align-items:center; gap:12px; padding:18px 0; border-block:1px solid #173d3225; }
+.purchase-sheet h3 { font-size:19px; margin:0; }
+.purchase-sheet h3 small { display:block; font-size:10px; font-weight:400; color:#6b7657; margin-top:4px; }
+.purchase-sheet li p { margin:4px 0; font-size:12px; }
+.purchase-detail { color:inherit; font-size:12px; text-underline-offset:4px; }
+.purchase-outbound,.purchase-unavailable { grid-column:1 / -1; text-align:center; padding:14px; font-size:13px; }
+.purchase-outbound { background:#214c3c; color:#fff; text-decoration:none; }
+.purchase-unavailable { background:#e0e7dc; color:#5a6e60; }
+.deity-avatar { position:relative; display:block; width:56px; height:56px; overflow:hidden; border-radius:50%; background:#dce8df; border:1px solid #b6cabb; }
+.deity-avatar img { position:absolute; width:800%; max-width:none; height:auto; left:-358%; top:-32%; }
+.purchase-sheet footer { padding:16px 0 0; margin:0; border-top:1px solid #173d3220; background:transparent; text-align:left; }
+.deity-roster { display:flex; gap:16px; overflow-x:auto; padding:22px 0 10px; margin:0; }
+.deity-roster :is(a,button) { flex:0 0 58px; display:flex; align-items:center; flex-direction:column; gap:9px; text-decoration:none; color:inherit; background:transparent; border:0; padding:0; font-size:11px; }
+.deity-roster .deity-avatar { width:58px; height:58px; }
+.deity-roster button:disabled { opacity:.55; }
+.mobile-verify-header { display:none; }
+.deity-placeholder { display:grid; place-items:center; font-size:25px; }
+@media(max-width:700px) {
+ .mh-header { gap:8px; padding-inline:16px; }
+ .mh-brand { gap:7px; }
+ .mh-brand span { font-size:8px; letter-spacing:.8px; }
+ .mf-header { height:auto; min-height:64px; display:grid; grid-template-columns:1fr auto; gap:8px; padding:12px 16px; }
+ .mf-header>span { display:none; }
+ .verify-mobile-purchase { display:inline-flex; }
+ .verify-world .verify-header { display:none; }
+ .mobile-verify-header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; color:#183f35; }
+ .mobile-verify-header>a { font-size:13px; text-decoration:none; color:inherit; }
+ .verify-world .verify-main { padding-top:30px; }
+}
+@media(min-width:701px) { .verify-mobile-purchase { display:none; } }
+@media(min-width:701px) {
+ .flower-experience .prologue-title-backdrop .desktop-taobao-entry { display:inline-flex; align-items:center; gap:24px; margin-top:24px; padding:12px 18px; min-height:46px; border:1px solid #d0b47f80; border-radius:3px; background:transparent; color:#dfc695; font:14px system-ui; letter-spacing:.08em; text-decoration:none; position:relative; z-index:10; pointer-events:auto; }
+}
